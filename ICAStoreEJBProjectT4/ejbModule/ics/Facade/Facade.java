@@ -70,17 +70,27 @@ public class Facade implements FacadeLocal {
 
 
 
-	public Product createProduct(Product product) {
+	public Product createProduct(Product product) { //TA BORT!
 		// TODO Auto-generated method stub
 		return productEAO.createProduct(product);
 	}
 
 
 
-	public List<ProductCategory> findByCategoryId(int categoryId) {
+	public ProductCategory findByCategoryId(int categoryId) {
 		// TODO Auto-generated method stub
-		return null;
+		return productCategoryEAO.findProductCategoryById(categoryId);
 	}
+	
+	public ProductCategory updateProductCategory(ProductCategory category) {
+		return productCategoryEAO.updateProductCategory(category);
+		}
+		public void deleteProductCategory(int categoryId) {
+		productCategoryEAO.deleteProductCategory(categoryId);
+		}
+
+
+	
 
 }
 
