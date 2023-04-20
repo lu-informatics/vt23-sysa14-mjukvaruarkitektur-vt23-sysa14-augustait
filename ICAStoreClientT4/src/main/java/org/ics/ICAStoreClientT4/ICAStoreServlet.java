@@ -7,6 +7,7 @@ import java.util.List;
 
 import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Product;
+import ics.ICAStoreT4.ProductCategory;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -64,18 +65,45 @@ public class ICAStoreServlet extends HttpServlet {
        
          
        
-         try {
-        	 // ProductCategory createdProductCategory = facade.createProductCategory(productCategory);
-        	 // out.print("<p>" + createdProductCategory.getCategoryId());
-        	  facade.skapaProdukt(323233423, "LEGACY_DO_HEAD", 400.0, 1);
-        	  
-        	} catch (Exception e) {
-        	  if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-        	    out.print("<p>Product ID already exists. Please choose a different ID.</p>");
-        	  } else {
-        	    out.print("<p>Error creating product.</p>");
-        	  }
-        	}
+//         try {
+//        	 // ProductCategory createdProductCategory = facade.createProductCategory(productCategory);
+//        	 // out.print("<p>" + createdProductCategory.getCategoryId());
+//        	  facade.skapaProdukt(323233423, "LEGACY_DO_HEAD", 400.0, 1);
+//        	  
+//        	} catch (Exception e) {
+//        	  if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
+//        	    out.print("<p>Product ID already exists. Please choose a different ID.</p>");
+//        	  } else {
+//        	    out.print("<p>Error creating product.</p>");
+//        	  }
+//        	}
+         
+         ProductCategory category = new ProductCategory();
+         category.setCategoryId(18);
+         category.setCategoryName("Digitalisering");
+         facade.createProductCategory(category);
+         
+         category.setCategoryName("Uppdatering av kategori namnet");
+        // facade.updateProductCategory(category);
+         
+      //  facade.deleteProductCategory(18);
+         
+         out.print("Test fungerade");
+         
+         category  =  facade.findByCategoryId(18);
+         if (category != null) {
+        	out.println("<br>");
+        	 out.println("Category Name: "+category.getCategoryName() + "<br>");
+          	 out.println("Category ID: "+category.getCategoryId());
+         	 out.println("<br>");
+         }
+         
+         
+         
     }
-    }
+}
+    
+    
+    
+
     
