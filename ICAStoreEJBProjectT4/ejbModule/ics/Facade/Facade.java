@@ -5,6 +5,8 @@ package ics.Facade;
 
 import java.util.List;
 
+import ics.ICAStoreT4.Customer;
+import ics.ICAStoreT4.CustomerEAOImplLocal;
 import ics.ICAStoreT4.ICAStoreEAOImplLocal;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
@@ -23,6 +25,8 @@ public class Facade implements FacadeLocal {
 	private ICAStoreEAOImplLocal productEAO;
 	@EJB
 	private ICAStoreEAOImplLocal productCategoryEAO;
+	@EJB
+	private CustomerEAOImplLocal customerEAO;
 	/**
 	* Default constructor.
 	*/
@@ -88,6 +92,19 @@ public class Facade implements FacadeLocal {
 		public void deleteProductCategory(int categoryId) {
 		productCategoryEAO.deleteProductCategory(categoryId);
 		}
+		
+		public Customer findByCustomerId(int id){
+			return customerEAO.findByCustomerId(id);
+			}
+			public Customer createCustomer(Customer customer) {
+			return customerEAO.createCustomer(customer);
+			}
+			public Customer updateCustomer(Customer customer) {
+			return customerEAO.updateCustomer(customer);
+			}
+			public void deleteCustomer(int id) {
+			customerEAO.deleteCustomer(id);
+			}
 
 
 	

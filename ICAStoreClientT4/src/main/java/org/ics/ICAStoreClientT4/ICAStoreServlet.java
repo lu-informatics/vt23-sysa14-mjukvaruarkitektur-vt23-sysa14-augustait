@@ -6,6 +6,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import ics.Facade.FacadeLocal;
+import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import jakarta.ejb.EJB;
@@ -81,7 +82,7 @@ public class ICAStoreServlet extends HttpServlet {
          ProductCategory category = new ProductCategory();
          category.setCategoryId(18);
          category.setCategoryName("Digitalisering");
-         facade.createProductCategory(category);
+        // facade.createProductCategory(category);
          
          category.setCategoryName("Uppdatering av kategori namnet");
         // facade.updateProductCategory(category);
@@ -96,11 +97,35 @@ public class ICAStoreServlet extends HttpServlet {
         	 out.println("Category Name: "+category.getCategoryName() + "<br>");
           	 out.println("Category ID: "+category.getCategoryId());
          	 out.println("<br>");
+         	 
+         	 
+         	 Customer customer = new Customer();
+         	 customer.setName("Antonio testar");
+         	 customer.setEmail("ante@gmail.com");
+         	 customer.setPhoneNumber(123);
+         	 customer.setCustomerId(18);
+         	 customer.setUserName("@ante");
+         	 
+         	 //facade.createCustomer(customer);
+         	 
+         	 customer.setName("Ante testar update metoden");
+         	// facade.updateCustomer(customer);
+         	 
+         	 facade.deleteCustomer(18);
+         	 
+         	 customer = facade.findByCustomerId(18);
+         	if (customer != null) {
+            	out.println("<br>");
+            	 out.println("Customer Name: "+customer.getName() + "<br>");
+              	 out.println("Customer ID: "+customer.getCustomerId());
+             	 out.println("<br>");
+         	 
          }
          
          
          
     }
+}
 }
     
     
