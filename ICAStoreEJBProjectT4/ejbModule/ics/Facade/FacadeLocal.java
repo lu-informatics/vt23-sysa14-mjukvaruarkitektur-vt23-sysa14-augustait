@@ -3,6 +3,8 @@ package ics.Facade;
 import java.util.List;
 
 import ics.ICAStoreT4.Customer;
+import ics.ICAStoreT4.Order;
+import ics.ICAStoreT4.Orderline;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import ics.ICAStoreT4.Store;
@@ -13,7 +15,7 @@ public interface FacadeLocal {
 	
 	public Product updateProduct(Product product);
 	
-	public Product skapaProdukt(int productId, String productName, double price, int categoryId);
+	public Product createProduct(int productId, String productName, double price, int categoryId);
 	
 	public void deleteProduct(int id);
 	
@@ -35,6 +37,14 @@ public interface FacadeLocal {
 	public Store updateStore(Store store);
 	public void deleteStore(int id);
 	public List<Store> findAllStores();
+	
+//	public Order findOrderById(int id);
+	
+	public Order updateOrder(Order order);
+	public void deleteOrder(int id);
+	public List<Order> findAllOrders();
+	public List<Orderline> findAllOrderline();
+	
 	
 
 }

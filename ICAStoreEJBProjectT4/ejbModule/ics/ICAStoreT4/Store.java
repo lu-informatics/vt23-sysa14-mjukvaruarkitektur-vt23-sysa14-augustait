@@ -1,12 +1,14 @@
 package ics.ICAStoreT4;
 
 import java.io.Serializable;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +25,7 @@ public class Store implements Serializable {
 	private String storeName;
 	private String storeAddress;
 	private String city;
+	private List<Order> orders;
 	
 	@Column (name = "RegionName")
 	public String getRegionName() {
@@ -59,6 +62,15 @@ public class Store implements Serializable {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	@OneToMany(mappedBy = "store")
+	public List<Order> getOrders() {
+		return orders;
+	}
+	
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 	
 	

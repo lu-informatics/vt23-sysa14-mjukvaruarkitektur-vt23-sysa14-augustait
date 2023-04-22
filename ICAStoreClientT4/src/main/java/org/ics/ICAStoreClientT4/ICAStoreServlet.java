@@ -7,6 +7,8 @@ import java.util.List;
 
 import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Customer;
+import ics.ICAStoreT4.Order;
+import ics.ICAStoreT4.Orderline;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import ics.ICAStoreT4.Store;
@@ -40,45 +42,10 @@ public class ICAStoreServlet extends HttpServlet {
         out.println("<meta charset=\"ISO-8859-1\">");
         out.println("</head><body>");
         out.println("<h2>ICAStore</h2>");
-
-        // Hämta alla produkter från databasen
-//        List<Product> allProducts = facade.
-//        if (allProducts.isEmpty()) {
-//            out.println("<p>No products was founded!.</p>");
-//        } else {
-//            // Skriv ut rubrik för produkt-ID
-//            out.println("<h3>All Products in the database ICAStore:</h3>");
-//            out.print("<p>");
-//            for (Product product : allProducts) {
-//                out.print("<p>" + "Product ID: " + product.getProductId() + ", Product name: " +  product.getProductName() + ""
-//                		+ ", Product Price: " + product.getPrice() + "kr" + ", Category ID: " + product.getProductCategory());
-//            }
-//            out.print("<h4>**** Product create****</h4>");
-            
-//         ProductCategory productCategory = new ProductCategory();
-//        // productCategory.setCategoryId(591);
-//         productCategory.setCategoryName("Antonio test");
-//         Product product = new Product();
-//         product.setProductId(122133);
-//         product.setPrice(2.0);
-//         product.setProductName("Antonio");
-//         product.s
-//       
-       
-         
-       
-//         try {
-//        	 // ProductCategory createdProductCategory = facade.createProductCategory(productCategory);
-//        	 // out.print("<p>" + createdProductCategory.getCategoryId());
-//        	  facade.skapaProdukt(323233423, "LEGACY_DO_HEAD", 400.0, 1);
-//        	  
-//        	} catch (Exception e) {
-//        	  if (e.getCause() instanceof SQLIntegrityConstraintViolationException) {
-//        	    out.print("<p>Product ID already exists. Please choose a different ID.</p>");
-//        	  } else {
-//        	    out.print("<p>Error creating product.</p>");
-//        	  }
-//        	}
+        
+        Order order = new Order();
+        order.setOrderId(6);
+       // facade.deleteOrder(6);
          
          ProductCategory category = new ProductCategory();
          category.setCategoryId(18);
@@ -121,6 +88,32 @@ public class ICAStoreServlet extends HttpServlet {
               	 out.println("Customer ID: "+customer.getCustomerId());
              	 out.println("<br>");
              	 
+             List<Orderline>allOrderlines = facade.findAllOrderline();
+             if (allOrderlines.isEmpty()) {
+             	out.println("<p>No orderlines was founded!.</p>");
+             	
+           } else {
+           	 out.println("<h4>All Orderlines in the database ICAStore:</h3>");
+              out.print("<p>");
+               for (Orderline orderlines : allOrderlines) {
+            	    out.println("<li>Order ID: " + orderlines.getId().getOrderId() + ", Product ID: " +  orderlines.getId().getProductId() + "</li>");
+               }
+               out.println("</ul>");
+           }
+             	 //Order
+             	 
+//            List<Order>allOrders = facade.findAllOrders();
+//            if(allOrders.isEmpty()) {
+//            	out.println("<p>No products was founded!.</p>");
+//            	
+//            } else {
+//            	 out.println("<h3>All Orders in the database ICAStore:</h3>");
+//                 out.print("<p>");
+//                 for (Order order : allOrders) {
+//                   out.print("<p>" + "Order ID: " + order.getOrderId() + ", Order date: " +  order.getOrderDate() + "</p>") ;
+//              
+//            }
+             	 
              	 
             //Store
              	 
@@ -128,7 +121,7 @@ public class ICAStoreServlet extends HttpServlet {
             if (allStores.isEmpty()) {
             	out.println("<p>No products was founded!.</p>");
             } else {
-            	 out.println("<h3>All Stores in the database ICAStore:</h3>");
+            	 out.println("<h5>All Stores in the database ICAStore:</h3>");
                  out.print("<p>");
                  for (Store store : allStores) {
                    out.print("<p>" + "Supermarket ID: " + store.getSupermarketId() + ", Supermarket name: " +  store.getStoreName() + ""
@@ -143,7 +136,9 @@ public class ICAStoreServlet extends HttpServlet {
          }
          }
     }
-}
+    }
+
+
          
          
          

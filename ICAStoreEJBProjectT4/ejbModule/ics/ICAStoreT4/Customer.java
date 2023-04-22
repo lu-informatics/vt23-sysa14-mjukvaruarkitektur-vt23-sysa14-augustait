@@ -37,7 +37,7 @@ public class Customer {
 	
 	private int customerId;
 	
-//	private Set<Order>orders;
+	private Set<Order>orders;
 
 	
 	@Column(name="Name")
@@ -98,14 +98,14 @@ public class Customer {
 		this.customerId = customerId;
 	}
 
-//	@OneToMany(mappedBy="customer", fetch= FetchType.EAGER)
-//	public Set<Order> getOrders() {
-//		return orders;
-//	}
-//
-//	public void setOrders(Set<Order> orders) {
-//		this.orders = orders;
-//	}
+	@OneToMany(mappedBy="customer", fetch= FetchType.EAGER)
+	public Set<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
 	
 
 }

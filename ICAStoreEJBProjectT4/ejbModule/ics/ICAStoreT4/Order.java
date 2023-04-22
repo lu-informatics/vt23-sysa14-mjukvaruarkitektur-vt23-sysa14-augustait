@@ -2,6 +2,8 @@ package ics.ICAStoreT4;
 
 import java.io.Serializable;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -12,14 +14,16 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
-@NamedQueries({
-    @NamedQuery(name= "Order.findAll", query = "SELECT o FROM Order_ "),
-    @NamedQuery(name = "Store.findByOrderId", query = "SELECT o FROM Order_ s WHERE o.OrderId = :id")
-})
+//@NamedQueries({
+//      @NamedQuery(name = "OrderTable.findAll", query = "SELECT o FROM OrderTable o"),
+//      @NamedQuery(name = "OrderTable.findByOrderId", query = "SELECT o FROM OrderTable o WHERE o.orderId = :id")
+//})
+@Table(name = "Order_")
 
-@Table(name = "Store")
 
 public class Order implements Serializable {
+	
+	
 	
 	
 	private int orderId;
@@ -54,7 +58,7 @@ public class Order implements Serializable {
     }
 	
 	@ManyToOne
-    @JoinColumn(name = "StoreID")
+    @JoinColumn(name = "SupermarketID")
     public Store getStore() {
         return store;
     }

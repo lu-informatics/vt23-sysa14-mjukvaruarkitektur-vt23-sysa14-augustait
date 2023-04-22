@@ -17,9 +17,6 @@ public class ICAStoreEAOImpl implements ICAStoreEAOImplLocal {
 @PersistenceContext(unitName = "LabEJBSql")
 private EntityManager em;
 
-public Product findProductById(int productId) {
-return em.find(Product.class, productId);
-}
 
 public Product createProduct(Product product) {
 em.persist(product);
