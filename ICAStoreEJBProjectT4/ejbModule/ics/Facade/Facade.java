@@ -8,6 +8,10 @@ import java.util.List;
 import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.CustomerEAOImplLocal;
 import ics.ICAStoreT4.ICAStoreEAOImplLocal;
+import ics.ICAStoreT4.Order;
+import ics.ICAStoreT4.OrderEAOImplLocal;
+import ics.ICAStoreT4.Orderline;
+import ics.ICAStoreT4.OrderlineEAOImplLocal;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import ics.ICAStoreT4.Store;
@@ -31,6 +35,10 @@ public class Facade implements FacadeLocal {
 	private CustomerEAOImplLocal customerEAO;
 	@EJB
 	private StoreEAOImplLocal storeEAO;
+	@EJB
+	private OrderEAOImplLocal orderEAO;
+	@EJB
+	private OrderlineEAOImplLocal orderlineEAO;
 	/**
 	* Default constructor.
 	*/
@@ -44,7 +52,7 @@ public class Facade implements FacadeLocal {
 	
 	}
 	
-	public Product skapaProdukt(int productId, String productName, double price, int categoryId) {
+	public Product createProduct(int productId, String productName, double price, int categoryId) {
 	    Product newProduct = new Product();
 	    newProduct.setProductId(productId);
 	    newProduct.setProductName(productName);
@@ -78,10 +86,6 @@ public class Facade implements FacadeLocal {
 
 
 
-	public Product createProduct(Product product) { //TA BORT!
-		// TODO Auto-generated method stub
-		return productEAO.createProduct(product);
-	}
 
 
 
@@ -98,15 +102,19 @@ public class Facade implements FacadeLocal {
 		}
 		
 		public Customer findByCustomerId(int id){
+		
 			return customerEAO.findByCustomerId(id);
 			}
-			public Customer createCustomer(Customer customer) {
+			
+		public Customer createCustomer(Customer customer) {
 			return customerEAO.createCustomer(customer);
 			}
-			public Customer updateCustomer(Customer customer) {
+			
+		public Customer updateCustomer(Customer customer) {
 			return customerEAO.updateCustomer(customer);
 			}
-			public void deleteCustomer(int id) {
+			
+		public void deleteCustomer(int id) {
 			customerEAO.deleteCustomer(id);
 			}
 			
@@ -127,6 +135,35 @@ public class Facade implements FacadeLocal {
 			public List<Store> findAllStores() {
 				return storeEAO.findAllStores();
 			}
+			
+			public void deleteOrder(int id) {
+				orderEAO.deleteOrder(id);
+			}
+			
+			public List<Order> findAllOrders() {
+				return orderEAO.findAllOrders();
+				
+			}
+			
+			public Order updateOrder (Order order) {
+				return orderEAO.updateOrder(order);
+			}
+			
+//			public Order findOrderById(int id) {
+//				return orderEAO.findOrderById(id);
+//			}
+ 
+
+			public List<Orderline> findAllOrderline() {
+				return orderlineEAO.findAllOrderline();
+				
+			}
+
+
+			
+
+
+			
 
 
 		

@@ -7,7 +7,6 @@ import jakarta.ejb.LocalBean;
 
 @LocalBean
 public interface ICAStoreEAOImplLocal {
-	public Product findProductById(int productId);
 	public Product createProduct(Product product);
 	public Product updateProduct(Product product);
 	public void deleteProduct(int id);
