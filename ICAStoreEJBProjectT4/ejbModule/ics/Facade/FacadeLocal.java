@@ -5,6 +5,7 @@ import java.util.List;
 import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
+import ics.ICAStoreT4.Store;
 import jakarta.ejb.Local;
 
 @Local
@@ -28,5 +29,10 @@ public interface FacadeLocal {
 	public Customer createCustomer(Customer customer);
 	public Customer updateCustomer(Customer customer);
 	public void deleteCustomer(int id);
+	
+	public Store findByStoreId(int id);
+	public Store createStore(Store store);
+	public Store updateStore(Store store);
+	public void deleteStore(int id);
 
 }

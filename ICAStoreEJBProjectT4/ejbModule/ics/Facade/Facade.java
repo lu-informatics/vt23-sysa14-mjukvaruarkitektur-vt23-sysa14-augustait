@@ -10,6 +10,8 @@ import ics.ICAStoreT4.CustomerEAOImplLocal;
 import ics.ICAStoreT4.ICAStoreEAOImplLocal;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
+import ics.ICAStoreT4.Store;
+import ics.ICAStoreT4.StoreEAOImplLocal;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
@@ -27,6 +29,8 @@ public class Facade implements FacadeLocal {
 	private ICAStoreEAOImplLocal productCategoryEAO;
 	@EJB
 	private CustomerEAOImplLocal customerEAO;
+	@EJB
+	private StoreEAOImplLocal storeEAO;
 	/**
 	* Default constructor.
 	*/
@@ -105,6 +109,28 @@ public class Facade implements FacadeLocal {
 			public void deleteCustomer(int id) {
 			customerEAO.deleteCustomer(id);
 			}
+			
+		public Store findByStoreId(int id) {
+			return storeEAO.findByStoreId(id);
+		}
+		
+		public Store createStore(Store store) {
+			return storeEAO.createStore(store);
+			}
+			public Store updateStore(Store store) {
+			return storeEAO.updateStore(store);
+			}
+			public void deleteStore(int id) {
+			storeEAO.deleteStore(id);
+			}
+			
+			public List<Store> findAllStores() {
+				// TODO Auto-generated method stub
+				return storeEAO.findAllStores();
+			}
+
+
+		
 
 
 	
