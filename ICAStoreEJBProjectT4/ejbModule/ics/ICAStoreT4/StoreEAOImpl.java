@@ -27,14 +27,14 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
     }
     
 	public List<Store> findAllStores() {
-		return em.createNamedQuery("CStore.findAll", Store.class)
+		return em.createNamedQuery("Store.findAll", Store.class)
 		         .getResultList();
 	}
 
 
     public Store findByStoreId(int id){ //Ändra
-	return em.createNamedQuery("Store.findByStoreId", Store.class)
-			.setParameter("storeId", id).
+	return em.createNamedQuery("Store.findBySupermarketId", Store.class)
+			.setParameter("supermarketId", id).
 			getSingleResult();
 
 }

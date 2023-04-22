@@ -125,7 +125,6 @@ public class Facade implements FacadeLocal {
 			}
 			
 			public List<Store> findAllStores() {
-				// TODO Auto-generated method stub
 				return storeEAO.findAllStores();
 			}
 

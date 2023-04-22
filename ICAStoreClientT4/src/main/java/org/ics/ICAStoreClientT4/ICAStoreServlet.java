@@ -9,6 +9,7 @@ import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
+import ics.ICAStoreT4.Store;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -106,12 +107,12 @@ public class ICAStoreServlet extends HttpServlet {
          	 customer.setCustomerId(18);
          	 customer.setUserName("@ante");
          	 
-         	 //facade.createCustomer(customer);
+         	// facade.createCustomer(customer);
          	 
          	 customer.setName("Ante testar update metoden");
          	// facade.updateCustomer(customer);
          	 
-         	 facade.deleteCustomer(18);
+         //	 facade.deleteCustomer(18);
          	 
          	 customer = facade.findByCustomerId(18);
          	if (customer != null) {
@@ -119,14 +120,36 @@ public class ICAStoreServlet extends HttpServlet {
             	 out.println("Customer Name: "+customer.getName() + "<br>");
               	 out.println("Customer ID: "+customer.getCustomerId());
              	 out.println("<br>");
+             	 
+             	 
+            //Store
+             	 
+            List<Store>allStores = facade.findAllStores();
+            if (allStores.isEmpty()) {
+            	out.println("<p>No products was founded!.</p>");
+            } else {
+            	 out.println("<h3>All Stores in the database ICAStore:</h3>");
+                 out.print("<p>");
+                 for (Store store : allStores) {
+                   out.print("<p>" + "Supermarket ID: " + store.getSupermarketId() + ", Supermarket name: " +  store.getStoreName() + ""
+                   		+ ", Address: " + store.getStoreAddress()  +  ", City: " + store.getCity() + ", Region: " + store.getRegionName()) ;
+              }
+            	
+            }
+             
+           
+             
          	 
          }
-         
-         
-         
+         }
     }
 }
-}
+         
+         
+         
+    
+
+
     
     
     
