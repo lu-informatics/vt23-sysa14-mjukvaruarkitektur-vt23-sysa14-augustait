@@ -34,5 +34,7 @@ public interface FacadeLocal {
 	public Store createStore(Store store);
 	public Store updateStore(Store store);
 	public void deleteStore(int id);
+	public List<Store> findAllStores();
+	
 
 }
