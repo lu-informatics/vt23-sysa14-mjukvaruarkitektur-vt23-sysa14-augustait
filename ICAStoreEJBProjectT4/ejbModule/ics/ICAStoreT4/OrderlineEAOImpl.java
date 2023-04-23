@@ -28,5 +28,26 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
     public List<Orderline> findAllOrderline() {
     	return em.createNamedQuery("Orderline.findAll", Orderline.class).getResultList();
     	}
+    
+    public List<Orderline> findOrderlineByOrderId(int orderId) {
+        return em.createNamedQuery("Orderline.findByOrderId", Orderline.class)
+                .setParameter("id", orderId)
+                .getResultList();
+    }
+    
+    public Orderline createOrderline (Orderline orderline) {
+    	em.persist(orderline);
+    	return orderline;
+    }
+    public void updateOrderline (Orderline orderline) {
+    	em.merge(orderline);
+    	
+    }
+    public void deleteOrderline(Orderline orderline) {
+        Orderline mergedOrderline = em.merge(orderline);
+        em.remove(mergedOrderline);
+    }
+    
+    
 
 }

@@ -23,7 +23,7 @@ public class Orderline {
     private OrderlineId id;
     private int orderlineNumber;
     private int quantity;
-    private Order order;
+    private Order_ order;
     private Product product;
 
     @EmbeddedId
@@ -52,10 +52,10 @@ public class Orderline {
 
     @ManyToOne
     @JoinColumn(name = "OrderID", referencedColumnName= "OrderID", nullable = false, insertable = false, updatable = false)
-    public Order getOrder() {
+    public Order_ getOrder() {
         return order;
     }
-    public void setOrder(Order order) {
+    public void setOrder(Order_ order) {
         this.order = order;
     }
 

@@ -25,32 +25,32 @@ public class OrderEAOImpl implements OrderEAOImplLocal {
     }
     
 
-public Order createOrder(Order order) {
+public Order_ createOrder(Order_ order) {
 em.persist(order);
 return order;
 }
 
-public Order updateOrder(Order order) {
+public Order_ updateOrder(Order_ order) {
 em.merge(order);
 return order;
 }
 
 public void deleteOrder(int id) {
-Order o = em.find(Order.class, id);
+Order_ o = em.find(Order_.class, id);
 if (o != null) {
 em.remove(o);
 }
 }
 
-public List<Order> findAllOrders() {
-return em.createNamedQuery("OrderTable.findAll", Order.class).getResultList();
+public List<Order_> findAllOrders() {
+return em.createNamedQuery("Order_.findAll", Order_.class).getResultList();
 }
-//
-//public Order findOrderById(int orderId) {
-//return em.createNamedQuery("OrderTable.findByOrderId", Order.class)
-//.setParameter("id", orderId)
-//.getSingleResult();
-//}
+
+public Order_ findOrderById(int orderId) {
+return em.createNamedQuery("Order_.findByOrderId", Order_.class)
+.setParameter("id", orderId)
+.getSingleResult();
+}
 
 
 

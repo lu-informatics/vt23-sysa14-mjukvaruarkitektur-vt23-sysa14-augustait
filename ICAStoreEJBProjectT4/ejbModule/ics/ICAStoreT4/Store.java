@@ -25,7 +25,7 @@ public class Store implements Serializable {
 	private String storeName;
 	private String storeAddress;
 	private String city;
-	private List<Order> orders;
+	private List<Order_> orders;
 	
 	@Column (name = "RegionName")
 	public String getRegionName() {
@@ -65,11 +65,11 @@ public class Store implements Serializable {
 	}
 	
 	@OneToMany(mappedBy = "store")
-	public List<Order> getOrders() {
+	public List<Order_> getOrders() {
 		return orders;
 	}
 	
-	public void setOrders(List<Order> orders) {
+	public void setOrders(List<Order_> orders) {
 		this.orders = orders;
 	}
 	
