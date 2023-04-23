@@ -2,6 +2,8 @@ package ics.Facade;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import ics.ICAStoreT4.Customer;
 
 import ics.ICAStoreT4.Order_;
@@ -18,7 +20,7 @@ public interface FacadeLocal {
 	
 	public Product createProduct(int productId, String productName, double price, int categoryId);
 	
-	public void deleteProduct(int id);
+	public void deleteProduct(int id) throws MyICAException;
 	
 	public ProductCategory findByCategoryId (int id);
 	
@@ -39,6 +41,7 @@ public interface FacadeLocal {
 	public void deleteStore(int id);
 	public List<Store> findAllStores();
 	
+	public Order_ createOrder(int orderId, String orderDate, String paymentMethod, int customerId, int supermarketId);
    public Order_ findOrderById(int id);
 	
 	public Order_ updateOrder(Order_ order);

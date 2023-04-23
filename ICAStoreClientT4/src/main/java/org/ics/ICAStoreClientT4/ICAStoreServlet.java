@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Customer;
 
@@ -92,6 +94,21 @@ public class ICAStoreServlet extends HttpServlet {
              
              	 Product product = new Product();
              	 product.setProductId(1);
+             	 product.setProductId(345);
+             	 
+             	 try {
+					facade.deleteProduct(345);
+					out.println("<br>");
+					 out.println("The Product with the Product ID: " + product.getProductId() + " was deleted successfully! ");
+	             	 out.println("<br>");
+					
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					out.println("<br>");
+					 out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
+					out.println("<br>");
+				}
+             	
              	 
              	Orderline orderline = new Orderline();
              	OrderlineId id = new OrderlineId();
@@ -117,7 +134,15 @@ public class ICAStoreServlet extends HttpServlet {
                out.println("</ul>");
            }
              	 //Order_
-             	 
+             
+             
+           Order_ orders = new Order_();
+           
+          facade.createOrder(345, "2002-02-04", "Klarna", 1, 1);
+           
+           
+         
+           
           List<Order_>allOrders = facade.findAllOrders();
            if(allOrders.isEmpty()) {
           	out.println("<p>No products was founded!.</p>");
