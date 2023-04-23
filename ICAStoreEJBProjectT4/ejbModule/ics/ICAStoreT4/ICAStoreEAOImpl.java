@@ -2,6 +2,8 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
@@ -28,12 +30,18 @@ em.merge(product);
 return product;
 }
 
-public void deleteProduct(int id) {
+public void deleteProduct(int id) throws MyICAException  {
 Product p = em.find(Product.class, id);
 if (p != null) {
 em.remove(p);
+
+} else {
+	throw new MyICAException("Failed to delete the product! There is no product with Product ID: " + id);
+			}
+	
 }
-}
+	
+
 
 public List<Product> findAllProducts() {
 return em.createNamedQuery("Product.findAll", Product.class).getResultList();

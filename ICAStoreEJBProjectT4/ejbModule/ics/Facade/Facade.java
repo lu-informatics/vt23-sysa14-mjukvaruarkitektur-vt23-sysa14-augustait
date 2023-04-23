@@ -5,6 +5,8 @@ package ics.Facade;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.CustomerEAOImplLocal;
 import ics.ICAStoreT4.ICAStoreEAOImplLocal;
@@ -68,9 +70,13 @@ public class Facade implements FacadeLocal {
 
 
 	
-	public void deleteProduct(int id) {
-		// TODO Auto-generated method stub
+	public void deleteProduct(int id) throws MyICAException {
+		try  {
+		productEAO.deleteProduct(id);
 		
+	} catch (MyICAException e) {
+		throw e;
+	}
 	}
 
 
@@ -187,6 +193,22 @@ public class Facade implements FacadeLocal {
 				// TODO Auto-generated method stub
 				return null;
 			}
+			
+			public Order_ createOrder(int orderId, String orderDate, String paymentMethod, int supermarketId, int customerId) {
+			    Order_ newOrder = new Order_();
+			    newOrder.setOrderId(orderId);
+			    newOrder.setOrderDate(orderDate);
+			    newOrder.setPaymentMethod(paymentMethod);
+			    
+			    
+			    Customer customer = customerEAO.findByCustomerId(customerId);
+			    newOrder.setCustomer(customer);
+			    Store store = storeEAO.findByStoreId(supermarketId);
+			    newOrder.setStore(store);
+			    
+			    return orderEAO.createOrder(newOrder);
+			}
+
 			
 			
 

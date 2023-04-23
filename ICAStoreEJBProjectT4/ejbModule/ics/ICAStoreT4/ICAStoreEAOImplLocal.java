@@ -3,13 +3,15 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import jakarta.ejb.LocalBean;
 
 @LocalBean
 public interface ICAStoreEAOImplLocal {
 	public Product createProduct(Product product);
 	public Product updateProduct(Product product);
-	public void deleteProduct(int id);
+	public void deleteProduct(int id) throws MyICAException;
 	public List<Product> findAllProducts();
 	public Product findProductByProductId(int productId);
 	public List<ProductCategory> findAllProductCategories();

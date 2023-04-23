@@ -34,7 +34,7 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
 
     public Store findByStoreId(int id){ //Ändra
 	return em.createNamedQuery("Store.findBySupermarketId", Store.class)
-			.setParameter("supermarketId", id).
+			.setParameter("id", id).
 			getSingleResult();
 
 }
