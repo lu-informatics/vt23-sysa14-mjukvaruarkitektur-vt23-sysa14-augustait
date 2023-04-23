@@ -8,8 +8,9 @@ import java.util.List;
 import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.CustomerEAOImplLocal;
 import ics.ICAStoreT4.ICAStoreEAOImplLocal;
-import ics.ICAStoreT4.Order;
+
 import ics.ICAStoreT4.OrderEAOImplLocal;
+import ics.ICAStoreT4.Order_;
 import ics.ICAStoreT4.Orderline;
 import ics.ICAStoreT4.OrderlineEAOImplLocal;
 import ics.ICAStoreT4.Product;
@@ -140,12 +141,12 @@ public class Facade implements FacadeLocal {
 				orderEAO.deleteOrder(id);
 			}
 			
-			public List<Order> findAllOrders() {
+			public List<Order_> findAllOrders() {
 				return orderEAO.findAllOrders();
 				
 			}
 			
-			public Order updateOrder (Order order) {
+			public Order_ updateOrder (Order_ order) {
 				return orderEAO.updateOrder(order);
 			}
 			
@@ -158,6 +159,36 @@ public class Facade implements FacadeLocal {
 				return orderlineEAO.findAllOrderline();
 				
 			}
+			
+			public List<Orderline>findOrderlineByOrderId(int orderId){
+				return orderlineEAO.findOrderlineByOrderId(orderId);
+			}
+			
+
+
+
+			public Orderline createOrderline(Orderline orderline) {
+				return orderlineEAO.createOrderline(orderline);
+			}
+
+			
+			public void deleteOrderline(Orderline orderline) {
+				orderlineEAO.deleteOrderline(orderline);
+			}
+
+
+			public void updateOrderline(Orderline orderline) {
+				orderlineEAO.updateOrderline(orderline);
+			}
+
+
+			@Override
+			public Order_ findOrderById(int id) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			
 
 
 			

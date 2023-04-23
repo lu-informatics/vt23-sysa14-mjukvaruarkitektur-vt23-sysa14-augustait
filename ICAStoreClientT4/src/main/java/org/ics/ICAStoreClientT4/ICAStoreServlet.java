@@ -7,8 +7,10 @@ import java.util.List;
 
 import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Customer;
-import ics.ICAStoreT4.Order;
+
+import ics.ICAStoreT4.Order_;
 import ics.ICAStoreT4.Orderline;
+import ics.ICAStoreT4.OrderlineId;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import ics.ICAStoreT4.Store;
@@ -43,7 +45,7 @@ public class ICAStoreServlet extends HttpServlet {
         out.println("</head><body>");
         out.println("<h2>ICAStore</h2>");
         
-        Order order = new Order();
+        Order_ order = new Order_();
         order.setOrderId(6);
        // facade.deleteOrder(6);
          
@@ -87,6 +89,20 @@ public class ICAStoreServlet extends HttpServlet {
             	 out.println("Customer Name: "+customer.getName() + "<br>");
               	 out.println("Customer ID: "+customer.getCustomerId());
              	 out.println("<br>");
+             
+             	 Product product = new Product();
+             	 product.setProductId(1);
+             	 
+             	Orderline orderline = new Orderline();
+             	OrderlineId id = new OrderlineId();
+             	id.setOrderId(1); 
+             	id.setProductId(1);
+             	orderline.setId(id); 
+             	orderline.setOrderlineNumber(1); 
+             	orderline.setQuantity(2);
+            // facade.createOrderline(orderline);
+            
+             
              	 
              List<Orderline>allOrderlines = facade.findAllOrderline();
              if (allOrderlines.isEmpty()) {
@@ -96,23 +112,23 @@ public class ICAStoreServlet extends HttpServlet {
            	 out.println("<h4>All Orderlines in the database ICAStore:</h3>");
               out.print("<p>");
                for (Orderline orderlines : allOrderlines) {
-            	    out.println("<li>Order ID: " + orderlines.getId().getOrderId() + ", Product ID: " +  orderlines.getId().getProductId() + "</li>");
+            	    out.println("<li> Orderline number: " + orderlines.getOrderlineNumber() + ", Order ID: " + orderlines.getId().getOrderId() + ", Product ID: " +  orderlines.getId().getProductId() + ", Quantity: " + orderlines.getQuantity() + "</li>");
                }
                out.println("</ul>");
            }
-             	 //Order
+             	 //Order_
              	 
-//            List<Order>allOrders = facade.findAllOrders();
-//            if(allOrders.isEmpty()) {
-//            	out.println("<p>No products was founded!.</p>");
-//            	
-//            } else {
-//            	 out.println("<h3>All Orders in the database ICAStore:</h3>");
-//                 out.print("<p>");
-//                 for (Order order : allOrders) {
-//                   out.print("<p>" + "Order ID: " + order.getOrderId() + ", Order date: " +  order.getOrderDate() + "</p>") ;
-//              
-//            }
+          List<Order_>allOrders = facade.findAllOrders();
+           if(allOrders.isEmpty()) {
+          	out.println("<p>No products was founded!.</p>");
+           	
+           } else {
+           	 out.println("<h3>All Orders in the database ICAStore:</h3>");
+               out.print("<p>");
+                for (Order_ order_: allOrders) {
+                 out.print("<p>" + "Order ID: " + order_.getOrderId() + ", Order date: " +  order_.getOrderDate() + "</p>") ;
+            
+           }
              	 
              	 
             //Store
@@ -129,6 +145,7 @@ public class ICAStoreServlet extends HttpServlet {
               }
             	
             }
+            
              
            
              
@@ -137,6 +154,8 @@ public class ICAStoreServlet extends HttpServlet {
          }
     }
     }
+}
+    
 
 
          
