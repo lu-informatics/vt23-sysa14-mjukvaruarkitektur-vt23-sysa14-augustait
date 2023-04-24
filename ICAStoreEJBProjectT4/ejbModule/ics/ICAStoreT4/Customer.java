@@ -2,16 +2,20 @@ package ics.ICAStoreT4;
 
 import java.util.Set;
 
+import ics.ICAStore.Listeners.CustomerAuditor;
+import ics.ICAStore.Listeners.StoreAuditor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 
-
+@EntityListeners(CustomerAuditor.class)
 @Entity
 @NamedQueries({
     @NamedQuery(name= "Customer.findAll", query = "SELECT c FROM Customer c"),
@@ -23,6 +27,7 @@ import jakarta.persistence.Table;
 @Table(name = "Customer")
 
 public class Customer {
+	private static final long serialVersionUID = -564832458627912631L;
 	
 	
 	private String name;
@@ -105,6 +110,17 @@ public class Customer {
 
 	public void setOrders(Set<Order_> orders) {
 		this.orders = orders;
+	}
+	
+	@PostLoad
+	public void logOperation() {
+		System.out.print("Customer - ");
+	System.out.print("@PostLoad on id: "+ this.getCustomerId());
+	System.out.print(" @PostLoad: " + this.getName()+ " ");
+	System.out.print(this.getUserName());
+	System.out.print(this.getPhoneNumber());
+	System.out.print(this.getEmail());	
+	System.out.println(" " + this.getAddress());
 	}
 	
 
