@@ -80,11 +80,12 @@ public class Store implements Serializable {
 	
 	@PostLoad
 	public void logOperation() {
-	System.out.print("@PostLoad on id: "+this.getSupermarketId());
-	System.out.print(" @PostLoad: " + this.getStoreName()+ " ");
-	System.out.print(this.getStoreAddress());
-	System.out.print(this.getCity());
-	System.out.println(" " + this.getRegionName());
+		 System.out.print("Store - ");
+	System.out.print("@PostLoad on id: "+this.getSupermarketId() + " (Supermarket ID) ");
+	System.out.print(" @PostLoad: " + this.getStoreName()+ " (Store name) ");
+	System.out.print(this.getStoreAddress() + " (Address) ");
+	System.out.print(this.getCity()+ " (City) ");
+	System.out.println(" " + this.getRegionName() + " (Region) ");
 	}
 	
 	

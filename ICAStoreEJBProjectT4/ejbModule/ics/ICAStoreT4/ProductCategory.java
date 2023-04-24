@@ -58,8 +58,8 @@ public class ProductCategory {
 	@PostLoad
 	public void logOperation() {
 		System.out.print("Product Category - ");
-	System.out.print("@PostLoad on id: "+this.getCategoryId());
-	System.out.println(" @PostLoad: " + this.getCategoryName());
+	System.out.print("@PostLoad on id: "+this.getCategoryId() + " (Category ID ");
+	System.out.println(" @PostLoad: " + this.getCategoryName() + " (Category name ");
 	
 	
 }
