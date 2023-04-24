@@ -12,10 +12,10 @@ public class OrderAuditor {
 		System.out.print("Order - ");
 	System.out.print("@PrePersist id: "+ o.getOrderId());
 	System.out.print(" from Order - ");
-	System.out.print(o.getOrderDate());
-	System.out.print(o.getCustomer());
-	System.out.print(o.getStore());
-	System.out.println(o.getPaymentMethod());
+	System.out.print(o.getOrderDate() + " (Order date) ");
+	System.out.print(o.getCustomer().getName() + " (Customer name ");
+	System.out.print(o.getStore().getStoreName() + " (Store name");
+	System.out.println(o.getPaymentMethod() + " (Payment method) ");
 	
 	
 	
@@ -25,10 +25,10 @@ public class OrderAuditor {
 	System.out.print("Customer - ");
 	System.out.print("@PreUpdate id: "+ o.getOrderId());
 	System.out.print(" from Order - ");
-	System.out.print(o.getOrderDate());
-	System.out.print(o.getCustomer());
-	System.out.print(o.getStore());
-	System.out.println(o.getPaymentMethod());
+	System.out.print(o.getOrderDate() + " (Order date) ");
+	System.out.print(o.getCustomer().getName() + " (Customer name ");
+	System.out.print(o.getStore().getStoreName() + " (Store name");
+	System.out.println(o.getPaymentMethod() + " (Payment method) ");
 	}
 
 }

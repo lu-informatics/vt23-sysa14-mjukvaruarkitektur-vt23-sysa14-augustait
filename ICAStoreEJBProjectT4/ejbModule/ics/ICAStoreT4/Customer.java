@@ -118,8 +118,8 @@ public class Customer {
 	System.out.print("@PostLoad on id: "+ this.getCustomerId() + " (Customer ID)");
 	System.out.print(" @PostLoad: " + this.getName()+ " (Customer name)" + " ");
 	System.out.print(this.getUserName() + " (Username)");
-	System.out.print(this.getPhoneNumber() + " (Phonenumber)");
-	System.out.print(this.getEmail() + " (Email)");	
+	System.out.print(this.getPhoneNumber() + " (Phone number) ");
+	System.out.print(this.getEmail() + " (Email) ");	
 	System.out.println(" " + this.getAddress() + " (Address)");
 	}
 	

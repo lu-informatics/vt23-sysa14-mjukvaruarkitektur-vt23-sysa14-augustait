@@ -2,6 +2,7 @@ package ics.ICAStoreT4;
 
 import java.io.Serializable;
 
+import ics.ICAStore.Listeners.ProductAuditor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -20,7 +21,7 @@ import jakarta.persistence.Table;
     @NamedQuery(name = "Product.findByProductId", query = "SELECT p FROM Product p WHERE p.productId = :id")
 })
 @Table(name="Product")
-//@EntityListeners(ProjectAuditor.class)
+@EntityListeners(ProductAuditor.class)
 public class Product implements Serializable {
     private static final long serialVersionUID = -564832458627912631L;
     
@@ -76,9 +77,11 @@ public class Product implements Serializable {
 
     @PostLoad
     public void logOperation() {
-        System.out.print("@PostLoad on id: "+this.getProductId());
-        System.out.print(" @PostLoad: "+this.getProductName()+" ");
-        System.out.println(this.getPrice());
+    	 System.out.print("Product - ");
+        System.out.print("@PostLoad on id: "+this.getProductId() + " (Product ID) ");
+        System.out.print(" @PostLoad: "+this.getProductName()+ " (Product name) ");
+        System.out.println(this.getPrice() + " (Price) ");
+        System.out.println(this.getProductCategory().getCategoryName() + "(Category name)");
     }
 
 
