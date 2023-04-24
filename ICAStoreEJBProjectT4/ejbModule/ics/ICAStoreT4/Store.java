@@ -84,7 +84,7 @@ public class Store implements Serializable {
 	System.out.print(" @PostLoad: " + this.getStoreName()+ " ");
 	System.out.print(this.getStoreAddress());
 	System.out.print(this.getCity());
-	System.out.println(this.getRegionName());
+	System.out.println(" " + this.getRegionName());
 	}
 	
 	

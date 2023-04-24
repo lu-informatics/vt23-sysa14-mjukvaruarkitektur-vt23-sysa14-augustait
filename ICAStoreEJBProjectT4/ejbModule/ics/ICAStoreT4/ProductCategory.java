@@ -2,15 +2,19 @@ package ics.ICAStoreT4;
 
 import java.util.Set;
 
+import ics.ICAStore.Listeners.ProductCategoryAuditor;
+import ics.ICAStore.Listeners.StoreAuditor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
-
+@EntityListeners(ProductCategoryAuditor.class)
 @Entity
 @NamedQueries({
     @NamedQuery(name= "ProductCategory.findAll", query = "SELECT pc FROM ProductCategory pc"),
@@ -21,6 +25,7 @@ import jakarta.persistence.Table;
 
 @Table(name = "ProductCategory")
 public class ProductCategory {
+	private static final long serialVersionUID = -564832458627912631L;
 	private int categoryId;
 	private String categoryName;
 	private Set<Product>products;
@@ -49,4 +54,13 @@ public class ProductCategory {
 	public void setProducts(Set<Product> products) {
 		this.products = products;
 	}
+	
+	@PostLoad
+	public void logOperation() {
+		System.out.print("Product Category - ");
+	System.out.print("@PostLoad on id: "+this.getCategoryId());
+	System.out.println(" @PostLoad: " + this.getCategoryName());
+	
+	
+}
 }
