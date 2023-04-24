@@ -2,16 +2,21 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import ics.ICAStore.Listeners.OrderlineAuditor;
+import ics.ICAStore.Listeners.ProductCategoryAuditor;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 
+@EntityListeners(OrderlineAuditor.class)
 @Entity
 @NamedQueries({
     @NamedQuery(name= "Orderline.findAll", query = "SELECT o FROM Orderline o"),
@@ -19,6 +24,7 @@ import jakarta.persistence.Table;
 })
 @Table(name="Orderline")
 public class Orderline {
+	private static final long serialVersionUID = -564832458627912631L;
 
     private OrderlineId id;
     private int orderlineNumber;
@@ -67,4 +73,16 @@ public class Orderline {
     public void setProduct(Product product) {
         this.product = product;
     }
+    
+	
+	@PostLoad
+	public void logOperation() {
+		System.out.print("Orderline - ");
+		System.out.print("@PostLoad on id: " + this.getId().getProductId() + "(ProductID) " + ", " + this.getId().getOrderId() + "(OrderID) " );
+	System.out.print(" @PostLoad: " + this.getOrderlineNumber()+ " (Orderline number)" + " ");
+	System.out.println(" " + this.getQuantity() + " (Quantity)");
+	}
+	
+	
+	
 }

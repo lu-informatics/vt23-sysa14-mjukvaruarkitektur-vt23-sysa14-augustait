@@ -10,12 +10,12 @@ public class CustomerAuditor {
 	@PrePersist
 	public void logCreate(Customer c) {
 		System.out.print("Customer - ");
-	System.out.print("@PrePersist id: "+ c.getCustomerId());
+	System.out.print("@PrePersist id: "+ c.getCustomerId() + " (Customer ID ");
 	System.out.print(" from Customer - ");
-	System.out.print(c.getName());
-	System.out.print(c.getUserName());
-	System.out.print(c.getPhoneNumber());
-	System.out.print(c.getEmail());
+	System.out.print(c.getName() + " (Customer name ");
+	System.out.print(c.getUserName() + " (Username ");
+	System.out.print(c.getPhoneNumber() + " (Phone number ");
+	System.out.print(c.getEmail() + " (Email ");
 	System.out.println(c.getAddress());
 	
 	
@@ -23,12 +23,12 @@ public class CustomerAuditor {
 	@PreUpdate
 	public void logPreUpdate(Customer c) {
 	System.out.print("Customer - ");
-	System.out.print("@PreUpdate id: "+ c.getCustomerId());
+	System.out.print("@PreUpdate id: "+ c.getCustomerId() + " (Customer ID ");
 	System.out.print(" from Customer - ");
-	System.out.print(c.getName());
-	System.out.print(c.getUserName());
-	System.out.print(c.getPhoneNumber());
-	System.out.print(c.getEmail());
+	System.out.print(c.getName() + " (Customer name ");
+	System.out.print(c.getUserName() + " (Username ");
+	System.out.print(c.getPhoneNumber() + " (Phone number ");
+	System.out.print(c.getEmail() + " (Email ");
 	System.out.println(c.getAddress());
 	}
 

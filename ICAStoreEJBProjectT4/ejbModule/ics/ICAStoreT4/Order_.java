@@ -5,17 +5,20 @@ package ics.ICAStoreT4;
 
 	import java.io.Serializable;
 
-
-
-	import jakarta.persistence.Column;
+import ics.ICAStore.Listeners.OrderAuditor;
+import ics.ICAStore.Listeners.ProductCategoryAuditor;
+import jakarta.persistence.Column;
 	import jakarta.persistence.Entity;
-	import jakarta.persistence.Id;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.Id;
 	import jakarta.persistence.JoinColumn;
 	import jakarta.persistence.ManyToOne;
 	import jakarta.persistence.NamedQueries;
 	import jakarta.persistence.NamedQuery;
-	import jakarta.persistence.Table;
+import jakarta.persistence.PostLoad;
+import jakarta.persistence.Table;
 
+	@EntityListeners(OrderAuditor.class)
 	@Entity
 	@NamedQueries({
 	      @NamedQuery(name = "Order_.findAll", query = "SELECT o FROM Order_ o"),
@@ -25,6 +28,7 @@ package ics.ICAStoreT4;
 
 
 	public class Order_ implements Serializable {
+		private static final long serialVersionUID = -564832458627912631L;
 		
 		
 		
@@ -77,6 +81,15 @@ package ics.ICAStoreT4;
 			this.paymentMethod = paymentMethod;
 		}
 		
+		@PostLoad
+		public void logOperation() {
+			System.out.print("Order - ");
+		System.out.print("@PostLoad on id: "+ this.getOrderId());
+		System.out.print(" @PostLoad: " + this.getOrderDate()+ " ");
+		System.out.print(this.getCustomer());
+		System.out.print(this.getStore());
+		System.out.println(" " + this.getPaymentMethod());
+		}
 		
 		
 

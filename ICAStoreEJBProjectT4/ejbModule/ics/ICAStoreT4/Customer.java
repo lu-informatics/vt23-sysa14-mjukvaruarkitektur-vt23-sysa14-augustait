@@ -115,12 +115,12 @@ public class Customer {
 	@PostLoad
 	public void logOperation() {
 		System.out.print("Customer - ");
-	System.out.print("@PostLoad on id: "+ this.getCustomerId());
-	System.out.print(" @PostLoad: " + this.getName()+ " ");
-	System.out.print(this.getUserName());
-	System.out.print(this.getPhoneNumber());
-	System.out.print(this.getEmail());	
-	System.out.println(" " + this.getAddress());
+	System.out.print("@PostLoad on id: "+ this.getCustomerId() + " (Customer ID)");
+	System.out.print(" @PostLoad: " + this.getName()+ " (Customer name)" + " ");
+	System.out.print(this.getUserName() + " (Username)");
+	System.out.print(this.getPhoneNumber() + " (Phonenumber)");
+	System.out.print(this.getEmail() + " (Email)");	
+	System.out.println(" " + this.getAddress() + " (Address)");
 	}
 	
 
