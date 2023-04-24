@@ -3,14 +3,17 @@ package ics.ICAStoreT4;
 import java.io.Serializable;
 import java.util.List;
 
+import ics.ICAStore.Listeners.StoreAuditor;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
-
+@EntityListeners(StoreAuditor.class)
 @Entity
 @NamedQueries({
     @NamedQuery(name= "Store.findAll", query = "SELECT s FROM Store s"),
@@ -19,6 +22,8 @@ import jakarta.persistence.Table;
 
 @Table(name = "Store")
 public class Store implements Serializable {
+	
+	private static final long serialVersionUID = -564832458627912631L;
 	
 	private String regionName;
 	private int supermarketId;
@@ -71,6 +76,15 @@ public class Store implements Serializable {
 	
 	public void setOrders(List<Order_> orders) {
 		this.orders = orders;
+	}
+	
+	@PostLoad
+	public void logOperation() {
+	System.out.print("@PostLoad on id: "+this.getSupermarketId());
+	System.out.print(" @PostLoad: " + this.getStoreName()+ " ");
+	System.out.print(this.getStoreAddress());
+	System.out.print(this.getCity());
+	System.out.println(this.getRegionName());
 	}
 	
 	

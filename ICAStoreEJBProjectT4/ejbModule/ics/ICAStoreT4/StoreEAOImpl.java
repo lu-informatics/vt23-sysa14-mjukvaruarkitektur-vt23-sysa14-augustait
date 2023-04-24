@@ -43,6 +43,8 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
 	em.persist(store);
 	return store;
 	
+	
+	
 }
 	
 	public Store updateStore(Store store) {

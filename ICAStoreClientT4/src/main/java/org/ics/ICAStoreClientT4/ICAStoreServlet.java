@@ -138,7 +138,7 @@ public class ICAStoreServlet extends HttpServlet {
              
            Order_ orders = new Order_();
            
-          facade.createOrder(345, "2002-02-04", "Klarna", 1, 1);
+         // facade.createOrder(345, "2002-02-04", "Klarna", 1, 1);
            
            
          
@@ -157,16 +157,28 @@ public class ICAStoreServlet extends HttpServlet {
              	 
              	 
             //Store
+                
+                Store store = new Store();
+                store.setSupermarketId(85);
+                store.setCity("Landskrona");
+                store.setRegionName("Skåne");
+                store.setStoreAddress("Hermelinen");
+                store.setStoreName("ICA MAXI Landskrona");
+                
+                //facade.createStore(store);
+                
+                
+               // facade.deleteStore(85);
              	 
             List<Store>allStores = facade.findAllStores();
             if (allStores.isEmpty()) {
-            	out.println("<p>No products was founded!.</p>");
+            	out.println("<p>No stores was founded!.</p>");
             } else {
             	 out.println("<h5>All Stores in the database ICAStore:</h3>");
                  out.print("<p>");
-                 for (Store store : allStores) {
-                   out.print("<p>" + "Supermarket ID: " + store.getSupermarketId() + ", Supermarket name: " +  store.getStoreName() + ""
-                   		+ ", Address: " + store.getStoreAddress()  +  ", City: " + store.getCity() + ", Region: " + store.getRegionName()) ;
+                 for (Store stores : allStores) {
+                   out.print("<p>" + "Supermarket ID: " + stores.getSupermarketId() + ", Supermarket name: " +  stores.getStoreName() + ""
+                   		+ ", Address: " + stores.getStoreAddress()  +  ", City: " + stores.getCity() + ", Region: " + stores.getRegionName()) ;
               }
             	
             }
