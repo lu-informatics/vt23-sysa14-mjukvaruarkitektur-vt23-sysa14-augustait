@@ -2,9 +2,12 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
 /**
@@ -31,13 +34,17 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
 		         .getResultList();
 	}
 
+	public Store findByStoreId(int id) throws MyICAException {
+	    try {
+	        Store store = em.createNamedQuery("Store.findBySupermarketId", Store.class)
+	                .setParameter("id", id)
+	                .getSingleResult();
+	        return store;
+	    } catch (NoResultException e) {
+	        throw new MyICAException("Failed to retrieve the Store! There is no Store with the Supermarket ID: " + id);
+	    }
+	}
 
-    public Store findByStoreId(int id){ //Ändra
-	return em.createNamedQuery("Store.findBySupermarketId", Store.class)
-			.setParameter("id", id).
-			getSingleResult();
-
-}
 
     public Store createStore(Store store) {
 	em.persist(store);
@@ -53,13 +60,18 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
 		}
 	
 	
-	public void deleteStore(int id) {
+	public void deleteStore(int id) throws MyICAException {
 		Store s = this.findByStoreId(id);
 		if (s != null) {
 		em.remove(s);
-		}
+		
+	} else {
+		throw new MyICAException("Failed to delete the Store! There is no Store with the Supermarket ID: " + id);
+				}
+		
+	}
 		}
 
-}
+
 
 

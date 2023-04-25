@@ -9,9 +9,7 @@ public class MyICAException extends Exception{
 	public MyICAException(String msg) {
 	super(msg);
 	}
-	 public MyICAException(String message, Throwable cause) {
-	        super(message, cause);
-	    }
+	
 
 	
 	

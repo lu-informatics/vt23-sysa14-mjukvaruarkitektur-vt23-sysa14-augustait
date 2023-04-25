@@ -55,14 +55,19 @@ public class Facade implements FacadeLocal {
 	
 	}
 	
-	public Product createProduct(int productId, String productName, double price, int categoryId) {
+	public Product createProduct(int productId, String productName, double price, int categoryId) throws MyICAException {
 	    Product newProduct = new Product();
 	    newProduct.setProductId(productId);
 	    newProduct.setProductName(productName);
 	    newProduct.setPrice(price);
 	    
-	    // Find the ProductCategory entity that matches the categoryId
-	    ProductCategory category = productCategoryEAO.findProductCategoryById(categoryId);
+	   
+	    ProductCategory category;
+	    try {
+	        category = productCategoryEAO.findProductCategoryById(categoryId);
+	    } catch (MyICAException e) {
+	        throw new MyICAException("Failed to create Product! There is no category with the ID: " + categoryId);
+	    }
 	    newProduct.setProductCategory(category);
 	    
 	    return productEAO.createProduct(newProduct);
@@ -77,6 +82,14 @@ public class Facade implements FacadeLocal {
 	} catch (MyICAException e) {
 		throw e;
 	}
+	}
+	
+	public Product findByProductId(int id) throws MyICAException {
+	    try {
+	        return productEAO.findProductByProductId(id);
+	    } catch (MyICAException e) {
+	        throw e;
+	    }
 	}
 
 
@@ -96,21 +109,35 @@ public class Facade implements FacadeLocal {
 
 
 
-	public ProductCategory findByCategoryId(int categoryId) {
-		// TODO Auto-generated method stub
+	public ProductCategory findByCategoryId(int categoryId) throws MyICAException {
+		try {
 		return productCategoryEAO.findProductCategoryById(categoryId);
+	    } catch (MyICAException e) {
+	        throw e;
+	    }
 	}
 	
 	public ProductCategory updateProductCategory(ProductCategory category) {
 		return productCategoryEAO.updateProductCategory(category);
 		}
-		public void deleteProductCategory(int categoryId) {
-		productCategoryEAO.deleteProductCategory(categoryId);
+		public void deleteProductCategory(int categoryId) throws MyICAException {
+		try {
+			productCategoryEAO.deleteProductCategory(categoryId);
+		} catch (MyICAException e) {
+			
+			throw e;
+		}
 		}
 		
-		public Customer findByCustomerId(int id){
+		public Customer findByCustomerId(int id) throws MyICAException{
+			
+			try {
+				return customerEAO.findByCustomerId(id);
+		    } catch (MyICAException e) {
+		        throw e;
+		    }
 		
-			return customerEAO.findByCustomerId(id);
+			
 			}
 			
 		public Customer createCustomer(Customer customer) {
@@ -121,30 +148,49 @@ public class Facade implements FacadeLocal {
 			return customerEAO.updateCustomer(customer);
 			}
 			
-		public void deleteCustomer(int id) {
-			customerEAO.deleteCustomer(id);
+		public void deleteCustomer(int id) throws MyICAException {
+			try {
+				customerEAO.deleteCustomer(id);
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
 			}
 			
-		public Store findByStoreId(int id) {
-			return storeEAO.findByStoreId(id);
+		public Store findByStoreId(int id) throws MyICAException {
+		    try {
+		        return storeEAO.findByStoreId(id);
+		    } catch (MyICAException e) {
+		        throw e;
+		    }
 		}
-		
+	
 		public Store createStore(Store store) {
 			return storeEAO.createStore(store);
 			}
 			public Store updateStore(Store store) {
 			return storeEAO.updateStore(store);
 			}
-			public void deleteStore(int id) {
-			storeEAO.deleteStore(id);
+			public void deleteStore(int id) throws MyICAException {
+			try {
+				storeEAO.deleteStore(id);
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
 			}
 			
 			public List<Store> findAllStores() {
 				return storeEAO.findAllStores();
 			}
 			
-			public void deleteOrder(int id) {
-				orderEAO.deleteOrder(id);
+			public void deleteOrder(int id) throws MyICAException {
+				try {
+					orderEAO.deleteOrder(id);
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
 			}
 			
 			public List<Order_> findAllOrders() {
@@ -156,9 +202,14 @@ public class Facade implements FacadeLocal {
 				return orderEAO.updateOrder(order);
 			}
 			
-//			public Order findOrderById(int id) {
-//				return orderEAO.findOrderById(id);
-//			}
+	public Order_ findOrderById(int id) throws MyICAException {
+				try {
+					return orderEAO.findOrderById(id);
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
+		}
  
 
 			public List<Orderline> findAllOrderline() {
@@ -166,8 +217,13 @@ public class Facade implements FacadeLocal {
 				
 			}
 			
-			public List<Orderline>findOrderlineByOrderId(int orderId){
-				return orderlineEAO.findOrderlineByOrderId(orderId);
+			public List<Orderline>findOrderlineByOrderId(int orderId) throws MyICAException{
+				try {
+					return orderlineEAO.findOrderlineByOrderId(orderId);
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
 			}
 			
 
@@ -188,25 +244,23 @@ public class Facade implements FacadeLocal {
 			}
 
 
-			@Override
-			public Order_ findOrderById(int id) {
-				// TODO Auto-generated method stub
-				return null;
-			}
 			
-			public Order_ createOrder(int orderId, String orderDate, String paymentMethod, int supermarketId, int customerId) {
-			    Order_ newOrder = new Order_();
-			    newOrder.setOrderId(orderId);
-			    newOrder.setOrderDate(orderDate);
-			    newOrder.setPaymentMethod(paymentMethod);
-			    
-			    
-			    Customer customer = customerEAO.findByCustomerId(customerId);
-			    newOrder.setCustomer(customer);
-			    Store store = storeEAO.findByStoreId(supermarketId);
-			    newOrder.setStore(store);
-			    
-			    return orderEAO.createOrder(newOrder);
+			public Order_ createOrder(int orderId, String orderDate, String paymentMethod, int supermarketId, int customerId) throws MyICAException {
+			    try {
+			        Order_ newOrder = new Order_();
+			        newOrder.setOrderId(orderId);
+			        newOrder.setOrderDate(orderDate);
+			        newOrder.setPaymentMethod(paymentMethod);
+
+			        Customer customer = customerEAO.findByCustomerId(customerId);
+			        newOrder.setCustomer(customer);
+			        Store store = storeEAO.findByStoreId(supermarketId);
+			        newOrder.setStore(store);
+
+			        return orderEAO.createOrder(newOrder);
+			    } catch (Exception e) {
+			        throw new MyICAException("Failed to create the order: " + e.getMessage());
+			    }
 			}
 
 			

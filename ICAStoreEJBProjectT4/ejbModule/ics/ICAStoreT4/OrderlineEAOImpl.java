@@ -2,6 +2,8 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
@@ -29,10 +31,14 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
     	return em.createNamedQuery("Orderline.findAll", Orderline.class).getResultList();
     	}
     
-    public List<Orderline> findOrderlineByOrderId(int orderId) {
-        return em.createNamedQuery("Orderline.findByOrderId", Orderline.class)
+    public List<Orderline> findOrderlineByOrderId(int orderId) throws MyICAException {
+        List<Orderline> orderlines = em.createNamedQuery("Orderline.findByOrderId", Orderline.class)
                 .setParameter("id", orderId)
                 .getResultList();
+        if (orderlines.isEmpty()) {
+            throw new MyICAException("No orderlines found for order ID: " + orderId);
+        }
+        return orderlines;
     }
     
     public Orderline createOrderline (Orderline orderline) {

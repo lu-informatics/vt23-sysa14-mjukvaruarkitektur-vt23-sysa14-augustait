@@ -13,11 +13,11 @@ public interface ICAStoreEAOImplLocal {
 	public Product updateProduct(Product product);
 	public void deleteProduct(int id) throws MyICAException;
 	public List<Product> findAllProducts();
-	public Product findProductByProductId(int productId);
+	public Product findProductByProductId(int productId) throws MyICAException;
 	public List<ProductCategory> findAllProductCategories();
-	public ProductCategory findProductCategoryById(int id);
+	public ProductCategory findProductCategoryById(int id) throws MyICAException;
 	public ProductCategory createProductCategory(ProductCategory category);
 	public ProductCategory updateProductCategory(ProductCategory category);
-	public void deleteProductCategory(int categoryId);
+	public void deleteProductCategory(int categoryId) throws MyICAException;
 
 }

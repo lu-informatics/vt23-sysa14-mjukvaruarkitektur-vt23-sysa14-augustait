@@ -2,9 +2,12 @@ package ics.ICAStoreT4;
 
 import java.util.List;
 
+import org.ics.exceptions.MyICAException;
+
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
 /**
@@ -35,12 +38,23 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
     	
   
     
-    public Customer findByCustomerId(int id){ //Ändra
-    	return em.createNamedQuery("Customer.findByCustomerId", Customer.class)
-    			.setParameter("customerId", id).
-    			getSingleResult();
-
+    public Customer findByCustomerId(int id) throws MyICAException{ 
+    	try {
+    		Customer customer = em.createNamedQuery("Customer.findByCustomerId", Customer.class)
+        			.setParameter("customerId", id).
+        			getSingleResult();
+    		return customer;
+    	
+    } catch (NoResultException e) {
+        throw new MyICAException("Failed to retrieve the Customer! There is no Customer with the Customer ID: " + id);
+    }
 }
+    	 
+    	
+    	
+    	
+    
+    	
     
     public Customer createCustomer(Customer customer) {
     	em.persist(customer);
@@ -54,11 +68,15 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
     		}
     	
     	
-    	public void deleteCustomer(int id) {
+    	public void deleteCustomer(int id) throws MyICAException {
     		Customer a = this.findByCustomerId(id);
     		if (a != null) {
     		em.remove(a);
-    		}
+    		
+    	} else {
+    		throw new MyICAException("Failed to delete the Customer! There is no Customer with the Customer ID: " + id);
+    				}
+    		
+    	}
     		}
 
-}
