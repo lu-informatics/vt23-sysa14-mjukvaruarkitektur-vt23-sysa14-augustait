@@ -28,7 +28,7 @@ public interface FacadeLocal {
 	
 	public ProductCategory updateProductCategory (ProductCategory productCategory);
 	
-	public void deleteProductCategory (int categoryId);
+	public void deleteProductCategory (int categoryId) throws MyICAException;
 	
 	public Customer findByCustomerId(int id);
 	public Customer createCustomer(Customer customer);

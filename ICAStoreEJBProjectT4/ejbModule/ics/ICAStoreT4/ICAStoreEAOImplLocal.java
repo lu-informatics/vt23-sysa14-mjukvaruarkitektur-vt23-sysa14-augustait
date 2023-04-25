@@ -18,6 +18,6 @@ public interface ICAStoreEAOImplLocal {
 	public ProductCategory findProductCategoryById(int id);
 	public ProductCategory createProductCategory(ProductCategory category);
 	public ProductCategory updateProductCategory(ProductCategory category);
-	public void deleteProductCategory(int categoryId);
+	public void deleteProductCategory(int categoryId) throws MyICAException;
 
 }

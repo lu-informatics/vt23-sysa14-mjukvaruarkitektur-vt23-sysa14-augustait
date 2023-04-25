@@ -74,16 +74,21 @@ public ProductCategory updateProductCategory(ProductCategory category) {
     return category;
 }
 
-public void deleteProductCategory(int categoryId) {
+public void deleteProductCategory(int categoryId) throws MyICAException {
     ProductCategory category = em.find(ProductCategory.class, categoryId);
     if (category != null) {
         em.remove(category);
-    }
+    
+} else {
+	throw new MyICAException("Failed to delete the Product Category! There is no Product Category with Category ID: " + categoryId);
+			}
+	
+}
 
 
 } 
 
-}
+
 
 	
 

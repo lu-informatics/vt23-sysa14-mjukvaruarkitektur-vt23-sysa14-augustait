@@ -104,8 +104,13 @@ public class Facade implements FacadeLocal {
 	public ProductCategory updateProductCategory(ProductCategory category) {
 		return productCategoryEAO.updateProductCategory(category);
 		}
-		public void deleteProductCategory(int categoryId) {
-		productCategoryEAO.deleteProductCategory(categoryId);
+		public void deleteProductCategory(int categoryId) throws MyICAException {
+		try {
+			productCategoryEAO.deleteProductCategory(categoryId);
+		} catch (MyICAException e) {
+			
+			throw e;
+		}
 		}
 		
 		public Customer findByCustomerId(int id){

@@ -96,16 +96,25 @@ public class ICAStoreServlet extends HttpServlet {
              	 product.setProductId(1);
              	 product.setProductId(345);
              	 
+             	 ProductCategory pc = new ProductCategory();
+             	 pc.setCategoryId(345);
+             	 
              	 try {
-					facade.deleteProduct(345);
-					out.println("<br>");
-					 out.println("The Product with the Product ID: " + product.getProductId() + " was deleted successfully! ");
-	             	 out.println("<br>");
+					//facade.deleteProduct(345);
+				//	out.println("<br>");
+					// out.println("The Product with the Product ID: " + product.getProductId() + " was deleted successfully! ");
+	             	//  out.println("<br>");
+	             	 
+	             	 
+	               	facade.deleteProductCategory(657);
+	             	out.println("<br>");
+					out.println("The Product Category with the Category ID: " + pc.getCategoryId() + " was deleted successfully! ");
+	             	out.println("<br>");
 					
 				} catch (MyICAException e) {
 					// TODO Auto-generated catch block
 					out.println("<br>");
-					 out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
+					out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
 					out.println("<br>");
 				}
              	
