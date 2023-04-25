@@ -7,6 +7,7 @@ import org.ics.exceptions.MyICAException;
 import jakarta.ejb.Local;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 
 /**
@@ -47,10 +48,14 @@ public List<Product> findAllProducts() {
 return em.createNamedQuery("Product.findAll", Product.class).getResultList();
 }
 
-public Product findProductByProductId(int productId) {
-return em.createNamedQuery("Product.findByProductId", Product.class)
-.setParameter("id", productId)
-.getSingleResult();
+public Product findProductByProductId(int productId) throws MyICAException {
+    try {
+        return em.createNamedQuery("Product.findByProductId", Product.class)
+                .setParameter("id", productId)
+                .getSingleResult();
+    } catch (NoResultException e) {
+        throw new MyICAException("Failed to retrieve the Product! There is no Product with the Product ID: " + productId);
+    }
 }
 
 public List<ProductCategory> findAllProductCategories() {
@@ -58,10 +63,15 @@ public List<ProductCategory> findAllProductCategories() {
 	         .getResultList();
 }
 
-public ProductCategory findProductCategoryById(int id) {
-	return em.createNamedQuery("ProductCategory.findByCategoryId", ProductCategory.class)
-	         .setParameter("categoryId", id)
-	         .getSingleResult();
+public ProductCategory findProductCategoryById(int id) throws MyICAException {
+    try {
+        ProductCategory category = em.createNamedQuery("ProductCategory.findByCategoryId", ProductCategory.class)
+                .setParameter("categoryId", id)
+                .getSingleResult();
+        return category;
+    } catch (NoResultException e) {
+        throw new MyICAException("Failed to retrieve the Product Category! There is no category with the ID: " + id);
+    }
 }
 
 public ProductCategory createProductCategory(ProductCategory category) {

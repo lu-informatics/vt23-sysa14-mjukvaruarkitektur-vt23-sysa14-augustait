@@ -63,7 +63,12 @@ public class ICAStoreServlet extends HttpServlet {
          
          out.print("Test fungerade");
          
-         category  =  facade.findByCategoryId(18);
+         try {
+			category  =  facade.findByCategoryId(1);
+		} catch (MyICAException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
          if (category != null) {
         	out.println("<br>");
         	 out.println("Category Name: "+category.getCategoryName() + "<br>");
@@ -85,7 +90,12 @@ public class ICAStoreServlet extends HttpServlet {
          	 
          //	 facade.deleteCustomer(18);
          	 
-         	 customer = facade.findByCustomerId(18);
+         	 try {
+				customer = facade.findByCustomerId(18);
+			} catch (MyICAException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
          	if (customer != null) {
             	out.println("<br>");
             	 out.println("Customer Name: "+customer.getName() + "<br>");
@@ -106,10 +116,24 @@ public class ICAStoreServlet extends HttpServlet {
 	             	//  out.println("<br>");
 	             	 
 	             	 
-	               	facade.deleteProductCategory(657);
-	             	out.println("<br>");
-					out.println("The Product Category with the Category ID: " + pc.getCategoryId() + " was deleted successfully! ");
-	             	out.println("<br>");
+//	               	facade.deleteProductCategory(657);
+//	             	out.println("<br>");
+//					out.println("The Product Category with the Category ID: " + pc.getCategoryId() + " was deleted successfully! ");
+//	             	out.println("<br>");
+	             	
+//	             	facade.deleteCustomer(198);
+//	             	facade.deleteOrder(3242);
+//	             	facade.deleteStore(2324);
+	             	
+                     facade.findByStoreId(1);
+             		 
+             		 facade.findByCustomerId(1);
+             		 
+             		 facade.findByProductId(1);
+             		 out.println(product.getProductId());
+            		// facade.findOrderById(2390);
+             		// facade.findByCategoryId(2390);
+             		List<Orderline> orderlines = facade.findOrderlineByOrderId(9889);
 					
 				} catch (MyICAException e) {
 					// TODO Auto-generated catch block
@@ -147,7 +171,15 @@ public class ICAStoreServlet extends HttpServlet {
              
            Order_ orders = new Order_();
            
-         // facade.createOrder(345, "2002-02-04", "Klarna", 1, 1);
+           try {
+			facade.createOrder(345, "2002-02-04", "Klarna", 938, 1);
+		} catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			out.println("<br>");
+			out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
+			out.println("<br>");
+		}
+		}
            
            
          
@@ -176,6 +208,8 @@ public class ICAStoreServlet extends HttpServlet {
                 
                 //facade.createStore(store);
                 
+             
+                
                 
                // facade.deleteStore(85);
              	 
@@ -200,7 +234,7 @@ public class ICAStoreServlet extends HttpServlet {
          }
     }
     }
-}
+
     
 
 
