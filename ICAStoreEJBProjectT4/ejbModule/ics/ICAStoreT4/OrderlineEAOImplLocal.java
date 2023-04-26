@@ -8,7 +8,7 @@ import jakarta.ejb.Local;
 
 @Local
 public interface OrderlineEAOImplLocal {
-	public List<Orderline> findAllOrderline();
+	public List<Orderline> findAllOrderline() throws MyICAException;
 	  public Orderline createOrderline (Orderline orderline);
 	  public void updateOrderline (Orderline orderline);
 	  public void deleteOrderline(Orderline orderline);

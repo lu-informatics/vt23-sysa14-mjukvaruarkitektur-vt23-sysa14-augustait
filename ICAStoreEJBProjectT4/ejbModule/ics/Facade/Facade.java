@@ -93,11 +93,26 @@ public class Facade implements FacadeLocal {
 	}
 
 
-	public List<Product> findAll() {
+	public List<Product> findAllProducts() throws MyICAException {
 		// TODO Auto-generated method stub
-		return productEAO.findAllProducts();
+		try {
+			return productEAO.findAllProducts();
+		} catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
 	}
 
+	
+	public List<ProductCategory> findAllProductCategory() throws MyICAException {
+		// TODO Auto-generated method stub
+		try {
+			return productCategoryEAO.findAllProductCategories();
+		} catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
+	}
 
 	
 	public ProductCategory createProductCategory(ProductCategory productCategory) {
@@ -139,6 +154,16 @@ public class Facade implements FacadeLocal {
 		
 			
 			}
+		
+		public List<Customer> findAllCustomer() throws MyICAException {
+			// TODO Auto-generated method stub
+			try {
+				return customerEAO.findAllCustomers();
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
+		}
 			
 		public Customer createCustomer(Customer customer) {
 			return customerEAO.createCustomer(customer);
@@ -180,8 +205,13 @@ public class Facade implements FacadeLocal {
 			}
 			}
 			
-			public List<Store> findAllStores() {
-				return storeEAO.findAllStores();
+			public List<Store> findAllStores() throws MyICAException {
+				try {
+					return storeEAO.findAllStores();
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
 			}
 			
 			public void deleteOrder(int id) throws MyICAException {
@@ -193,8 +223,13 @@ public class Facade implements FacadeLocal {
 				}
 			}
 			
-			public List<Order_> findAllOrders() {
-				return orderEAO.findAllOrders();
+			public List<Order_> findAllOrders() throws MyICAException {
+				try {
+					return orderEAO.findAllOrders();
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
 				
 			}
 			
@@ -212,8 +247,13 @@ public class Facade implements FacadeLocal {
 		}
  
 
-			public List<Orderline> findAllOrderline() {
-				return orderlineEAO.findAllOrderline();
+			public List<Orderline> findAllOrderline() throws MyICAException {
+				try {
+					return orderlineEAO.findAllOrderline();
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
 				
 			}
 			

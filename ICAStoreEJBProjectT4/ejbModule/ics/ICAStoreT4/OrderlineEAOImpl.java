@@ -27,9 +27,14 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
         // TODO Auto-generated constructor stub
     }
     
-    public List<Orderline> findAllOrderline() {
+    public List<Orderline> findAllOrderline() throws MyICAException {
+    	try {
     	return em.createNamedQuery("Orderline.findAll", Orderline.class).getResultList();
-    	}
+    	 } catch (Exception e) {
+             throw new MyICAException("Failed to retrieve the list of orderlines: " + e.getMessage());
+         }
+   	 }
+    
     
     public List<Orderline> findOrderlineByOrderId(int orderId) throws MyICAException {
         List<Orderline> orderlines = em.createNamedQuery("Orderline.findByOrderId", Orderline.class)

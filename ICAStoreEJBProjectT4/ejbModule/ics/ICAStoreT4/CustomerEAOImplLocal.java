@@ -13,7 +13,7 @@ public interface CustomerEAOImplLocal {
 	public Customer createCustomer(Customer customer);
 	public Customer updateCustomer(Customer customer);
 	public void deleteCustomer(int id) throws MyICAException;
-	public List<Customer>findAllCustomers();
+   public List<Customer> findAllCustomers() throws MyICAException;
 	
 
 }

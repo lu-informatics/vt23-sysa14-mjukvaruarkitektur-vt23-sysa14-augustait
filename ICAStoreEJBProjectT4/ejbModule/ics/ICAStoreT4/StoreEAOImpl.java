@@ -29,10 +29,18 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
         // TODO Auto-generated constructor stub
     }
     
-	public List<Store> findAllStores() {
+	public List<Store> findAllStores() throws MyICAException {
+		try {
 		return em.createNamedQuery("Store.findAll", Store.class)
 		         .getResultList();
-	}
+	
+	  } catch (Exception e) {
+          throw new MyICAException("Failed to retrieve the list of stores: " + e.getMessage());
+      }
+	 }
+
+  
+	  
 
 	public Store findByStoreId(int id) throws MyICAException {
 	    try {

@@ -44,9 +44,15 @@ em.remove(p);
 	
 
 
-public List<Product> findAllProducts() {
+public List<Product> findAllProducts() throws MyICAException {
+	try  {
 return em.createNamedQuery("Product.findAll", Product.class).getResultList();
+
+} catch (Exception e) {
+    throw new MyICAException("Failed to retrieve the list of products: " + e.getMessage());
 }
+}
+
 
 public Product findProductByProductId(int productId) throws MyICAException {
     try {
@@ -58,10 +64,16 @@ public Product findProductByProductId(int productId) throws MyICAException {
     }
 }
 
-public List<ProductCategory> findAllProductCategories() {
+public List<ProductCategory> findAllProductCategories() throws MyICAException {
+	try {
 	return em.createNamedQuery("ProductCategory.findAll", ProductCategory.class)
 	         .getResultList();
-}
+	} catch (Exception e) {
+	    throw new MyICAException("Failed to retrieve the list of Product Categories: " + e.getMessage());
+	}
+	}
+
+
 
 public ProductCategory findProductCategoryById(int id) throws MyICAException {
     try {

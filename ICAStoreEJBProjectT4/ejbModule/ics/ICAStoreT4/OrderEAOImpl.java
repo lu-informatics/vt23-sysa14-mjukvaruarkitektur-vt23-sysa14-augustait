@@ -50,9 +50,15 @@ em.remove(o);
 }
 
 
-public List<Order_> findAllOrders() {
+public List<Order_> findAllOrders() throws MyICAException {
+	try {
 return em.createNamedQuery("Order_.findAll", Order_.class).getResultList();
+} catch (Exception e) {
+    throw new MyICAException("Failed to retrieve the list of orders: " + e.getMessage());
 }
+}
+
+
 
 public Order_ findOrderById(int orderId) throws MyICAException {
     try {

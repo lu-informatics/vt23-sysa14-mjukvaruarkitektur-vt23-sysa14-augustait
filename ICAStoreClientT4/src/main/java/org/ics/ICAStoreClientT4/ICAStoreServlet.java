@@ -133,8 +133,16 @@ public class ICAStoreServlet extends HttpServlet {
              		 out.println(product.getProductId());
             		// facade.findOrderById(2390);
              		// facade.findByCategoryId(2390);
-             		List<Orderline> orderlines = facade.findOrderlineByOrderId(9889);
+             		//List<Orderline> orderlines = facade.findOrderlineByOrderId(9889);
 					
+             		List<Customer>customerAll = facade.findAllCustomer();
+             		for (Customer customers : customerAll) {
+             	        out.println("Customer ID: " + customers.getCustomerId());
+             	        out.println("Name: " + customers.getName());
+             	        out.println("Email: " + customers.getEmail());
+             	        out.println("<br>");
+             		
+             		}
 				} catch (MyICAException e) {
 					// TODO Auto-generated catch block
 					out.println("<br>");

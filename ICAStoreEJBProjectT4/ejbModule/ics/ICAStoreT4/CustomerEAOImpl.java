@@ -29,10 +29,14 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
     	
     }
     	
-    	public List<Customer> findAllCustomers() {
-    		return em.createNamedQuery("Customer.findAll", Customer.class)
-    		         .getResultList();
-    	}
+    public List<Customer> findAllCustomers() throws MyICAException {
+        try {
+            return em.createNamedQuery("Customer.findAll", Customer.class)
+                     .getResultList();
+        } catch (Exception e) {
+            throw new MyICAException("Failed to retrieve the list of customers: " + e.getMessage());
+        }
+    }
 
 
     	

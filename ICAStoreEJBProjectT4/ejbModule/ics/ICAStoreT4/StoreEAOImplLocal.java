@@ -13,6 +13,6 @@ public interface StoreEAOImplLocal {
 	public Store createStore(Store store);
 	public Store updateStore(Store store);
 	public void deleteStore(int id) throws MyICAException;
-	public List<Store>findAllStores();
+	public List<Store>findAllStores() throws MyICAException;
 
 }

@@ -13,6 +13,6 @@ public interface OrderEAOImplLocal {
 	public Order_ createOrder(Order_ order);
 	public Order_ updateOrder(Order_ order);
 	public void deleteOrder(int id) throws MyICAException;
-	public List<Order_>findAllOrders();
+	public List<Order_>findAllOrders() throws MyICAException;
 
 }
