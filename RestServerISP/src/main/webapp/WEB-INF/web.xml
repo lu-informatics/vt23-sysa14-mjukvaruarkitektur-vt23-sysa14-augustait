@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>RestServer</display-name>
+    <servlet-name>RestServer</servlet-name>
+    <servlet-class>rg.ics.ejb.restserver.RestServer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RestServer</servlet-name>
+    <url-pattern>/RestServer</url-pattern>
+  </servlet-mapping>
 </web-app>
