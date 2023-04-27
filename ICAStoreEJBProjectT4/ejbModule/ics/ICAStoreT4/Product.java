@@ -1,6 +1,6 @@
 package ics.ICAStoreT4;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 
 import ics.ICAStore.Listeners.ProductAuditor;
 import jakarta.persistence.Column;
