@@ -5,9 +5,10 @@ url: "http://api.ipstack.com/check?access_key=0265e412145bd1eeafe31da0d5ae844b",
 error: ajaxReturn_Error,
 success: ajaxReturn_Success
 })
-function ajaxReturn_Success(result, status, xhr) {
-ParseJsonFile(result);
-}
+// Commented out the function below
+  // function ajaxReturn_Success(result, status, xhr) {
+  //   ParseJsonFile(result);
+  // }
 function ajaxReturn_Error(result, status, xhr) {
 console.log("Ajax-find movie: "+status);
 }
