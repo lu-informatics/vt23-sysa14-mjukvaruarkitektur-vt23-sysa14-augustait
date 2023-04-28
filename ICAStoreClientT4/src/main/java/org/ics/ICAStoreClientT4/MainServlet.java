@@ -1,6 +1,7 @@
 package org.ics.ICAStoreClientT4;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,13 +9,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import ics.Facade.Facade;
+import ics.Facade.FacadeLocal;
 
 /**
  * Servlet implementation class MainServlet
  */
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       Facade facade;
+       FacadeLocal facade;
     /**
      * @see HttpServlet#HttpServlet()
      */
