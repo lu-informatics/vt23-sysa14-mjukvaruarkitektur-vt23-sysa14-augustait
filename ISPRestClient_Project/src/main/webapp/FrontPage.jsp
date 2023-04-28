@@ -10,18 +10,19 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
 <script src="js/ICA.js"></script>
-<title>Rest Test</title>
+<title>Rest Client</title>
 </head>
 <body>
 <header>
-<p>Simple RestClientTest</p>
+<p>GREEN DELI</p>
 </header>
 <section id="row"> 
 <nav>
 <ul>
-<li class="active"><a>menu1</a></li>
-<li><a>menu2</a></li>
-<li><a>menu3</a></li>
+<li><a href="Product.jsp">Products</a></li>
+<li><a href="Order.jsp">Orders</a></li>
+<li><a href="Customer.jsp">Customer</a></li>
+
 </ul>
 </nav>
 <aside>
@@ -50,10 +51,10 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 <section id="content">
 <article>
 <fieldset id="PersonalFS">
-<legend>Movie:</legend>
+<legend>Product:</legend>
 Id:<br>
 <input type="text" name="id" id="id" value=""><br>
-Title:<br>
+Name:<br>
 <input type="text" name="title" id="title" value="">
 <br>
 Price:<br>
@@ -69,7 +70,7 @@ Price:<br>
 </section>
 </section>
 <footer>
-<p>&copy; Informatik-Mats Svensson</p>
+<p>&copy; - AUGUSTA IT</p>
 </footer>
 </body>
 </html>
