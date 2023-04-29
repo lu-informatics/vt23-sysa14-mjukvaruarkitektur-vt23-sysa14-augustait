@@ -55,26 +55,75 @@ footer {
 
 /* Boxes - Home Page */
 
+
+
 .boxes-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  margin-top: 80px;
-  margin-bottom: 20px;
 }
 
 .box {
-  background: #f5f5f5;
-  border: 1px solid #f5f5f5;
-  flex-basis: 30%;
+  background-color: #f2f2f2;
   padding: 20px;
-  height: 175px;
-  box-shadow: 0px 0px 15px #f5f5f5;
-  transition: transform 0.2s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 50px; /* Add margin-bottom here */
+  margin-top: 20px;
+  box-shadow: 0px 0px 15px #dcdcdc;
+  border-radius: 10px;
+  flex-basis: calc(33.33% - 40px); /* changed the width of each box */
+  margin-right: 20px; /* added margin-right to separate the boxes horizontally */
+  height: 100%; /* added height to make the boxes have the same height */
 }
+
+.box1 {
+  flex-basis: calc(66.67% - 40px); /* changed the width of box1 */
+  margin-right: 40px; /* added margin-right to separate box1 from the other boxes */
+}
+
+label {
+  display: inline-block;
+  width: 130px;
+  text-align: right;
+  margin-right: 15px;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 200px;
+  box-sizing: border-box;
+}
+
+/* Boxes - Home Page - Responsive */
+
+@media only screen and (max-width: 768px) {
+  .boxes-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+
+  .box1 {
+    flex-basis: 100%;
+    margin-right: 0;
+  }
+}
+
+
+
+.boxes-half {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+.box2, .box3 {
+	height: 250px;
+}
+
+/* other styles */
 
 
 
