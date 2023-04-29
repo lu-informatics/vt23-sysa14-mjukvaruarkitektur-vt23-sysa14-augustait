@@ -7,12 +7,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import org.ics.exceptions.MyICAException;
 
 import ics.Facade.FacadeLocal;
+import ics.ICAStoreT4.Product;
 
 /**
  * Servlet implementation class ICAStore
  */
+@WebServlet("/ICAStore/*")
 public class ICAStore extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -31,7 +36,29 @@ public class ICAStore extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("movies ");
+		try {
+		String pathInfo = request.getPathInfo();
+		if(pathInfo == null || pathInfo.equals("/")){
+		System.out.println("Alla");
+		System.out.println(pathInfo);
+		return;
+		}
+		String[] splits = pathInfo.split("/");
+		if(splits.length != 2) {
+		System.out.println("Alla2");
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		return;
+		}
+		String id = splits[1];
+		Product movie;
+		
+			movie = facade.findByProductId(Integer.parseInt(id));
+			sendAsJson(response, movie);
+
+		}  catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -55,5 +82,22 @@ public class ICAStore extends HttpServlet {
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
+	
+	private void sendAsJson(HttpServletResponse response, Product movie)
+			throws IOException {
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			if (movie != null) {
+			out.print("{\"title\":");
+			out.print("\"" + movie.getProductName() + "\"");
+			out.print(",\"id\":");
+			out.print("\"" +movie.getProductId()+"\"");
+			out.print(",\"price\":");
+			out.print("\"" +movie.getPrice()+"\"}");
+			} else {
+			out.print("{ }");
+			}
+			out.flush();
+			}
 
 }
