@@ -1,89 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Supermarket Homepage</title>
-<link rel="stylesheet" type="text/css" href="Management.css">
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="css/Style.css">
 </head>
 <body>
+	<header>
+		<div class="header-container">
+			<img src="https://scontent-ams2-1.xx.fbcdn.net/v/t1.15752-9/255161930_578347089889978_5226102132254144149_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=XevF6FAHeGMAX-WoqJK&_nc_ht=scontent-ams2-1.xx&oh=03_AdSMY3-Xh9GXaPX0ZYjDn0X5XirLLQUVLSzcsUrU5Mg3LQ&oe=64748A8E" alt="ICA ERP logo" class="logo">
+		</div>
+		<div class="welcome-header">
+			<h1>Welcome to the ICA Order Management System</h1>
+			<p>Here, you can manage and track all your orders efficiently and effectively.</p>
+		</div>
+	</header>
 
-<header>
-  <img src="logo.png" alt="Supermarket Logo">
-  <nav>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-  </nav>
-</header>
+	<main>
+		
+		<div class="boxes-container">
+            <div class="box">
+              <h3>Create an Order</h3>
+              <form action="Products.jsp">
+                <label for="order-id">Order ID:</label>
+                <input type="text" id="order-id" name="order-id"><br><br>
+                <button type="submit">Create</button>
+              </form>
+            </div>
+            <div class="box">
+              <h3>Existing Order ID</h3>
+              <p>For customers who already have an existing Order ID.</p>
+              <form action="Products.jsp">
+                <button type="submit">Go to Products</button>
+              </form>
+            </div>
+            <div class="box">
+              <h3>Overview of Orders</h3>
+              <p>For employees who want to see an overview of all orders.</p>
+              <form action="Overview.jsp">
+                <button type="submit">Go to Overview</button>
+              </form>
+            </div>
+          </div>
+          
 
-<main>
-  <div class="slideshow-container">
-    <div class="mySlides fade">
-      <img src="slide1.png" style="width:100%">
-      <div class="hero-text">
-        <h1>Welcome to our Supermarket</h1>
-        <p>Discover our wide selection of products and unbeatable prices</p>
-        <button>Shop Now</button>
-      </div>
-    </div>
-
-    <div class="mySlides fade">
-      <img src="slide2.png" style="width:100%">
-      <div class="hero-text">
-        <h1>Save More With Our Promotions</h1>
-        <p>Check out our latest promotions and save big on your favorite products</p>
-        <button>View Promotions</button>
-      </div>
-    </div>
-
-    <div class="mySlides fade">
-      <img src="slide3.png" style="width:100%">
-      <div class="hero-text">
-        <h1>Get Free Delivery on Your First Order</h1>
-        <p>Place your first order today and enjoy free delivery to your doorstep</p>
-        <button>Shop Now</button>
-      </div>
-    </div>
-
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-
-  <br>
-
-  <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-  </div>
-  
-  <section class="featured-products">
-    <h2>Featured Products</h2>
-    <div class="product">
-      <img src="product1.png" alt="Product 1">
-      <h3>Product 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed risus vel nulla dignissim eleifend.</p>
-      <button>Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="product2.png" alt="Product 2">
-      <h3>Product 2</h3>
-      <p>Integer eget mi ornare, dignissim nunc eu, bibendum enim. Sed posuere eleifend sapien, ac maximus felis vestibulum id.</p>
-      <button>Add to Cart</button>
-    </div>
-    <div class="product">
-      <img src="product3.png" alt="Product 3">
-      <h3>Product 3</h3>
-      <p>Nam malesuada justo vel quam consectetur, vitae consectetur elit euismod</p>
-      <button>Shop Now</button>
-    </div>
-  </section>
-</main>
-    <footer>
-        &copy; 2023 Supermarket Inc.
-    </footer>
+	<footer>
+		<p>&copy; 2023 ICA ERP Management System</p>
+	</footer>
 </body>
 </html>

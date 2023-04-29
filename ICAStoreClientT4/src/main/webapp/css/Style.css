@@ -1,0 +1,215 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-y: scroll;
+}
+
+/* Header */
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+  background-color: #fff;
+ 
+}
+
+.logo {
+  width: 150px;
+  height: 110px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Footer */ 
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Welcome Header */
+
+.welcome-header {
+  background-color: #d90c16;
+  color: #f5f5f5;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.welcome-header h1 {
+  margin-top: 0;
+}
+
+.welcome-header p {
+  margin-bottom: 0;
+} 
+
+
+
+/* Boxes - Home Page */
+
+.boxes-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+  margin-bottom: 20px;
+}
+
+.box {
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
+  flex-basis: 30%;
+  padding: 20px;
+  height: 175px;
+  box-shadow: 0px 0px 15px #f5f5f5;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 50px; /* Add margin-bottom here */
+}
+
+
+
+.box h3 {
+  margin-top: 0;
+  color: #d90c16;
+  font-size: 22px;
+}
+
+/* Buttons - Home Page */
+
+
+button {
+  background-color: #d90c16;
+  font: 'Segoe UI';
+  color: #f5f5f5;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: auto;
+  cursor: pointer;
+  align-self: center;
+}
+
+button:hover {
+  background-color: #d90c16;
+}
+
+
+
+/* All Products */
+
+
+
+
+/* Products - Popular */
+.product-section-popular {
+  margin-top: 20px;
+}
+
+.product-container-popular {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-container-popular img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.product-container-popular button {
+  margin-top: 10px;
+}
+
+
+/* Products - Drinks */
+
+.product-section-drinks {
+  margin-top: 20px;
+}
+
+.product-container-drinks {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-container-drinks img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.product-container-drinks button {
+  margin-top: 10px;
+}
+
+
+/* Products - Fruits */
+
+.product-section-fruits {
+  margin-top: 20px;
+}
+
+.product-container-fruits {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-container-fruits img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.product-container-fruits button {
+  margin-top: 10px;
+}
+
+
+/* -Products Buttons */
+
+.add-to-order-button {
+  background-color: #d90c16;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+
+
+
+/* Box - Overview */
+.box-overview {
+  width: 80%;
+  height: 250px;
+  margin: auto;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow-y: scroll;
+}
+
+.box-content {
+  /* styles for the content within the box */
+}
