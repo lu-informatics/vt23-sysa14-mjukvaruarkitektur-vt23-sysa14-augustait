@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ICAStore</display-name>
+    <servlet-name>ICAStore</servlet-name>
+    <servlet-class>org.ics.ejb.restserver.ICAStore</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ICAStore</servlet-name>
+    <url-pattern>/ICAStore</url-pattern>
+  </servlet-mapping>
 </web-app>
