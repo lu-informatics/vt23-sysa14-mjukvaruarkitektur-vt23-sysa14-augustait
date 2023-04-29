@@ -1,6 +1,10 @@
 package org.ics.ejb.restserver;
 
 import jakarta.ejb.EJB;
+import jakarta.json.Json;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObjectBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.ics.exceptions.MyICAException;
 
@@ -41,6 +46,8 @@ public class ICAStore extends HttpServlet {
 		if(pathInfo == null || pathInfo.equals("/")){
 		System.out.println("Alla");
 		System.out.println(pathInfo);
+		List<ics.ICAStoreT4.Product> allMovies = facade.findAllProducts();
+		sendAsJson(response, allMovies);
 		return;
 		}
 		String[] splits = pathInfo.split("/");
@@ -80,7 +87,32 @@ public class ICAStore extends HttpServlet {
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		try {
+		String pathInfo = request.getPathInfo();
+		if(pathInfo == null || pathInfo.equals("/")){
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		return;
+		}
+		String[] splits = pathInfo.split("/");
+		if(splits.length != 2) {
+		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+		return;
+		}
+		String id = splits[1];
+		Product movie = facade.findByProductId(Integer.parseInt(id));
+		if (movie != null) {
+		
+			facade.deleteProduct(Integer.parseInt(id));
+			sendAsJson(response, movie);
+		}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void sendAsJson(HttpServletResponse response, Product movie)
@@ -99,5 +131,29 @@ public class ICAStore extends HttpServlet {
 			}
 			out.flush();
 			}
+	
+	
+	private void sendAsJson(HttpServletResponse response, List< Product> movies)
+			throws IOException {
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			if (movies != null) {
+			JsonArrayBuilder array = Json.createArrayBuilder();
+			for (ics.ICAStoreT4.Product m : movies) {
+			JsonObjectBuilder o = Json.createObjectBuilder();
+			o.add("id", String.valueOf(m.getProductId()));
+			o.add("title", m.getProductName());
+			o.add("price", String.valueOf(m.getPrice()));
+			array.add(o);
+			}
+			JsonArray jsonArray = array.build();
+			System.out.println("Movie Rest: "+jsonArray);
+			out.print(jsonArray);
+			} else {
+			out.print("[]");
+			}
+			out.flush();
+			}
+
 
 }
