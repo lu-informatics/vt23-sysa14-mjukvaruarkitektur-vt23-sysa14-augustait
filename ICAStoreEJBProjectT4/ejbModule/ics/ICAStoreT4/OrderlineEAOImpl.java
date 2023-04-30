@@ -46,6 +46,26 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
         return orderlines;
     }
     
+    public List<Orderline> findOrderlineByOrderIdandProductId(int orderId, int productId) throws MyICAException {
+    	List<Orderline> orderlines = em.createNamedQuery("Orderline.findByOrderIdAndProductId", Orderline.class)
+                .setParameter("orderId", orderId)
+                .setParameter("productId", productId)
+                .getResultList();
+        return orderlines;
+    }
+    
+    public Orderline findOrderlineByOrderAndProductAndLine(int orderId, int productId, int orderLineNumber) throws MyICAException {
+        List<Orderline> orderlines = em.createNamedQuery("Orderline.findByOrderAndProductAndLine", Orderline.class)
+                .setParameter("orderId", orderId)
+                .setParameter("productId", productId)
+                .setParameter("orderlineNumber", orderLineNumber)
+                .getResultList();
+        if (orderlines.isEmpty()) {
+            throw new MyICAException("No orderlines found for order ID: " + orderId + ", product ID: " + productId + " and order line number: " + orderLineNumber);
+        }
+        return orderlines.get(0);
+    }
+    
     public Orderline createOrderline (Orderline orderline) {
     	em.persist(orderline);
     	return orderline;

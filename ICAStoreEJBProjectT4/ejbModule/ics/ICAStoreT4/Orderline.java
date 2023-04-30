@@ -20,7 +20,10 @@ import jakarta.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(name= "Orderline.findAll", query = "SELECT o FROM Orderline o"),
-    @NamedQuery(name = "Orderline.findByOrderId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :id")
+    @NamedQuery(name = "Orderline.findByOrderId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :id"),
+    @NamedQuery(name = "Orderline.findByOrderIdAndProductId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId"),
+    @NamedQuery(name = "Orderline.findByOrderAndProductAndLine", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId AND o.orderlineNumber = :orderlineNumber")
+    
 })
 @Table(name="Orderline")
 public class Orderline {

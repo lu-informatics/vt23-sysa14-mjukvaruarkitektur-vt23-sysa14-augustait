@@ -158,7 +158,14 @@ public class ICAStoreServlet extends HttpServlet {
              	orderline.setId(id); 
              	orderline.setOrderlineNumber(1); 
              	orderline.setQuantity(2);
-            // facade.createOrderline(orderline);
+                try {
+					facade.createOrderline(1, 6, 101, 2);
+				} catch (MyICAException e1) {
+					// TODO Auto-generated catch block
+					out.println("<br>");
+					out.println("<span style='color:red;font-size:larger;'>" + e1.getMessage() + "</span>");
+					out.println("<br>");
+				}
             
              
              	 
