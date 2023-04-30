@@ -15,6 +15,7 @@ import ics.ICAStoreT4.OrderEAOImplLocal;
 import ics.ICAStoreT4.Order_;
 import ics.ICAStoreT4.Orderline;
 import ics.ICAStoreT4.OrderlineEAOImplLocal;
+import ics.ICAStoreT4.OrderlineId;
 import ics.ICAStoreT4.Product;
 import ics.ICAStoreT4.ProductCategory;
 import ics.ICAStoreT4.Store;
@@ -267,12 +268,6 @@ public class Facade implements FacadeLocal {
 			}
 			
 
-
-
-			public Orderline createOrderline(Orderline orderline) {
-				return orderlineEAO.createOrderline(orderline);
-			}
-
 			
 			public void deleteOrderline(Orderline orderline) {
 				orderlineEAO.deleteOrderline(orderline);
@@ -300,6 +295,31 @@ public class Facade implements FacadeLocal {
 			        return orderEAO.createOrder(newOrder);
 			    } catch (Exception e) {
 			        throw new MyICAException("Failed to create the order: " + e.getMessage());
+			    }
+			}
+
+			public Orderline createOrderline(int orderId, int productId, int orderLineNumber, int quantity) throws MyICAException {
+			    try {
+			        Order_ order = orderEAO.findOrderById(orderId);
+			        Product product = productEAO.findProductByProductId(productId);
+			        
+			        List<Orderline> existingOrderlines = orderlineEAO.findOrderlineByOrderIdandProductId(orderId, productId);
+			        if (!existingOrderlines.isEmpty()) {
+			            throw new MyICAException("An orderline with the given order ID and product ID already exists");
+			        }
+			        
+			        OrderlineId id = new OrderlineId();
+			        id.setOrderId(orderId);
+			        id.setProductId(productId);
+
+			        Orderline newOrderline = new Orderline();
+			        newOrderline.setId(id);
+			        newOrderline.setOrderlineNumber(orderLineNumber);
+			        newOrderline.setQuantity(quantity);
+
+			        return orderlineEAO.createOrderline(newOrderline);
+			    } catch (Exception e) {
+			        throw new MyICAException("Failed to create the order line: " + e.getMessage());
 			    }
 			}
 
