@@ -261,6 +261,15 @@ public class Facade implements FacadeLocal {
 			}
 			}
 			
+			 public List<Object[]> findSalesSummaryBySupermarketId(int supermarketId) throws MyICAException{
+					try {
+						return storeEAO.findSalesSummaryBySupermarketId(supermarketId);
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
+			 }
+			
 			public List<Store> findAllStores() throws MyICAException {
 				try {
 					return storeEAO.findAllStores();

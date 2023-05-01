@@ -17,6 +17,12 @@ import jakarta.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(name= "Store.findAll", query = "SELECT s FROM Store s"),
+       @NamedQuery(name = "Store.findSalesSummaryBySupermarketId", 
+       query = "SELECT s.storeName, s.supermarketId, s.storeAddress, s.city, s.regionName, "
+       		+ "COUNT(o.customer.customerId), COUNT(o.orderId), SUM(ol.quantity * p.price) "
+       		+ "FROM Store s JOIN s.orders o JOIN o.orderLines ol JOIN ol.product p "
+       		+ "WHERE s.supermarketId = :supermarketId GROUP BY s.storeName, s.supermarketId, s.storeAddress, s.city, s.regionName"),
+         
     @NamedQuery(name = "Store.findBySupermarketId", query = "SELECT s FROM Store s WHERE s.supermarketId = :id")
 })
 

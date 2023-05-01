@@ -40,7 +40,17 @@ public class StoreEAOImpl implements StoreEAOImplLocal {
 	 }
 
   
-	  
+
+	
+	 public List<Object[]> findSalesSummaryBySupermarketId(int supermarketId) throws MyICAException {
+	        try {
+	            return em.createNamedQuery( "Store.findSalesSummaryBySupermarketId", Object[].class)
+	            		.setParameter("supermarketId", supermarketId)
+	                     .getResultList();
+	        } catch (Exception e) {
+	            throw new MyICAException("Failed to retrieve the list of the store: " + e.getMessage());
+	        }
+	    }
 
 	public Store findByStoreId(int id) throws MyICAException {
 	    try {
