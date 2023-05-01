@@ -18,9 +18,9 @@
 
 	<nav>
         <ul>
-          <li><a href="FrontPage.jsp">Home</a></li>
           <li><a href="Contact.jsp">Contact</a></li>
-          <li><a href="Customer.jsp">Customer Login</a></li>
+           <li><a href="Contact.jsp">Overview</a></li>
+          <li><a href="FrontPage.jsp">LOG OUT</a></li>
         </ul>
       </nav>
 
