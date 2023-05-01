@@ -268,6 +268,16 @@ public class Facade implements FacadeLocal {
 			}
 			
 
+			public List<Object[]> findOrderlineDetailsByOrderId (int orderId) throws MyICAException{
+				try {
+					return orderlineEAO.findOrderlineDetailsByOrderId(orderId);
+				} catch (MyICAException e) {
+					// TODO Auto-generated catch block
+					throw e;
+				}
+			}
+			
+
 			
 			public void deleteOrderline(Orderline orderline) {
 				orderlineEAO.deleteOrderline(orderline);
@@ -319,7 +329,7 @@ public class Facade implements FacadeLocal {
 
 			        return orderlineEAO.createOrderline(newOrderline);
 			    } catch (Exception e) {
-			        throw new MyICAException("Failed to create the order line: " + e.getMessage());
+			        throw new MyICAException("Failed to create the orderline: " + e.getMessage());
 			    }
 			}
 

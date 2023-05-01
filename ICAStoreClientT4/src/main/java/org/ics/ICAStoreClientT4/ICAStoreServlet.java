@@ -159,11 +159,11 @@ public class ICAStoreServlet extends HttpServlet {
              	orderline.setOrderlineNumber(1); 
              	orderline.setQuantity(2);
                 try {
-					facade.createOrderline(1, 6, 101, 2);
+					facade.createOrderline(10, 3, 1, 2);
 				} catch (MyICAException e1) {
 					// TODO Auto-generated catch block
 					out.println("<br>");
-					out.println("<span style='color:red;font-size:larger;'>" + e1.getMessage() + "</span>");
+					out.println("<span style='color:blue;font-size:larger;'>" + e1.getMessage() + "</span>");
 					out.println("<br>");
 				}
             
@@ -183,7 +183,40 @@ public class ICAStoreServlet extends HttpServlet {
 			out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
 			out.println("<br>");
 		}
-		}
+           
+        
+ 
+           
+           List<Object[]> orderlines;
+           try {
+               orderlines = facade.findOrderlineDetailsByOrderId(1);
+               out.println("<table>");
+               out.println("<tr><th>Orderline Number</th><th>Order ID</th><th>Product ID</th><th>Product Name</th><th>Price</th><th>Order Date</th><th>Store Name</th><th>Supermarket ID</th><th>Quantity</th><th>Payment Method</th><th>Line Amount</th><th>Order Amount</th></tr>");
+               for (Object[] details : orderlines) {
+                   out.println("<tr>");
+                   out.println("<td>" + details[0] + "</td>");
+                   out.println("<td>" + details[1] + "</td>");
+                   out.println("<td>" + details[2] + "</td>");
+                   out.println("<td>" + details[3] + "</td>");
+                   out.println("<td>" + details[4] + "</td>");
+                   out.println("<td>" + details[5] + "</td>");
+                   out.println("<td>" + details[6] + "</td>");
+                   out.println("<td>" + details[7] + "</td>");
+                   out.println("<td>" + details[8] + "</td>");
+                   out.println("<td>" + details[9] + "</td>");
+                   
+                   out.println("<td>" + details[10]+ "</td>");
+                   out.println("<td>" + details[11]+ "</td>");
+                   out.println("</tr>");
+               }
+               out.println("</table>");
+           } catch (MyICAException e) {
+               e.printStackTrace();
+           }
+           
+           
+         	}
+         }
            
            
          
@@ -204,7 +237,7 @@ public class ICAStoreServlet extends HttpServlet {
          	 
          }
          }
-    }
+    
     
     
 

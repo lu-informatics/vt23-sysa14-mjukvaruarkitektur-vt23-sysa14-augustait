@@ -15,5 +15,5 @@ public interface OrderlineEAOImplLocal {
 	  public List<Orderline> findOrderlineByOrderId(int orderId) throws MyICAException;
 	  public Orderline findOrderlineByOrderAndProductAndLine(int orderId, int productId, int orderLineNumber) throws MyICAException;
 	  public List<Orderline> findOrderlineByOrderIdandProductId(int orderId, int productId) throws MyICAException;
-
+	  public List<Object[]> findOrderlineDetailsByOrderId(int orderId) throws MyICAException;
 }
