@@ -53,14 +53,26 @@ return em.createNamedQuery("Product.findAll", Product.class).getResultList();
 }
 }
 
+//Denna används när vi skapar Orderlines
 
-public Product findProductByProductId(int productId) throws MyICAException {
+public Product findProductByProductId(int productId) throws MyICAException { 
     try {
         return em.createNamedQuery("Product.findByProductId", Product.class)
                 .setParameter("id", productId)
                 .getSingleResult();
     } catch (NoResultException e) {
         throw new MyICAException("Failed to retrieve the Product! There is no Product with the Product ID: " + productId);
+    }
+}
+
+public Product findProductByProductIdForTheCreateMethod(int productId) {
+    try {
+        return em.createNamedQuery("Product.findByProductId", Product.class)
+                 .setParameter("id", productId)
+                 .getSingleResult();
+    } catch (NoResultException ex) {
+        // Return null when product with given ID is not found
+        return null;
     }
 }
 

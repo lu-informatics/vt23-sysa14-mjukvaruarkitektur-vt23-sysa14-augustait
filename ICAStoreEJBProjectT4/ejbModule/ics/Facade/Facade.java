@@ -57,23 +57,27 @@ public class Facade implements FacadeLocal {
 	}
 	
 	public Product createProduct(int productId, String productName, double price, int categoryId) throws MyICAException {
+	    
+	    if (productEAO.findProductByProductIdForTheCreateMethod(productId) != null) {
+	        throw new MyICAException("Failed to create Product! A product with ID " + productId + " already exists.");
+	    }
+
 	    Product newProduct = new Product();
 	    newProduct.setProductId(productId);
 	    newProduct.setProductName(productName);
 	    newProduct.setPrice(price);
-	    
-	   
+
 	    ProductCategory category;
 	    try {
 	        category = productCategoryEAO.findProductCategoryById(categoryId);
 	    } catch (MyICAException e) {
-	        throw new MyICAException("Failed to create Product! There is no category with the ID: " + categoryId);
+	        throw new MyICAException("Failed to create Product! " + e.getMessage());
 	    }
 	    newProduct.setProductCategory(category);
 	    
 	    return productEAO.createProduct(newProduct);
 	}
-
+	
 
 	
 	public void deleteProduct(int id) throws MyICAException {
@@ -279,14 +283,41 @@ public class Facade implements FacadeLocal {
 			
 
 			
-			public void deleteOrderline(Orderline orderline) {
+			public void deleteOrderline(Orderline orderline) throws MyICAException {
+			
+				try {
 				orderlineEAO.deleteOrderline(orderline);
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
+			}
+			
+			public void deleteOrderlineByOrderIdAndProductId(int orderId, int productId) throws MyICAException {
+			    List<Orderline> orderlines = orderlineEAO.findOrderlineByOrderIdandProductId(orderId, productId);
+			    if (!orderlines.isEmpty()) {
+			        Orderline orderline = orderlines.get(0);
+			        
+			        orderlineEAO.deleteOrderlineByOrderIdAndProductId(orderline);
+			    } else {
+			        throw new MyICAException("Failed to delete the orderline! There is no orderline with Order ID: " + orderId + " and Product ID: " + productId);
+			    }
 			}
 
 
-			public void updateOrderline(Orderline orderline) {
-				orderlineEAO.updateOrderline(orderline);
+			public void updateOrderline(int orderId, int productId, int quantity) throws MyICAException {
+			    try {
+				List<Orderline> orderlines = orderlineEAO.findOrderlineByOrderIdandProductId(orderId, productId);
+			    if (!orderlines.isEmpty()) {
+			        Orderline orderline = orderlines.get(0);
+			        orderline.setQuantity(quantity);
+			        orderlineEAO.updateOrderline(orderline);
+			    }    
+			 } catch (Exception e) {
+			        throw new MyICAException("Failed to create the order: " + e.getMessage());
+			    }
 			}
+			
 
 
 			

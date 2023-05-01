@@ -8,6 +8,7 @@ import jakarta.ejb.LocalBean;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 
 /**
  * Session Bean implementation class OrderlineEAOImpl
@@ -83,11 +84,23 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
     	em.merge(orderline);
     	
     }
-    public void deleteOrderline(Orderline orderline) {
-        Orderline mergedOrderline = em.merge(orderline);
-        em.remove(mergedOrderline);
+    
+    //Här tar vi bort genom att ange OrderID
+    public void deleteOrderline(Orderline orderline) throws MyICAException {
+        Orderline existingOrderline = em.find(Orderline.class, orderline.getId());
+        if (existingOrderline == null) {
+            throw new MyICAException("Failed to delete Orderline! There is no Orderline with the give Order ID. ");
+        }
+        em.remove(existingOrderline);
+        
     }
     
     
+    public void deleteOrderlineByOrderIdAndProductId(Orderline orderline) throws MyICAException {	  
+    	Orderline mergedOrderline = em.merge(orderline);
+        em.remove(mergedOrderline);
+      
+    }
+    }
 
-}
+

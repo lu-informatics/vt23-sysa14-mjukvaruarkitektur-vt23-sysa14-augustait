@@ -153,13 +153,14 @@ public class ICAStoreServlet extends HttpServlet {
              	 
              	Orderline orderline = new Orderline();
              	OrderlineId id = new OrderlineId();
-             	id.setOrderId(1); 
+             	id.setOrderId(9283); 
              	id.setProductId(1);
              	orderline.setId(id); 
              	orderline.setOrderlineNumber(1); 
              	orderline.setQuantity(2);
                 try {
-					facade.createOrderline(10, 3, 1, 2);
+					//facade.createOrderline(10, 3, 1, 2);
+                	facade.deleteOrderlineByOrderIdAndProductId(1, 2);
 				} catch (MyICAException e1) {
 					// TODO Auto-generated catch block
 					out.println("<br>");
@@ -198,7 +199,7 @@ public class ICAStoreServlet extends HttpServlet {
                    out.println("<td>" + details[1] + "</td>");
                    out.println("<td>" + details[2] + "</td>");
                    out.println("<td>" + details[3] + "</td>");
-                   out.println("<td>" + details[4] + "</td>");
+                   out.println("<td>" + details[4] + " kr" + "</td>");
                    out.println("<td>" + details[5] + "</td>");
                    out.println("<td>" + details[6] + "</td>");
                    out.println("<td>" + details[7] + "</td>");
@@ -213,6 +214,18 @@ public class ICAStoreServlet extends HttpServlet {
            } catch (MyICAException e) {
                e.printStackTrace();
            }
+           
+       
+           
+           
+           try {
+			facade.createProduct(1098, "Vi testar exception", 1, 1);
+		} catch (MyICAException e) {
+			// TODO Auto-generated catch block
+			out.println("<br>");
+			out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
+			out.println("<br>");
+		}
            
            
          	}

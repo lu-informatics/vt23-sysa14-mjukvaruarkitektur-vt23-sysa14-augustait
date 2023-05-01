@@ -50,8 +50,9 @@ public interface FacadeLocal {
 	public List<Orderline>findOrderlineByOrderId(int orderId) throws MyICAException;
 	public List<Object[]> findOrderlineDetailsByOrderId(int orderId) throws MyICAException;
 	
-	public void deleteOrderline(Orderline orderline);
-	public void updateOrderline(Orderline orderline);
+	public void deleteOrderline(Orderline orderline) throws MyICAException;
+	public void deleteOrderlineByOrderIdAndProductId(int orderId, int productId) throws MyICAException ;
+	public void updateOrderline(int orderId, int productId, int quantity) throws MyICAException;
 	public Orderline createOrderline(int orderId, int productId, int orderlinenumber, int quantity) throws MyICAException;
 	
 	

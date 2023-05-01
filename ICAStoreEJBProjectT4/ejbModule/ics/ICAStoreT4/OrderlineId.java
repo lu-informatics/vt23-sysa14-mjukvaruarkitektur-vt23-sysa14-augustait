@@ -59,5 +59,7 @@ public class OrderlineId implements Serializable  {
 			
 			
 			public int hashCode() {
-				return super.hashCode(); }
+			    return Objects.hash(productId, orderId);
 			}
+}
+
