@@ -53,7 +53,7 @@ return em.createNamedQuery("Product.findAll", Product.class).getResultList();
 }
 }
 
-//Denna används när vi skapar Orderlines
+//Denna används när vi skapar nya Orderlines
 
 public Product findProductByProductId(int productId) throws MyICAException { 
     try {
@@ -65,7 +65,7 @@ public Product findProductByProductId(int productId) throws MyICAException {
     }
 }
 
-// Denna används när vi skapara Products
+// Denna används när vi skapar nya Products eller uppdaterar befintliga
 
 public Product findProductByProductIdForTheCreateMethod(int productId) {
     try {

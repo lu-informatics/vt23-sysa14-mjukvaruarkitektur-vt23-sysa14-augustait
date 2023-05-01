@@ -268,6 +268,7 @@ public class Facade implements FacadeLocal {
 					// TODO Auto-generated catch block
 					throw e;
 				}
+					
 			 }
 			
 			public List<Store> findAllStores() throws MyICAException {
@@ -339,6 +340,15 @@ public class Facade implements FacadeLocal {
 					// TODO Auto-generated catch block
 					throw e;
 				}
+			}
+			
+			public List<Object[]> findAllOrderlineDetails() throws MyICAException{
+				try {
+				return orderlineEAO.findAllOrderlineDetails();
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
 			}
 			
 

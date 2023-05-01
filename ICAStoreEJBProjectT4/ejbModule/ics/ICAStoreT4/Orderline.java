@@ -24,14 +24,23 @@ import jakarta.persistence.Table;
     @NamedQuery(name = "Orderline.findByOrderIdAndProductId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId"),
     @NamedQuery(name = "Orderline.findByOrderAndProductAndLine", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId AND o.orderlineNumber = :orderlineNumber"),
     @NamedQuery(
+    	    name = "Orderline.findAllOrderlineDetails",
+    	    query = "SELECT o.customer.name, o.customer.customerId, ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod, SUM(p.price * ol.quantity) AS lineTotal, (SELECT SUM(p2.price * ol2.quantity) FROM Orderline ol2 JOIN ol2.product p2 WHERE ol2.id.orderId = ol.id.orderId) AS orderTotal  " +
+    	            "FROM Orderline ol " +
+    	            "JOIN ol.order o " +
+    	            "JOIN ol.product p " +
+    	            "JOIN o.store s " +
+    	            
+    	            "GROUP BY o.customer.name, o.customer.customerId, ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod"),
+    @NamedQuery(
     	    name = "Orderline.findOrderlineDetailsByOrderId",
-    	    query = "SELECT ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod, SUM(p.price * ol.quantity) AS lineTotal, (SELECT SUM(p2.price * ol2.quantity) FROM Orderline ol2 JOIN ol2.product p2 WHERE ol2.id.orderId = ol.id.orderId) AS orderTotal  " +
+    	    query = "SELECT o.customer.name, o.customer.customerId, ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod, SUM(p.price * ol.quantity) AS lineTotal, (SELECT SUM(p2.price * ol2.quantity) FROM Orderline ol2 JOIN ol2.product p2 WHERE ol2.id.orderId = ol.id.orderId) AS orderTotal  " +
     	            "FROM Orderline ol " +
     	            "JOIN ol.order o " +
     	            "JOIN ol.product p " +
     	            "JOIN o.store s " +
     	            "WHERE ol.id.orderId = :orderId " +
-    	            "GROUP BY ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod")
+    	            "GROUP BY o.customer.name, o.customer.customerId, ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod")
 })
 @Table(name="Orderline")
 public class Orderline {
