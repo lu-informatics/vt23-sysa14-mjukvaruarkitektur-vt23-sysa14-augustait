@@ -1,6 +1,8 @@
 package ics.ICAStoreT4;
 
 import java.io.Serializable;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -9,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PostLoad;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -31,6 +34,7 @@ public class Order_ implements Serializable {
     private Store store;
     private Customer customer;
     private String paymentMethod;
+    private List<Orderline> orderLines;
 
     @Transient
     private Customer loadedCustomer;
@@ -87,6 +91,16 @@ public class Order_ implements Serializable {
     public void setPaymentMethod(String paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
+    
+    @OneToMany(mappedBy = "order")
+    public List<Orderline> getOrderLines() {
+        return orderLines;
+    }
+
+    public void setOrderLines(List<Orderline> orderLines) {
+        this.orderLines = orderLines;
+    }
+    
 
     @PostLoad
     public void logOperation() {
