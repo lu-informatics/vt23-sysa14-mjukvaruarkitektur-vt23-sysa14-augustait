@@ -28,6 +28,16 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
         // TODO Auto-generated constructor stub
     	
     }
+    
+   
+    public List<Object[]> findAllCustomersOrdersAndTotalAmount() throws MyICAException {
+        try {
+            return em.createNamedQuery( "Customer.getTotalAmountOfOrdersForAllCustomers", Object[].class)
+                     .getResultList();
+        } catch (Exception e) {
+            throw new MyICAException("Failed to retrieve the list of customers: " + e.getMessage());
+        }
+    }
     	
     public List<Customer> findAllCustomers() throws MyICAException {
         try {

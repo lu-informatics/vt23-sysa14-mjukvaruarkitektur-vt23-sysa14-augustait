@@ -16,5 +16,6 @@ public interface CustomerEAOImplLocal {
    public List<Customer> findAllCustomers() throws MyICAException;
    public Customer findByCustomerIdForCreateMethod(int id) throws MyICAException;
    public List<Object[]> findCustomerOrders(int customerId) throws MyICAException;
+   public List<Object[]> findAllCustomersOrdersAndTotalAmount() throws MyICAException;
 
 }
