@@ -61,6 +61,18 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
                 .setParameter("orderId", orderId)
                 .getResultList();
         }
+    
+    
+    public List<Object[]> findAllOrderlineDetails() throws MyICAException {
+    	try {
+    	return em.createNamedQuery("Orderline.findAllOrderlineDetails", Object[].class)
+    			.getResultList();
+    	 } catch (Exception e) {
+             throw new MyICAException("Failed to retrieve the list of orderlines: " + e.getMessage());
+         }
+   	 }
+    
+    
    
     
     

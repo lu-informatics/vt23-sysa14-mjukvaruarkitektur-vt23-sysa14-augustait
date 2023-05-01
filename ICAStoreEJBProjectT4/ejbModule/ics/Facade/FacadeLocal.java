@@ -42,6 +42,7 @@ public interface FacadeLocal {
 	public void deleteStore(int id) throws MyICAException;
 	public List<Store> findAllStores() throws MyICAException;
 	public List<Object[]> findSalesSummaryBySupermarketId(int supermarketId) throws MyICAException;
+	public List<Object[]> findAllOrderlineDetails() throws MyICAException;
 	
 	public Order_ createOrder(int orderId, String orderDate, String paymentMethod, int customerId, int supermarketId) throws MyICAException;
     public Order_ findOrderById(int id) throws MyICAException;

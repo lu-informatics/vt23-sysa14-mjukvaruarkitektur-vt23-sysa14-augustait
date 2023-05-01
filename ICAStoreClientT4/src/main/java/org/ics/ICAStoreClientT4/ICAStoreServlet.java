@@ -195,28 +195,61 @@ public class ICAStoreServlet extends HttpServlet {
            try {
                orderlines = facade.findOrderlineDetailsByOrderId(1);
                out.println("<table>");
-               out.println("<tr><th>Orderline Number</th><th>Order ID</th><th>Product ID</th><th>Product Name</th><th>Price</th><th>Order Date</th><th>Store Name</th><th>Supermarket ID</th><th>Quantity</th><th>Payment Method</th><th>Line Amount</th><th>Order Amount</th></tr>");
+               out.println("<tr><th>Customer Name</th><th>Customer ID</th><th> Orderline Number</th><th>Order ID</th><th>Product ID</th><th>Product Name</th><th>Price</th><th>Order Date</th><th>Store Name</th><th>Supermarket ID</th><th>Quantity</th><th>Payment Method</th><th>Line Amount</th><th>Order Amount</th></tr>");
                for (Object[] details : orderlines) {
                    out.println("<tr>");
                    out.println("<td>" + details[0] + "</td>");
                    out.println("<td>" + details[1] + "</td>");
                    out.println("<td>" + details[2] + "</td>");
                    out.println("<td>" + details[3] + "</td>");
-                   out.println("<td>" + details[4] + " kr" + "</td>");
+                   out.println("<td>" + details[4] + "</td>");
                    out.println("<td>" + details[5] + "</td>");
-                   out.println("<td>" + details[6] + "</td>");
+                   out.println("<td>" + details[6] + " kr" + "</td>");
                    out.println("<td>" + details[7] + "</td>");
                    out.println("<td>" + details[8] + "</td>");
                    out.println("<td>" + details[9] + "</td>");
                    
                    out.println("<td>" + details[10]+ "</td>");
                    out.println("<td>" + details[11]+ "</td>");
+                   out.println("<td>" + details[12]+ "</td>");
+                   out.println("<td>" + details[13]+ "</td>");
+                   out.println("</tr>");
+               out.println("</table>");
+               }
+           } catch (MyICAException e) {
+               e.printStackTrace();
+           }
+           
+           
+           List<Object[]> allOrderlines;
+           try {
+               allOrderlines = facade.findAllOrderlineDetails();
+               out.println("<table>");
+               out.println("<tr><th>Customer Name</th><th>Customer ID</th><th> Orderline Number</th><th>Order ID</th><th>Product ID</th><th>Product Name</th><th>Price</th><th>Order Date</th><th>Store Name</th><th>Supermarket ID</th><th>Quantity</th><th>Payment Method</th><th>Line Amount</th><th>Order Amount</th></tr>");
+               for (Object[] details : allOrderlines) {
+                   out.println("<tr>");
+                   out.println("<td>" + details[0] + "</td>");
+                   out.println("<td>" + details[1] + "</td>");
+                   out.println("<td>" + details[2] + "</td>");
+                   out.println("<td>" + details[3] + "</td>");
+                   out.println("<td>" + details[4] + "</td>");
+                   out.println("<td>" + details[5] + "</td>");
+                   out.println("<td>" + details[6] + " kr" + "</td>");
+                   out.println("<td>" + details[7] + "</td>");
+                   out.println("<td>" + details[8] + "</td>");
+                   out.println("<td>" + details[9] + "</td>");
+                   
+                   out.println("<td>" + details[10]+ "</td>");
+                   out.println("<td>" + details[11]+ "</td>");
+                   out.println("<td>" + details[12]+ "</td>");
+                   out.println("<td>" + details[13]+ "</td>");
                    out.println("</tr>");
                }
                out.println("</table>");
            } catch (MyICAException e) {
                e.printStackTrace();
            }
+           
            
        
          
