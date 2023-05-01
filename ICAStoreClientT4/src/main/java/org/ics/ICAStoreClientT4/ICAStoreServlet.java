@@ -265,6 +265,29 @@ public class ICAStoreServlet extends HttpServlet {
         	   out.println(e.getMessage());
         	   }
            
+           List<Object[]> stores;
+           try {
+               stores = facade.findSalesSummaryBySupermarketId(1);
+               out.println("<table>");
+               out.println("<tr><th>Store name</th><th>Store ID</th><th>Address</th><th>City</th><th>Region</th><th>Total customers</th><th>Total orders</th><th>Total incomes of sales</th><th></tr>");
+               for (Object[] details : stores) {
+                   out.println("<tr>");
+                   out.println("<td>" + details[0] + "</td>");
+                   out.println("<td>" + details[1] + "</td>");
+                   out.println("<td>" + details[2] + "</td>");
+                   out.println("<td>" + details[3] + "</td>");
+                   out.println("<td>" + details[4] + "</td>");
+                   out.println("<td>" + details[5] + "</td>");
+                   out.println("<td>" + details[6] + "</td>");
+                   out.println("<td>" + details[7] + "</td>");
+                   
+                   out.println("</tr>");
+               }
+               out.println("</table>");
+           } catch (MyICAException e) {
+               e.printStackTrace();
+           }
+           
          	}
          }
     }

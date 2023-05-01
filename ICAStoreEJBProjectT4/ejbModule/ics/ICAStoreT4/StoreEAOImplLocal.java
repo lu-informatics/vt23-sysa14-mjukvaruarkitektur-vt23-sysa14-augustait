@@ -14,5 +14,6 @@ public interface StoreEAOImplLocal {
 	public Store updateStore(Store store);
 	public void deleteStore(int id) throws MyICAException;
 	public List<Store>findAllStores() throws MyICAException;
+	 public List<Object[]> findSalesSummaryBySupermarketId(int supermarketId) throws MyICAException;
 
 }
