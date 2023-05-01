@@ -18,10 +18,10 @@
 
 	<nav>
         <ul>
-          <li><a href="#">Brand</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Customer Login</a></li>
+          <li><a href="Brand.jsp">Brand</a></li>
+          <li><a href="Contact.jsp">Contact</a></li>
+          <li><a href="Product.jsp">Products</a></li>
+          <li><a href="Customer.jsp">Customer Login</a></li>
         </ul>
       </nav>
 
