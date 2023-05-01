@@ -12,13 +12,15 @@ import org.ics.exceptions.MyICAException;
 
 import ics.Facade.Facade;
 import ics.Facade.FacadeLocal;
+import ics.ICAStoreT4.Order_;
 
 /**
  * Servlet implementation class MainServlet
  */
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       FacadeLocal facade;
+       FacadeLocal facade = new Facade();
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -53,8 +55,24 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	    // Get the form data
+	    int orderId = Integer.parseInt(request.getParameter("order-id"));
+	    String orderDate = request.getParameter("order-date");
+	    String paymentMethod = request.getParameter("payment-method");
+	    int customerId = Integer.parseInt(request.getParameter("customer-id"));
+	    int supermarketId = Integer.parseInt(request.getParameter("supermarket-id"));
+
+	    // Create a new order using the FacadeLocal instance
+	    try {
+	        Order_ order = facade.createOrder(orderId, orderDate, paymentMethod, customerId, supermarketId);
+	        request.setAttribute("order", order);
+	        request.getRequestDispatcher("OrderConfirmation.jsp").forward(request, response);
+	    } catch (MyICAException e) {
+	        request.setAttribute("errorMessage", e.getMessage());
+	        request.getRequestDispatcher("Home.jsp").forward(request, response);
+	    }
 	}
+
+
 
 }

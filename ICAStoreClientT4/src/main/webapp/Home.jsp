@@ -20,24 +20,26 @@
 		<div class="boxes-container">
 			<div class="box box1">
 				<h3>Create an Order</h3>
-				<form action="Products.jsp">
-					<label for="order-id">Order ID:</label>
-					<input type="number" id="order-id" name="order-id"><br><br>
-					<label for="order-date">Order Date:</label>
-					<input type="text" id="order-date" name="order-date"><br><br>
-					<label for="payment-method">Payment Method:</label>
-					<input type="text" id="payment-method" name="payment-method"><br><br>
-					<label for="customer-id">Customer ID:</label>
-					<input type="number" id="customer-id" name="customer-id"><br><br>
-					<label for="supermarket-id">Supermarket ID:</label>
-					<input type="number" id="supermarket-id" name="supermarket-id"><br><br>
-					<button type="submit">Create</button>
-				</form>
+				
+				<form id="order-form" action="Products.jsp" method="POST">
+	<label for="order-id">Order ID:</label>
+	<input type="number" id="order-id" name="order-id"><br><br>
+	<label for="order-date">Order Date:</label>
+	<input type="text" id="order-date" name="order-date"><br><br>
+	<label for="payment-method">Payment Method:</label>
+	<input type="text" id="payment-method" name="payment-method"><br><br>
+	<label for="customer-id">Customer ID:</label>
+	<input type="number" id="customer-id" name="customer-id"><br><br>
+	<label for="supermarket-id">Supermarket ID:</label>
+	<input type="number" id="supermarket-id" name="supermarket-id"><br><br>
+	<button type="submit">Create</button>
+</form>
 			</div>
 			<div class="box box2">
 				<h3>Existing Order ID</h3>
 				<p>For customers who already have an existing Order ID.</p>
 				<form action="Products.jsp">
+
 					<button type="submit">Go to Products</button>
 				</form>
 			</div>
@@ -54,5 +56,51 @@
 	<footer>
 		<p>&copy; 2023 ICA ERP Management System</p>
 	</footer>
+	
+
+	
+	
+	<script>
+  const form = document.getElementById('order-form');
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const orderId = document.getElementById('order-id').value;
+    const orderDate = document.getElementById('order-date').value;
+    const paymentMethod = document.getElementById('payment-method').value;
+    const customerId = document.getElementById('customer-id').value;
+    const supermarketId = document.getElementById('supermarket-id').value;
+
+    try {
+      const response = await fetch('/createOrder', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId,
+          orderDate,
+          paymentMethod,
+          customerId,
+          supermarketId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create order');
+      }
+
+      alert('Order created successfully');
+    } catch (error) {
+      console.error(error);
+      alert('Failed to create order');
+    }
+  });
+  
+ 
+
+  
+</script>
+
+	
 </body>
 </html>
