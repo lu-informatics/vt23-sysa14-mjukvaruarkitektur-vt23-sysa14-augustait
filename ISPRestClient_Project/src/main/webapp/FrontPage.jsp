@@ -20,7 +20,7 @@
         <ul>
           <li><a href="FrontPage.jsp">Home</a></li>
           <li><a href="Contact.jsp">Contact</a></li>
-          <li><a href="Customer.jsp">Customer Login</a></li>
+          <li><a href="Login.jsp">Customer Login</a></li>
         </ul>
       </nav>
 
