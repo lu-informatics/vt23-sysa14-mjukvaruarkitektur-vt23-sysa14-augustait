@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer</title>
+    <title>Products</title>
     <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
          <link rel="stylesheet" type="text/css" href="css/Style.css">
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/ICA.js"></script>
 </head>
 <body>
   
@@ -34,30 +35,42 @@
 			alt="A beautiful image" alt="Contentlogo" class="logoFood">
 	</section>
 	
-        <div class="customer-info">
-  <h2>Find Your Customer Information</h2>
-  <form method="post" action="CustomerInfo.jsp">
-    <label for="customer-id">Enter Your Customer ID:</label>
-    <input type="text" id="customer-id" name="customerID" required>
-    <br>
-    <input type="submit" value="Find Information">
-  </form>
+       
+  <section>
+    <img src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg" alt="A beautiful image" alt="Contentlogo" class="logoFood">
+  </section>
+
+  <div class="product-container">
+    <h2>All Products</h2>
+    <button id="view-all-btn">View All Products</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody id="products-table"></tbody>
+</table>
+  
 </div>
 
 <div id="customer-info-container"></div>
         
     </main>
     
+   
+   
     <footer>
         <div>
             <h3>Supermarket Address</h3>
             <p>123 Main St.</p>
             <p>Anytown, USA 12345</p>
         </div>
-        <div class="weather-widget">
-            <img src="weather-icon.png" alt="Current weather icon">
-            <p>72&deg;F</p>
-        </div>
+        
+       
     </footer>
     
 </body>
