@@ -54,6 +54,15 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
         return orderlines;
     }
     
+    public List<Object[]> findOrderlineDetailsByOrderId(int orderId) throws MyICAException {
+        
+            return em.createNamedQuery("Orderline.findOrderlineDetailsByOrderId", Object[].class)
+                .setParameter("orderId", orderId)
+                .getResultList();
+        }
+   
+    
+    
     public Orderline findOrderlineByOrderAndProductAndLine(int orderId, int productId, int orderLineNumber) throws MyICAException {
         List<Orderline> orderlines = em.createNamedQuery("Orderline.findByOrderAndProductAndLine", Orderline.class)
                 .setParameter("orderId", orderId)

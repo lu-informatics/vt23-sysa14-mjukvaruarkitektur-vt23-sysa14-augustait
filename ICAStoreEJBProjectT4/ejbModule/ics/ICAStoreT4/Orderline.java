@@ -22,8 +22,16 @@ import jakarta.persistence.Table;
     @NamedQuery(name= "Orderline.findAll", query = "SELECT o FROM Orderline o"),
     @NamedQuery(name = "Orderline.findByOrderId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :id"),
     @NamedQuery(name = "Orderline.findByOrderIdAndProductId", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId"),
-    @NamedQuery(name = "Orderline.findByOrderAndProductAndLine", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId AND o.orderlineNumber = :orderlineNumber")
-    
+    @NamedQuery(name = "Orderline.findByOrderAndProductAndLine", query = "SELECT o FROM Orderline o WHERE o.id.orderId = :orderId AND o.id.productId = :productId AND o.orderlineNumber = :orderlineNumber"),
+    @NamedQuery(
+    	    name = "Orderline.findOrderlineDetailsByOrderId",
+    	    query = "SELECT ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod, SUM(p.price * ol.quantity) AS lineTotal, (SELECT SUM(p2.price * ol2.quantity) FROM Orderline ol2 JOIN ol2.product p2 WHERE ol2.id.orderId = ol.id.orderId) AS orderTotal  " +
+    	            "FROM Orderline ol " +
+    	            "JOIN ol.order o " +
+    	            "JOIN ol.product p " +
+    	            "JOIN o.store s " +
+    	            "WHERE ol.id.orderId = :orderId " +
+    	            "GROUP BY ol.orderlineNumber, ol.id.orderId, ol.id.productId, p.productName, p.price, o.orderDate, s.storeName, s.supermarketId, ol.quantity, o.paymentMethod")
 })
 @Table(name="Orderline")
 public class Orderline {
