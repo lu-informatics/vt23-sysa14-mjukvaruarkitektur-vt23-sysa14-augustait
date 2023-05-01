@@ -89,3 +89,47 @@ $(document).ready(function(){
   }
 
 });
+
+//FIND ALL
+function parseJsonFileProducts(results) {
+  // Loop through the results and append them to the table
+  for (var i = 0; i < results.length; i++) {
+    var product = results[i];
+    $("#products-table").append(
+      "<tr><td>" +
+        product.productId +
+        "</td><td>" +
+        product.productName +
+        "</td><td>" +
+        product.productPrice +
+        "</td><td>" +
+        product.productCategory +
+        "</td></tr>"
+    );
+  }
+}
+
+function clearTable() {
+  $("#products-table tr").not(":first").remove();
+}
+
+$("#view-all-btn").click(function () {
+    console.log("View All button clicked!"); // Add this line
+  // Clear the table before loading the products
+  clearTable();
+
+  $.ajax({
+    method: "GET",
+    url: "http://localhost:8080/RestServerISPProject/ICAStore",
+    
+    success: function (result, status, xhr) {
+      parseJsonFileProducts(result);
+    },
+    
+    error: function (result, status, xhr) {
+      alert("Error");
+      console.log("SOMETHING " + status);
+    },
+  });
+});
+
