@@ -95,8 +95,8 @@ public class OrderlineEAOImpl implements OrderlineEAOImplLocal {
         
     }
     
-    
-    public void deleteOrderlineByOrderIdAndProductId(Orderline orderline) throws MyICAException {	  
+    //Här tar vi bort genom att ange OrderID och ProductID
+    public void deleteOrderlineByOrderIdAndProductId(Orderline orderline) throws MyICAException {	
     	Orderline mergedOrderline = em.merge(orderline);
         em.remove(mergedOrderline);
       

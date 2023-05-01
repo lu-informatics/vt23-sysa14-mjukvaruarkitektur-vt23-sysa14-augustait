@@ -37,11 +37,22 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
             throw new MyICAException("Failed to retrieve the list of customers: " + e.getMessage());
         }
     }
+    
+    public List<Object[]> findCustomerOrders(int customerId) throws MyICAException {
+        try {
+            return em.createNamedQuery("Customer.getTotalAmountOfOrders", Object[].class)
+                     .setParameter("customerId", customerId)
+                     .getResultList();
+        } catch (Exception e) {
+            throw new MyICAException("Failed to retrieve the customer orders: " + e.getMessage());
+        }
+    }
+    
 
 
     	
   
-    
+    //Denna används när vi skapar Order
     public Customer findByCustomerId(int id) throws MyICAException{ 
     	try {
     		Customer customer = em.createNamedQuery("Customer.findByCustomerId", Customer.class)
@@ -53,6 +64,20 @@ public class CustomerEAOImpl implements CustomerEAOImplLocal {
         throw new MyICAException("Failed to retrieve the Customer! There is no Customer with the Customer ID: " + id);
     }
 }
+    
+    //Denna används när vi skapara Customer
+    public Customer findByCustomerIdForCreateMethod(int id) throws MyICAException{ 
+    	try {
+    		Customer customer = em.createNamedQuery("Customer.findByCustomerId", Customer.class)
+        			.setParameter("customerId", id).
+        			getSingleResult();
+    		return customer;
+    	
+    	} catch (NoResultException ex) {
+           
+            return null;
+        }
+    }
     	 
     	
     	

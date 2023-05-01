@@ -169,15 +169,58 @@ public class Facade implements FacadeLocal {
 				throw e;
 			}
 		}
-			
-		public Customer createCustomer(Customer customer) {
-			return customerEAO.createCustomer(customer);
+		
+		public List<Object[]> findCustomerOrders(int customerId) throws MyICAException{
+			try {
+				return customerEAO.findCustomerOrders(customerId);
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
 			}
+		}
+		
 			
-		public Customer updateCustomer(Customer customer) {
-			return customerEAO.updateCustomer(customer);
+		public Customer createCustomer(int customerId, String customerName, String userName, String address, int phoneNumber, String email ) throws MyICAException {
+			
+			if (customerEAO.findByCustomerIdForCreateMethod(customerId)  != null) {
+			       throw new MyICAException("Failed to create customer! A customer with ID " + customerId + " already exists.");
+			
 			}
+		
+		Customer newCustomer = new Customer();
+		newCustomer.setCustomerId(customerId);
+		newCustomer.setName(customerName);
+		newCustomer.setUserName(userName);
+		newCustomer.setAddress(address);
+		newCustomer.setPhoneNumber(phoneNumber);
+		newCustomer.setEmail(email);
+		
+		 try {
+		        return customerEAO.createCustomer(newCustomer);
+		    } catch (Exception e) {
+		        throw new MyICAException("Failed to create customer! " + e.getMessage());
+		    }
+		}
 			
+		public Customer updateCustomer(int customerId, String customerName, String userName, String address, int phoneNumber, String email) throws MyICAException  {
+		    Customer existingCustomer = customerEAO.findByCustomerId(customerId);
+		    if (existingCustomer == null) {
+		        throw new MyICAException("Failed to update customer! A customer with ID " + customerId + " doesn't exist.");
+		    }
+
+		   
+		    existingCustomer.setName(customerName);
+		    existingCustomer.setUserName(userName);
+		    existingCustomer.setAddress(address);
+		    existingCustomer.setPhoneNumber(phoneNumber);
+		    existingCustomer.setEmail(email);
+
+		    try {
+		        return customerEAO.updateCustomer(existingCustomer);
+		    } catch (Exception e) {
+		        throw new MyICAException("Failed to update customer! " + e.getMessage());
+		    }
+		}
 		public void deleteCustomer(int id) throws MyICAException {
 			try {
 				customerEAO.deleteCustomer(id);

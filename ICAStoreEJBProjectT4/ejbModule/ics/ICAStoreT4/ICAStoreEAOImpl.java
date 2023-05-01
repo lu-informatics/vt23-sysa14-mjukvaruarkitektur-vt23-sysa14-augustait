@@ -65,13 +65,15 @@ public Product findProductByProductId(int productId) throws MyICAException {
     }
 }
 
+// Denna används när vi skapara Products
+
 public Product findProductByProductIdForTheCreateMethod(int productId) {
     try {
         return em.createNamedQuery("Product.findByProductId", Product.class)
                  .setParameter("id", productId)
                  .getSingleResult();
     } catch (NoResultException ex) {
-        // Return null when product with given ID is not found
+        
         return null;
     }
 }

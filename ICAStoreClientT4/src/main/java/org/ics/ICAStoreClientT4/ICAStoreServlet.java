@@ -127,6 +127,9 @@ public class ICAStoreServlet extends HttpServlet {
 	             	
                      facade.findByStoreId(1);
              		 
+                     
+                   //  facade.createCustomer(89, "Test", "Test", "Test", 1, "Test");
+                     facade.updateCustomer(1, "Test", "Testtttt", "Test", 1234, "Test");
              		 facade.findByCustomerId(1);
              		 
              		 facade.findByProductId(1);
@@ -216,20 +219,35 @@ public class ICAStoreServlet extends HttpServlet {
            }
            
        
+         
            
-           
+           List<Object[]> customersOrders;
+          
            try {
-			facade.createProduct(1098, "Vi testar exception", 1, 1);
-		} catch (MyICAException e) {
-			// TODO Auto-generated catch block
-			out.println("<br>");
-			out.println("<span style='color:red;font-size:larger;'>" + e.getMessage() + "</span>");
-			out.println("<br>");
-		}
-           
+               customersOrders = facade.findCustomerOrders(1);
+               out.println("<table>");
+               out.println("<tr><th>Customer ID</th><th>Customer name</th><th>Address</th><th>Username</th><th>Total orders</th><th>Total amount of all orders</th></tr>");
+               for (Object[] details : customersOrders) {
+                   out.println("<tr>");
+                   out.println("<td>" + details[0] + "</td>");
+                   out.println("<td>" + details[1] + "</td>");
+                   out.println("<td>" + details[2] + "</td>");
+                   out.println("<td>" + details[3] + "</td>");
+                   out.println("<td>" + details[4] + "</td>");
+                   out.println("<td>" + details[5] + "</td>");
+                   
+                   
+                   out.println("</tr>");
+               }
+               out.println("</table>");
+           } catch (MyICAException e) {
+               out.println(e.getMessage());
+           }
            
          	}
          }
+    }
+}
            
            
          
@@ -243,13 +261,11 @@ public class ICAStoreServlet extends HttpServlet {
                 
                 
   
-            
-             
-           
+               
              
          	 
-         }
-         }
+         
+         
     
     
     
