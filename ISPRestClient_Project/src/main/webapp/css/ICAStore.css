@@ -64,13 +64,60 @@ footer {
 
 /* picture styles */
 
-logoFood {
-  width: 10px;
-  height: 0px;
-  display: grid;
+.logoFood {
+  width: 1500px;
+  height: 700px;
+  display: flex;
   margin: 0 auto;
   
 }
+
+
+.latest-news-image{
+	width: 500px;
+  height: 100px;
+  display: flex;
+  margin: 0 auto;
+}
+
+
+/* CUSTOMER.JSP */
+.logoCustomer{
+ width: 1500px;
+  height: 700px;
+  display: flex;
+  margin: 0 auto;
+}
+
+/* CONTACT.JSP */
+.main-ContainerContact{
+	display: grid;
+	align-items: center;
+	grid-template-columns: 1fr 1fr 1fr;
+	column-gap: 5px;
+}
+
+.imageContact{
+width: 350px;
+  height: 300px;
+  display: flex;
+  margin: 0 auto;
+	float:left
+}
+
+
+.textContact{
+	font-size: 20px;
+}
+
+.imageContact2{
+width: 350px;
+  height: 300px;
+  display: flex;
+  margin: 0 auto;
+	float:right
+}
+
 
 /* menu styles */
 nav ul {
@@ -100,6 +147,9 @@ nav ul li a {
   justify-content: center;
   align-items: center;
 }
+
+
+
 .main-text {
 	background-color: #f2f2f2;
   padding: 20px;
@@ -108,6 +158,17 @@ nav ul li a {
   align-items: center;
   flex-direction: column;
   height: 500px;
+}
+
+.main-textContact {
+	background-color: #f2f2f2;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 500px;
+  text-alignt: center;
 }
 
 /* weather widget styles */
