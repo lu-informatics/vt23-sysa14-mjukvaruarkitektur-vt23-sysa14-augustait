@@ -1,60 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="css/ICAStore.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/ICA.js"></script>
-<title>Green Deli - Online Delivery Store</title>
-</head>
-<body>
-	<header>
-		<h1>GREEN DELI</h1>
-	</header>
-	<main>
-		<section id="row">
-			<nav>
-				<ul>
-					<li><a href="Product.jsp">Products</a></li>
-					<li><a href="Order.jsp">Orders</a></li>
-					<li><a href="Customer.jsp">Customers</a></li>
-				</ul>
-			</nav>
-			<aside>
-				<table>
-					<tr>
-						<th><span id="city"></span></th>
-						<th><span></span></th>
-						<th><span></span></th>
-						<th><span id="ipNbr"></span></th>
-					</tr>
-					<tr>
-						<td><span id="degree"></span></td>
-						<td><span id="weather"></span></td>
-						<td><span></span></td>
-						<td><span></span></td>
-					</tr>
-					<tr>
-						<td colspan="4"><span id="sunrise"></span></td>
-					</tr>
-					<tr>
-						<td colspan="4"><span id="sunset"></span></td>
-					</tr>
-				</table>
-			</aside>
-			<section id="main">
-				<section id="content">
-					<img src="https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_181348/cf_259/fattoush_-_somrig_sallad_med_mynta_och_halloumi.jpg" alt="A delicious salad" 
-					class="centered-image">
-				</section>
-			</section>
-		</section>
-		<footer>
-			<p>&copy; - AUGUSTA IT</p>
-		</footer>
-</body>
+  <head>
+    <title>My Supermarket</title>
+    <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
+  </head>
+  <body>
+    <header>
+    <div class="header-container">
+		<img src="https://cdn.winsightmedia.com/platform/files/public/gb/News/The-Fresh-Market-Unveils-Refreshed-Logo-and-Stores/400x600/TheFreshMarket_PrimaryLogo.png" alt="ICA ERP logo" class="logo">
+	</div>
+	<div class="welcome-header">
+		<h1>Welcome to the FRESH FOOD MARKET </h1>
+		<p>Food with great taste!</p>
+	</div>
+
+	<nav>
+        <ul>
+          <li><a href="#">Brand</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Customer Login</a></li>
+        </ul>
+      </nav>
+
+    </header>
+    <main>
+      <!-- your main content here -->
+       <section>
+      <img
+			src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg"
+			alt="A beautiful image" alt="Contentlogo" class="logoFood">
+	</section>
+	<div class="main-text">
+    <h2>Latest News</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eros elit. Donec vitae ligula malesuada, tempor ex quis, auctor sapien. Donec posuere euismod facilisis. Fusce tristique diam nec justo bibendum dignissim. Pellentesque sed pulvinar dolor. Sed aliquet lacus nunc, ut pharetra metus commodo sit amet. Suspendisse rutrum, magna at finibus pharetra, libero sapien convallis nisl, ut semper ex est id est. Morbi convallis arcu a turpis bibendum, ut posuere sapien congue. Sed id venenatis turpis. Sed quis vehicula leo. Aliquam erat volutpat.</p>
+    <p>Nam quis suscipit dolor. Integer in vestibulum odio. Vestibulum vel felis laoreet, placerat velit a, posuere turpis. Sed tristique interdum libero in molestie. Suspendisse feugiat, sem ut vestibulum feugiat, dui odio bibendum ante, eu rhoncus nibh turpis eget lectus. Nam ullamcorper justo id orci porttitor, nec consectetur mi dapibus. Etiam tristique nunc vitae erat consequat, quis elementum arcu congue. Fusce vel libero euismod, imperdiet enim nec, feugiat ante. Nullam quis felis eleifend, varius risus eget, bibendum elit. Proin pellentesque sit amet metus vel lacinia. Sed ac aliquet arcu, in hendrerit quam. Fusce feugiat, eros ut placerat pretium, purus augue convallis nisi, vel varius lorem eros ut purus. Nam eu sapien tortor. </p>
+  </div>
+			
+    </main>
+    <footer>
+      <div>
+        <h3>Supermarket Address</h3>
+        <p>123 Main St.</p>
+        <p>Anytown, USA 12345</p>
+      </div>
+      <div class="weather-widget">
+        <img src="weather-icon.png" alt="Current weather icon">
+        <p>72&deg;F</p>
+      </div>
+    </footer>
+    <script>
+      window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        header.classList.toggle('scroll', window.scrollY > 0);
+      });
+    </script>
+  </body>
 </html>
