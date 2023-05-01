@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
          <link rel="stylesheet" type="text/css" href="css/Style.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/ICA.js"></script>
+    <script src="js/test.js"></script>
 </head>
 <body>
   

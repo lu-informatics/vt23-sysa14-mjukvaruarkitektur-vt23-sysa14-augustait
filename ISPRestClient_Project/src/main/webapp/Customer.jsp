@@ -54,10 +54,6 @@
             <p>123 Main St.</p>
             <p>Anytown, USA 12345</p>
         </div>
-        <div class="weather-widget">
-            <img src="weather-icon.png" alt="Current weather icon">
-            <p>72&deg;F</p>
-        </div>
     </footer>
     
 </body>

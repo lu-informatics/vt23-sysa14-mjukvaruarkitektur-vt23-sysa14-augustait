@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  console.log("Ready!");
 
   /*
   $.ajax({
@@ -92,9 +93,12 @@ $(document).ready(function(){
 
 //FIND ALL
 function parseJsonFileProducts(results) {
+    $("#products-table").find("tr:gt(0)").remove();
   // Loop through the results and append them to the table
   for (var i = 0; i < results.length; i++) {
     var product = results[i];
+        console.log(product); // add this line
+
     $("#products-table").append(
       "<tr><td>" +
         product.productId +
@@ -123,6 +127,7 @@ $("#view-all-btn").click(function () {
     url: "http://localhost:8080/RestServerISPProject/ICAStore",
     
     success: function (result, status, xhr) {
+          console.log(result); // Add this line
       parseJsonFileProducts(result);
     },
     
