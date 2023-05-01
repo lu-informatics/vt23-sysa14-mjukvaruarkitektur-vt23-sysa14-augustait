@@ -226,7 +226,7 @@ public class ICAStoreServlet extends HttpServlet {
            try {
                customersOrders = facade.findCustomerOrders(1);
                out.println("<table>");
-               out.println("<tr><th>Customer ID</th><th>Customer name</th><th>Address</th><th>Username</th><th>Total orders</th><th>Total amount of all orders</th></tr>");
+               out.println("<tr><th>Customer ID</th><th>Customer name</th><th>Address</th><th>Username</th><th>Total orders</th><th>Total price </th></tr>");
                for (Object[] details : customersOrders) {
                    out.println("<tr>");
                    out.println("<td>" + details[0] + "</td>");
@@ -243,6 +243,27 @@ public class ICAStoreServlet extends HttpServlet {
            } catch (MyICAException e) {
                out.println(e.getMessage());
            }
+          
+           List<Object[]> customersOrdersForAll;
+           
+           try {
+        	   customersOrdersForAll = facade.findAllCustomersOrdersAndTotalAmount();
+        	   out.println("<table>");
+        	   out.println("<tr><th>Customer ID</th><th>Customer name</th><th>Address</th><th>Username</th><th>Total orders</th><th>Total price </th></tr>");
+        	   for (Object[] details : customersOrdersForAll) {
+        	   out.println("<tr>");
+        	   out.println("<td>" + details[0] + "</td>");
+        	   out.println("<td>" + details[1] + "</td>");
+        	   out.println("<td>" + details[2] + "</td>");
+        	   out.println("<td>" + details[3] + "</td>");
+        	   out.println("<td>" + details[4] + "</td>");
+        	   out.println("<td>" + details[5] + "</td>");
+        	   out.println("</tr>");
+        	   }
+        	   out.println("</table>");
+        	   } catch (MyICAException e) {
+        	   out.println(e.getMessage());
+        	   }
            
          	}
          }

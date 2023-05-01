@@ -28,6 +28,14 @@ import jakarta.persistence.Table;
     	    		+ "JOIN ol.product p "
     	    		+ "WHERE c.customerId = :customerId "
     	    		+ "GROUP BY c.customerId, c.name, c.address, c.userName"),
+    @NamedQuery(
+    	    name = "Customer.getTotalAmountOfOrdersForAllCustomers",
+    	    query = "SELECT c.customerId, c.name, c.address, c.userName, COUNT(o.orderId) AS totalOrders , SUM(ol.quantity * p.price) AS totalAmountOfAllOrders "
+    	    		+ "FROM Order_ o "
+    	    		+ "JOIN o.customer c "
+   	    	     	+ "JOIN o.orderLines ol "
+    	    		+ "JOIN ol.product p "
+    	    		+ "GROUP BY c.customerId, c.name, c.address, c.userName"),
     @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId")
 
 })

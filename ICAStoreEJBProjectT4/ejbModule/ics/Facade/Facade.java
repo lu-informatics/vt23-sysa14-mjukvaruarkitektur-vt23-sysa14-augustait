@@ -179,6 +179,14 @@ public class Facade implements FacadeLocal {
 			}
 		}
 		
+		public List<Object[]> findAllCustomersOrdersAndTotalAmount() throws MyICAException {
+			try {
+				return customerEAO.findAllCustomersOrdersAndTotalAmount();
+			} catch (MyICAException e) {
+				// TODO Auto-generated catch block
+				throw e;
+			}
+		}
 			
 		public Customer createCustomer(int customerId, String customerName, String userName, String address, int phoneNumber, String email ) throws MyICAException {
 			
