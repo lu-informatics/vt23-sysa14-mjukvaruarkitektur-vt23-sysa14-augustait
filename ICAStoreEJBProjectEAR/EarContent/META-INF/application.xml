@@ -16,4 +16,10 @@
       <context-root>RestServerISPProject</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>RestServerISPProjectNew.war</web-uri>
+      <context-root>RestServerISPProjectNew</context-root>
+    </web>
+  </module>
 </application>

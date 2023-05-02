@@ -6,6 +6,7 @@
 		<project>ICAStoreEJBProjectT4</project>
 		<project>ICAStoreClientT4</project>
 		<project>RestServerISPProject</project>
+		<project>RestServerISPProjectNew</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
