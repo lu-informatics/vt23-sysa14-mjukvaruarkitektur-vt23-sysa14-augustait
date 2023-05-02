@@ -34,12 +34,6 @@
 			src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg"
 			alt="A beautiful image" alt="Contentlogo" class="logoFood">
 	</section>
-	
-       
-  <section>
-    <img src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg" alt="A beautiful image" alt="Contentlogo" class="logoFood">
-  </section>
-
   <div class="product-container">
     <h2>All Products</h2>
     <button id="view-all-btn">View All Products</button>

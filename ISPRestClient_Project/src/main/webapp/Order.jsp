@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Information</title>
+    <title>Order</title>
     <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
     <link rel="stylesheet" type="text/css" href="css/Style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -36,7 +36,7 @@
     </section>
 
     <div class="customer-info">
-        <h2>Find Your Customer Information</h2>
+        <h2>Find Your Order Information</h2>
         <form method="post" id="customer-info-form">
             <label for="customer-id">Enter Your Customer ID:</label>
             <input type="text" id="customer-id" name="customerID" required>
