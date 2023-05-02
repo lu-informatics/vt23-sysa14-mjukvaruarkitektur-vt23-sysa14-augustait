@@ -34,16 +34,19 @@
 	</section>
 	<div class="main-text">
     <h2>Latest News</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis eros elit. Donec vitae ligula malesuada, tempor ex quis, auctor sapien. Donec posuere euismod facilisis. Fusce tristique diam nec justo bibendum dignissim. Pellentesque sed pulvinar dolor. Sed aliquet lacus nunc, ut pharetra metus commodo sit amet. Suspendisse rutrum, magna at finibus pharetra, libero sapien convallis nisl, ut semper ex est id est. Morbi convallis arcu a turpis bibendum, ut posuere sapien congue. Sed id venenatis turpis. Sed quis vehicula leo. Aliquam erat volutpat.</p>
-    <p>Nam quis suscipit dolor. Integer in vestibulum odio. Vestibulum vel felis laoreet, placerat velit a, posuere turpis. Sed tristique interdum libero in molestie. Suspendisse feugiat, sem ut vestibulum feugiat, dui odio bibendum ante, eu rhoncus nibh turpis eget lectus. Nam ullamcorper justo id orci porttitor, nec consectetur mi dapibus. Etiam tristique nunc vitae erat consequat, quis elementum arcu congue. Fusce vel libero euismod, imperdiet enim nec, feugiat ante. Nullam quis felis eleifend, varius risus eget, bibendum elit. Proin pellentesque sit amet metus vel lacinia. Sed ac aliquet arcu, in hendrerit quam. Fusce feugiat, eros ut placerat pretium, purus augue convallis nisi, vel varius lorem eros ut purus. Nam eu sapien tortor. </p>
-  </div>
+<p>Introducing Our New Organic Produce Section</p>
+<p>At the Fresh Food Market, we're always striving to provide our customers with the freshest and healthiest options available. That's why we're thrilled to announce the launch of our new organic produce section! We're partnering with local farmers and suppliers to bring you the best selection of organic fruits and vegetables. Whether you're looking for crisp greens, juicy berries, or sweet, ripe melons, you'll find it all in our new section.</p>
+<p>Plus, to celebrate the launch of our organic produce section, we're offering a special promotion for our customers. For a limited time, when you purchase any item from our new organic produce section, you'll receive a free reusable shopping bag, perfect for your future visits to our store!</p>
+<p>So come on down to the Fresh Food Market today and check out our new organic produce section. We can't wait to see you!</p>
+</div>
 			
     </main>
     <footer>
       <div>
-        <h3>Supermarket Address</h3>
-        <p>123 Main St.</p>
-        <p>Anytown, USA 12345</p>
+        <h3>FRESH FOOD MARKET</h3>
+<p>Greenland Supermarket</p>
+<p>32 Oak Street</p>
+<p>City, State 12345</p>
       </div>
       <div class="weather-widget">
         <img src="weather-icon.png" alt="Current weather icon">

@@ -1,23 +1,23 @@
 $(document).ready(function() {
   console.log("Ready!");
 
-  function ajaxReturn_Error_Customer(result, status, xhr) {
-    console.log("Ajax-find customer: " + status);
+//FIND ORDERS
+  function ajaxReturn_Error_Order(result, status, xhr) {
+    console.log("Ajax-find order: " + status);
   }
 
- function ParseJsonFileCustomer(result) {
-  $("#customer-info-container").html(
-    "<p><b>Name: </b>" + result.name + "</p>" +
-    "<p><b>Customer ID: </b>" + result.customerId + "</p>" +
-    "<p><b>Username: </b>" + result.userName + "</p>" +
-    "<p><b>Address: </b>" + result.address + "</p>" +
-    "<p><b>Phone Number: </b>" + result.phoneNumber + "</p>" +
-    "<p><b>Email: </b>" + result.email + "</p>"
-  );
-}
+  function ParseJsonFileOrder(result) {
+    var table = "<table><tr><th>Order ID</th><th>Order Date</th><th>Supermarket ID</th><th>Customer ID</th><th>Payment Method</th></tr>";
+    for (var i = 0; i < result.length; i++) {
+      var order = result[i];
+      table += "<tr><td>" + order.OrderID + "</td><td>" + order.OrderDate + "</td><td>" + order.SupermarketID + "</td><td>" + order.CustomerID + "</td><td>" + order.PaymentMethod + "</td></tr>";
+    }
+    table += "</table>";
+    $("#order-info-container").html(table);
+  }
 
   function clearFields() {
-    $("#customer-id").val("");
+    $("#order-id").val("");
   }
 
   //FIND--->
@@ -27,16 +27,18 @@ $(document).ready(function() {
     if (strValue != "") {
       $.ajax({
         method: "GET",
-        url: "http://localhost:8080/RestServerISPProject/ICAStore/customers/" + strValue,
-        error: ajaxReturn_Error_Customer,
+        url: "http://localhost:8080/RestServerISPProject/ICAStore/orders/" + strValue,
+        error: ajaxReturn_Error_Order,
         success: function(result, status, xhr) {
-            console.log(result);
-          ParseJsonFileCustomer(result);
+          console.log(result);
+          ParseJsonFileOrder(result);
           clearFields();
         }
       })
     }
   });
+});
+
   
   function ajaxReturn_Error(result, status, xhr) {
     console.log("Ajax-find movie: " + status);
