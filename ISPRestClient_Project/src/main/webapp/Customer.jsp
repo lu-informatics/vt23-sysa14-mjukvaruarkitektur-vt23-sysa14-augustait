@@ -53,9 +53,10 @@
 
 <footer>
     <div>
-        <h3>Supermarket Address</h3>
-        <p>123 Main St.</p>
-        <p>Anytown, USA 12345</p>
+        <h3>FRESH FOOD MARKET</h3>
+<p>Greenland Supermarket</p>
+<p>32 Oak Street</p>
+<p>City, State 12345</p>
     </div>
 </footer>
 

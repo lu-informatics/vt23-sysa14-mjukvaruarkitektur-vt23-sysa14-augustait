@@ -4,12 +4,16 @@ import jakarta.ejb.EJB;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
+import jakarta.json.JsonReader;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,6 +22,7 @@ import org.ics.exceptions.MyICAException;
 
 import ics.Facade.FacadeLocal;
 import ics.ICAStoreT4.Customer;
+import ics.ICAStoreT4.Order_;
 import ics.ICAStoreT4.Product;
 
 /**
@@ -50,8 +55,13 @@ public class ICAStore extends HttpServlet {
 	                    List<Product> allProducts = facade.findAllProducts();
 	                    sendAsJson(response, allProducts);
 	                    return;
-	               
 	                }
+	                if (requestURL.endsWith("/customers")) {
+	                    List<Customer> allCustomers = facade.findAllCustomer();
+	                    sendAsJsonCustomers(response, allCustomers);
+	                    return;
+	                }
+	                
 	            } else {
 	                String[] splits = pathInfo.split("/");
 	                if (splits.length != 2) {
@@ -62,9 +72,9 @@ public class ICAStore extends HttpServlet {
 	                if (pathInfo.startsWith("/products/")) {
 	                    Product product = facade.findByProductId(Integer.parseInt(id));
 	                    sendAsJson(response, product);
-	                } else if (pathInfo.startsWith("/customers/")) {
-	                    Customer customer = facade.findByCustomerId(Integer.parseInt(id));
-	                    sendAsJson(response, customer);
+	                } else if (pathInfo.startsWith("/orders/")) {
+	                    Order_ order = facade.findOrderById(Integer.parseInt(id));
+	                    sendAsJson(response, order);
 	                }
 	            }
 	            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
@@ -84,16 +94,18 @@ public class ICAStore extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPut(HttpServletRequest, HttpServletResponse)
 	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
-	}
+	
 
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-		String pathInfo = request.getPathInfo();
+		
+			//Delete Order
+			String pathInfo = request.getPathInfo();
 		if(pathInfo == null || pathInfo.equals("/")){
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		return;
@@ -104,10 +116,10 @@ public class ICAStore extends HttpServlet {
 		return;
 		}
 		String id = splits[1];
-		Product movie = facade.findByProductId(Integer.parseInt(id));
+		Order_ movie = facade.findOrderById(Integer.parseInt(id));
 		if (movie != null) {
 		
-			facade.deleteProduct(Integer.parseInt(id));
+			facade.deleteOrder(Integer.parseInt(id));
 			sendAsJson(response, movie);
 		}
 		} catch (NumberFormatException e) {
@@ -139,18 +151,19 @@ public class ICAStore extends HttpServlet {
 	    out.flush();
 	}
 	
-	//JSON CUSTOMER
-	private void sendAsJson(HttpServletResponse response, Customer movie)
+	
+	
+	//JSON ORDER
+	private void sendAsJson(HttpServletResponse response, Order_ movie)
 			throws IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
 		if (movie != null) {
-		    out.print("{\"Name\":\"" + movie.getName() + "\",");
-		    out.print("\"CustomerID\":\"" + movie.getCustomerId() + "\",");
-		    out.print("\"UserName\":\"" + movie.getUserName() + "\",");
-		    out.print("\"Address\":\"" + movie.getAddress() + "\",");
-		    out.print("\"Phone Number\":\"" + movie.getPhoneNumber() + "\",");
-		    out.print("\"Email\":\"" + movie.getEmail() + "\"}");
+		    out.print("{\"ID\":\"" + movie.getOrderId() + "\",");
+		    out.print("\"OrderDate\":\"" + movie.getOrderDate() + "\",");
+		    out.print("\"SupermarketID\":\"" + movie.getStore() + "\",");
+		    out.print("\"CustomerID\":\"" + movie.getCustomer() + "\",");
+		    out.print("\"PaymentMethod Number\":\"" + movie.getPaymentMethod() + "\",");
 		} else {
 		    out.print("{ }");
 		}
@@ -181,6 +194,48 @@ public class ICAStore extends HttpServlet {
 			}
 	
 	//JSON ALL CUSTOMERS
-	
+		private void sendAsJsonCustomers(HttpServletResponse response, List<Customer> customer)
+				throws IOException {
+				PrintWriter out = response.getWriter();
+				response.setContentType("application/json");
+				if (customer != null) {
+				JsonArrayBuilder array = Json.createArrayBuilder();
+				for (ics.ICAStoreT4.Customer m : customer) {
+				JsonObjectBuilder o = Json.createObjectBuilder();
+				o.add("id", String.valueOf(m.getCustomerId()));
+				o.add("name", m.getName());
+				o.add("UserName", m.getUserName());
+				o.add("Email", m.getEmail());
+				o.add("number", String.valueOf(m.getPhoneNumber()));
+				o.add("Address", m.getAddress());
+
+				array.add(o);
+				}
+				JsonArray jsonArray = array.build();
+				System.out.println("Movie Rest: "+jsonArray);
+				out.print(jsonArray);
+				} else {
+				out.print("[]");
+				}
+				out.flush();
+				}
+		
+		private Customer parseJson(BufferedReader br) {
+			//javax.json-1.0.4.jar
+			JsonReader jsonReader = null;
+			JsonObject jsonRoot = null;
+			jsonReader = Json.createReader(br);
+			jsonRoot = jsonReader.readObject();
+			System.out.println("JsonRoot: "+jsonRoot);
+			Customer movie = new Customer();
+			movie.setCustomerId(Integer.parseInt(jsonRoot.getString("id")));
+			movie.setUserName(jsonRoot.getString("userName"));
+			movie.setName(jsonRoot.getString("Name"));
+			movie.setEmail(jsonRoot.getString("Email"));
+			movie.setAddress(jsonRoot.getString("Address"));
+			movie.setPhoneNumber(Integer.parseInt(jsonRoot.getString("phoneNumber")));
+			return movie;
+			}
+
 
 }
