@@ -32,9 +32,11 @@ public interface FacadeLocal {
 	public List<Object[]> findCustomerOrders(int customerId) throws MyICAException;
 	public List<Object[]> findAllCustomersOrdersAndTotalAmount() throws MyICAException;
 	public Customer findByCustomerId(int id) throws MyICAException;
+	public Customer findByCustomerIdForCreateMethod(int id) throws MyICAException;
 	public Customer createCustomer(int customerId, String customerName, String userName, String address, int phoneNumber, String email ) throws MyICAException;
 	public Customer updateCustomer(int customerId, String customerName, String userName, String address, int phoneNumber, String email) throws MyICAException;
 	public void deleteCustomer(int id) throws MyICAException;
+	
 	
 	public Store findByStoreId(int id) throws MyICAException;
 	public Store createStore(Store store);

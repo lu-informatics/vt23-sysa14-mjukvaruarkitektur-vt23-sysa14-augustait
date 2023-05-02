@@ -1,6 +1,43 @@
 $(document).ready(function() {
   console.log("Ready!");
 
+  function ajaxReturn_Error_Customer(result, status, xhr) {
+    console.log("Ajax-find customer: " + status);
+  }
+
+ function ParseJsonFileCustomer(result) {
+  $("#customer-info-container").html(
+    "<p><b>Name: </b>" + result.name + "</p>" +
+    "<p><b>Customer ID: </b>" + result.customerId + "</p>" +
+    "<p><b>Username: </b>" + result.userName + "</p>" +
+    "<p><b>Address: </b>" + result.address + "</p>" +
+    "<p><b>Phone Number: </b>" + result.phoneNumber + "</p>" +
+    "<p><b>Email: </b>" + result.email + "</p>"
+  );
+}
+
+  function clearFields() {
+    $("#customer-id").val("");
+  }
+
+  //FIND--->
+  $("#customer-info-form").submit(function(event) {
+    event.preventDefault();
+    var strValue = $("#customer-id").val();
+    if (strValue != "") {
+      $.ajax({
+        method: "GET",
+        url: "http://localhost:8080/RestServerISPProject/ICAStore/customers/" + strValue,
+        error: ajaxReturn_Error_Customer,
+        success: function(result, status, xhr) {
+            console.log(result);
+          ParseJsonFileCustomer(result);
+          clearFields();
+        }
+      })
+    }
+  });
+  
   function ajaxReturn_Error(result, status, xhr) {
     console.log("Ajax-find movie: " + status);
   }
@@ -25,7 +62,7 @@ $(document).ready(function() {
     if (strValue != "") {
       $.ajax({
         method: "GET",
-        url: "http://localhost:8080/RestServerISPProject/ICAStore/" + strValue,
+        url: "http://localhost:8080/RestServerISPProject/ICAStore/products/" + strValue,
         error: ajaxReturn_Error,
         success: function(result, status, xhr) {
           ParseJsonFileMovie(result);
@@ -65,7 +102,7 @@ $(document).ready(function() {
 
     $.ajax({
       method: "GET",
-      url: "http://localhost:8080/RestServerISPProject/ICAStore",
+      url: "http://localhost:8080/RestServerISPProject/ICAStore/products",
       success: function(result, status, xhr) {
         console.log(result); // Add this line
         parseJsonFileProducts(result);

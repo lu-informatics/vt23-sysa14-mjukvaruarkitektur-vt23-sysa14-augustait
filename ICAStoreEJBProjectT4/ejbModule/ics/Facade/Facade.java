@@ -160,6 +160,17 @@ public class Facade implements FacadeLocal {
 			
 			}
 		
+public Customer findByCustomerIdForCreateMethod(int id) throws MyICAException{
+			
+			try {
+				return customerEAO.findByCustomerIdForCreateMethod(id);
+		    } catch (MyICAException e) {
+		        throw e;
+		    }
+		
+			
+			}
+		
 		public List<Customer> findAllCustomer() throws MyICAException {
 			// TODO Auto-generated method stub
 			try {

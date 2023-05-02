@@ -17,6 +17,7 @@ import java.util.List;
 import org.ics.exceptions.MyICAException;
 
 import ics.Facade.FacadeLocal;
+import ics.ICAStoreT4.Customer;
 import ics.ICAStoreT4.Product;
 
 /**
@@ -41,32 +42,36 @@ public class ICAStore extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		try {
-		String pathInfo = request.getPathInfo();
-		if(pathInfo == null || pathInfo.equals("/")){
-		System.out.println("Alla");
-		System.out.println(pathInfo);
-		List<ics.ICAStoreT4.Product> allMovies = facade.findAllProducts();
-		sendAsJson(response, allMovies);
-		return;
-		}
-		String[] splits = pathInfo.split("/");
-		if(splits.length != 2) {
-		System.out.println("Alla2");
-		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-		return;
-		}
-		String id = splits[1];
-		Product movie;
-		
-			movie = facade.findByProductId(Integer.parseInt(id));
-			sendAsJson(response, movie);
-
-		}  catch (MyICAException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+		 try {
+	            String pathInfo = request.getPathInfo();
+	            if (pathInfo == null || pathInfo.equals("/")) {
+	                String requestURL = request.getRequestURL().toString();
+	                if (requestURL.endsWith("/products")) {
+	                    List<Product> allProducts = facade.findAllProducts();
+	                    sendAsJson(response, allProducts);
+	                    return;
+	               
+	                }
+	            } else {
+	                String[] splits = pathInfo.split("/");
+	                if (splits.length != 2) {
+	                    response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+	                    return;
+	                }
+	                String id = splits[1];
+	                if (pathInfo.startsWith("/products/")) {
+	                    Product product = facade.findByProductId(Integer.parseInt(id));
+	                    sendAsJson(response, product);
+	                } else if (pathInfo.startsWith("/customers/")) {
+	                    Customer customer = facade.findByCustomerId(Integer.parseInt(id));
+	                    sendAsJson(response, customer);
+	                }
+	            }
+	            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+	        } catch (MyICAException e) {
+	            e.printStackTrace();
+	        }
+	    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -117,22 +122,42 @@ public class ICAStore extends HttpServlet {
 	
 	private void sendAsJson(HttpServletResponse response, Product movie)
 			throws IOException {
-			PrintWriter out = response.getWriter();
-			response.setContentType("application/json");
-			if (movie != null) {
-			out.print("{\"title\":");
-			out.print("\"" + movie.getProductName() + "\"");
-			out.print(",\"id\":");
-			out.print("\"" +movie.getProductId()+"\"");
-			out.print(",\"price\":");
-			out.print("\"" +movie.getPrice()+"\"}");
-			} else {
-			out.print("{ }");
-			}
-			out.flush();
-			}
+		PrintWriter out = response.getWriter();
+	    response.setContentType("application/json");
+	    if (movie != null) {
+	        out.print("{\"title\":");
+	        out.print("\"" + movie.getProductName() + "\"");
+	        out.print(",\"id\":");
+	        out.print("\"" +movie.getProductId()+"\"");
+	        out.print(",\"price\":");
+	        out.print("\"" +movie.getPrice()+"\"");
+	        out.print(",\"ProductCategory\":");
+	        out.print("\"" +movie.getProductCategory()+"\"}");
+	    } else {
+	        out.print("{ }");
+	    }
+	    out.flush();
+	}
 	
+	//JSON CUSTOMER
+	private void sendAsJson(HttpServletResponse response, Customer movie)
+			throws IOException {
+		PrintWriter out = response.getWriter();
+		response.setContentType("application/json");
+		if (movie != null) {
+		    out.print("{\"Name\":\"" + movie.getName() + "\",");
+		    out.print("\"CustomerID\":\"" + movie.getCustomerId() + "\",");
+		    out.print("\"UserName\":\"" + movie.getUserName() + "\",");
+		    out.print("\"Address\":\"" + movie.getAddress() + "\",");
+		    out.print("\"Phone Number\":\"" + movie.getPhoneNumber() + "\",");
+		    out.print("\"Email\":\"" + movie.getEmail() + "\"}");
+		} else {
+		    out.print("{ }");
+		}
+		out.flush();
+	}
 	
+	//JSON ALL PRODUCTS
 	private void sendAsJson(HttpServletResponse response, List< Product> movies)
 			throws IOException {
 			PrintWriter out = response.getWriter();
@@ -154,6 +179,8 @@ public class ICAStore extends HttpServlet {
 			}
 			out.flush();
 			}
-
+	
+	//JSON ALL CUSTOMERS
+	
 
 }
