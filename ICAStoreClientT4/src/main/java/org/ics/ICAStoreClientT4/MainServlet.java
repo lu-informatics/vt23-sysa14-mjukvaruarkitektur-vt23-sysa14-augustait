@@ -55,21 +55,42 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // Get the form data
-	    int orderId = Integer.parseInt(request.getParameter("order-id"));
-	    String orderDate = request.getParameter("order-date");
-	    String paymentMethod = request.getParameter("payment-method");
-	    int customerId = Integer.parseInt(request.getParameter("customer-id"));
-	    int supermarketId = Integer.parseInt(request.getParameter("supermarket-id"));
-
-	    // Create a new order using the FacadeLocal instance
 	    try {
+	        String orderIdStr = request.getParameter("orderId");
+	        String orderDate = request.getParameter("orderDate");
+	        String paymentMethod = request.getParameter("paymentMethod");
+	        String customerIdStr = request.getParameter("customerId");
+	        String supermarketIdStr = request.getParameter("supermarketId");
+
+	        if (orderIdStr == null || customerIdStr == null || supermarketIdStr == null) {
+	            throw new NumberFormatException("Cannot parse null string");
+	        }
+	        System.out.println("orderIdStr: " + orderIdStr);
+	        System.out.println("customerIdStr: " + customerIdStr);
+	        System.out.println("supermarketIdStr: " + supermarketIdStr);
+	        int orderId = Integer.parseInt(orderIdStr);
+	        int customerId = Integer.parseInt(customerIdStr);
+	        int supermarketId = Integer.parseInt(supermarketIdStr);
+
 	        Order_ order = facade.createOrder(orderId, orderDate, paymentMethod, customerId, supermarketId);
-	        request.setAttribute("order", order);
-	        request.getRequestDispatcher("OrderConfirmation.jsp").forward(request, response);
+
+	        // Redirect to success page or display success message
+	        response.getWriter().append("Order created successfully.");
+	    } catch (NumberFormatException e) {
+	        // Handle parsing errors for integer values
+	        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+	        response.getWriter().append("Error: Invalid input data.");
+	        e.printStackTrace();
 	    } catch (MyICAException e) {
-	        request.setAttribute("errorMessage", e.getMessage());
-	        request.getRequestDispatcher("Home.jsp").forward(request, response);
+	        // Handle the exception and display an error message
+	        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	        response.getWriter().append("Error: " + e.getMessage());
+	        e.printStackTrace();
+	    } catch (Exception e) {
+	        // Handle any other unexpected exceptions
+	        response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	        response.getWriter().append("Error: An unexpected error occurred.");
+	        e.printStackTrace();
 	    }
 	}
 
