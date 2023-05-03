@@ -1,5 +1,6 @@
 package org.ics.ICAStoreClientT4;
 
+import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -19,7 +20,8 @@ import ics.ICAStoreT4.Order_;
  */
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       FacadeLocal facade = new Facade();
+	
+	FacadeLocal facade = new Facade();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,23 +58,34 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    try {
-	        String orderIdStr = request.getParameter("orderId");
-	        String orderDate = request.getParameter("orderDate");
-	        String paymentMethod = request.getParameter("paymentMethod");
-	        String customerIdStr = request.getParameter("customerId");
-	        String supermarketIdStr = request.getParameter("supermarketId");
+	    	String orderIdStr = request.getParameter("orderId");
+	    	String orderDate = request.getParameter("orderDate");
+	    	String paymentMethod = request.getParameter("paymentMethod");
+	    	String customerIdStr = request.getParameter("customerId");
+	    	String supermarketIdStr = request.getParameter("supermarketId");
+
+	        System.out.println("Received form values:");
+	        System.out.println("orderIdStr: " + orderIdStr);
+	        System.out.println("orderDate: " + orderDate);
+	        System.out.println("paymentMethod: " + paymentMethod);
+	        System.out.println("customerIdStr: " + customerIdStr);
+	        System.out.println("supermarketIdStr: " + supermarketIdStr);
 
 	        if (orderIdStr == null || customerIdStr == null || supermarketIdStr == null) {
 	            throw new NumberFormatException("Cannot parse null string");
 	        }
-	        System.out.println("orderIdStr: " + orderIdStr);
-	        System.out.println("customerIdStr: " + customerIdStr);
-	        System.out.println("supermarketIdStr: " + supermarketIdStr);
 	        int orderId = Integer.parseInt(orderIdStr);
 	        int customerId = Integer.parseInt(customerIdStr);
 	        int supermarketId = Integer.parseInt(supermarketIdStr);
 
 	        Order_ order = facade.createOrder(orderId, orderDate, paymentMethod, customerId, supermarketId);
+
+	        System.out.println("Order created:");
+	        System.out.println("orderId: " + order.getOrderId());
+	        System.out.println("orderDate: " + order.getOrderDate());
+	        System.out.println("paymentMethod: " + order.getPaymentMethod());
+
+	        System.out.println("Context path: " + request.getContextPath());
 
 	        // Redirect to success page or display success message
 	        response.getWriter().append("Order created successfully.");
@@ -93,6 +106,7 @@ public class MainServlet extends HttpServlet {
 	        e.printStackTrace();
 	    }
 	}
+
 
 
 
