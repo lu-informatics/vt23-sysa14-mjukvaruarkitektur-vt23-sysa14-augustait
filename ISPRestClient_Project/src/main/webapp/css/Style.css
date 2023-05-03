@@ -160,6 +160,16 @@ button {
     cursor: pointer;
 }
 
+#delete-btn {
+  background-color: #ff8080;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;

@@ -9,7 +9,7 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/movie.css">
-<script src="js/test.js"></script>
+<script src="js/Weather.js"></script>
 <title>Rest Test</title>
 </head>
 <body>
