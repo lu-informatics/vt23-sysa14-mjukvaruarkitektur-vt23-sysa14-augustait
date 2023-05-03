@@ -1,45 +1,7 @@
 $(document).ready(function() {
   console.log("Ready!");
 
-//FIND ORDERS
-  function ajaxReturn_Error_Order(result, status, xhr) {
-    console.log("Ajax-find order: " + status);
-  }
-
-  function ParseJsonFileOrder(result) {
-    var table = "<table><tr><th>Order ID</th><th>Order Date</th><th>Supermarket ID</th><th>Customer ID</th><th>Payment Method</th></tr>";
-    for (var i = 0; i < result.length; i++) {
-      var order = result[i];
-      table += "<tr><td>" + order.OrderID + "</td><td>" + order.OrderDate + "</td><td>" + order.SupermarketID + "</td><td>" + order.CustomerID + "</td><td>" + order.PaymentMethod + "</td></tr>";
-    }
-    table += "</table>";
-    $("#order-info-container").html(table);
-  }
-
-  function clearFields() {
-    $("#order-id").val("");
-  }
-
-  //FIND--->
-  $("#customer-info-form").submit(function(event) {
-    event.preventDefault();
-    var strValue = $("#customer-id").val();
-    if (strValue != "") {
-      $.ajax({
-        method: "GET",
-        url: "http://localhost:8080/RestServerISPProject/ICAStore/orders/" + strValue,
-        error: ajaxReturn_Error_Order,
-        success: function(result, status, xhr) {
-          console.log(result);
-          ParseJsonFileOrder(result);
-          clearFields();
-        }
-      })
-    }
-  });
-});
-
-  
+  // VIEW ALL
   function ajaxReturn_Error(result, status, xhr) {
     console.log("Ajax-find movie: " + status);
   }
@@ -58,40 +20,6 @@ $(document).ready(function() {
     $("#category").val("");
   }
 
-  //FIND--->
-  $("#FindBtn").click(function() {
-    var strValue = $("#id").val();
-    if (strValue != "") {
-      $.ajax({
-        method: "GET",
-        url: "http://localhost:8080/RestServerISPProject/ICAStore/products/" + strValue,
-        error: ajaxReturn_Error,
-        success: function(result, status, xhr) {
-          ParseJsonFileMovie(result);
-        }
-      })
-    }
-  });
-
-  //VIEW ALL
-  function parseJsonFileProducts(results) {
-  $("#products-table").find("tr:gt(0)").remove();
-  // Loop through the results and append them to the table
-  for (var i = 0; i < results.length; i++) {
-    var product = results[i];
-    console.log(product); // add this line
-
-    $("#products-table").append(
-      "<tr><td>" +
-      product.id +
-      "</td><td>" +
-      product.title +
-      "</td><td>" +
-      product.price +
-      "</td></tr>"
-    );
-  }
-}
 
   function clearTable() {
     $("#products-table tr").not(":first").remove();
@@ -115,5 +43,52 @@ $(document).ready(function() {
       },
     });
   });
+  
+  function parseJsonFileProducts(results) {
+  $("#products-table").find("tr:gt(0)").remove();
+  // Loop through the results and append them to the table
+  for (var i = 0; i < results.length; i++) {
+    var product = results[i];
+
+    $("#products-table").append(
+      "<tr data-product-id='" + product.id + "'><td>" +
+      product.id +
+      "</td><td>" +
+      product.title +
+      "</td><td>" +
+      product.price +
+      "</td></tr>"
+    );
+  }
+}
+
+ // Delete button click event
+$("#delete-btn").click(function(event) {
+  event.preventDefault(); // prevent form submission
+  var productId = $("#productId").val();
+  if (productId !== "") {
+    $.ajax({
+      method: "DELETE",
+      url: "http://localhost:8080/RestServerISPProject/ICAStore/products/" + productId,
+      success: function(result, status, xhr) {
+        console.log("Product deleted successfully");
+        clearFields(); // clear form fields
+        $("#message-container").text("Product deleted successfully"); // set message text
+
+        // Remove the deleted product row from the table
+        var deletedRow = $("#products-table").find("tr[data-product-id='" + productId + "']");
+        if (deletedRow.length > 0) {
+          deletedRow.remove();
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log("Error deleting product");
+        alert("Error deleting product: " + error);
+      }
+    });
+  }
 });
+
+});
+
 

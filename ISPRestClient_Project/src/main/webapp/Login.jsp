@@ -23,7 +23,7 @@
 
     </header>
 	<div class="container">
-			<form action="Customer.jsp" method="post">
+			<form action="Product.jsp" method="post">
 			<h2>Login</h2>
 			<label for="username">Username:</label>
 			<input type="text" id="username" name="username" required>

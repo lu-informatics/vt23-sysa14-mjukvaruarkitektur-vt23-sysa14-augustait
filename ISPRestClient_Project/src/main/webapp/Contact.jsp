@@ -34,7 +34,7 @@
 	</section>
 	<div class="main-ContainerContact">
 	
-	<img src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg"
+	<img src="https://cdn.freshfruitportal.com/2022/11/Mix-frutas-shutterstock_252338818-1024x696.jpeg"
 		alt="A beautiful image" alt="Contentlogo" class="imageContact">
 
     <div class= "textContact">
@@ -43,7 +43,7 @@
 <p>We work directly with local farmers and suppliers to ensure that our products are always fresh and of the highest quality. Our knowledgeable staff is always on hand to help you find what you need and answer any questions you may have.</p>
 <p>Whether you're looking for ingredients for a special meal, or just need to stock up on everyday essentials, Fresh Food Market is your one-stop-shop for all your grocery needs. Visit us today and experience the difference that fresh food can make!</p>
 </div>
-  <img src="https://media-cldnry.s-nbcnews.com/image/upload/rockcms/2022-03/plant-based-food-mc-220323-02-273c7b.jpg"
+  <img src="https://media.istockphoto.com/id/1128687123/photo/shopping-bag-full-of-fresh-vegetables-and-fruits.jpg?b=1&s=170667a&w=0&k=20&c=z50mfxjka1xM_pFCVsH8yoVpduUVCFvGiKA8t0O2rOo="
 	alt="A beautiful image" alt="Contentlogo" class="imageContact2">
   </div>
   

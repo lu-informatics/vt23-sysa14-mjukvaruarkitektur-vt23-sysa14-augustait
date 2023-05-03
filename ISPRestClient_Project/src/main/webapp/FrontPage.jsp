@@ -48,10 +48,6 @@
 <p>32 Oak Street</p>
 <p>City, State 12345</p>
       </div>
-      <div class="weather-widget">
-        <img src="weather-icon.png" alt="Current weather icon">
-        <p>72&deg;F</p>
-      </div>
     </footer>
     <script>
       window.addEventListener('scroll', function() {

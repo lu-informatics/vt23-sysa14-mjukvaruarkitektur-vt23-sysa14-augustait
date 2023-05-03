@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Products</title>
+    <title>Product</title>
     <link rel="stylesheet" type="text/css" href="css/ICAStore.css">
-         <link rel="stylesheet" type="text/css" href="css/Style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/Style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/test.js"></script>
 </head>
 <body>
@@ -21,8 +21,6 @@
         <nav>
             <ul>
                 <li><a href="Product.jsp">View Products</a></li>
-                <li><a href="Contact.jsp">Find your Order</a></li>
-                <li><a href="Customer.jsp">Customer settings</a></li>
                 <li><a href="FrontPage.jsp">LOG OUT</a></li>
             </ul>
         </nav>
@@ -37,35 +35,41 @@
   <div class="product-container">
     <h2>All Products</h2>
     <button id="view-all-btn">View All Products</button>
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Category</th>
-    </tr>
-  </thead>
-  <tbody id="products-table"></tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody id="products-table"></tbody>
+    </table>
   
-</div>
+    <div>
+      <h2>Delete Product</h2>
+      <form method="post" action="DeleteProductServlet">
+        <label for="productId">ENTER A PRODUCT ID:</label>
+        <input type="text" id="orderId" name="orderId">
+    <button id="delete-btn">Delete</button> <!-- add ID here -->
+      </form>
+        <div id="message-container"></div> <!-- add message container here -->
+    </div>
+  </div>
 
-<div id="customer-info-container"></div>
+  <div id="product-info-container"></div>
         
     </main>
     
    
-   
     <footer>
         <div>
              <h3>FRESH FOOD MARKET</h3>
-<p>Greenland Supermarket</p>
-<p>32 Oak Street</p>
-<p>City, State 12345</p>
-        </div>
-        
-       
+             <p>Greenland Supermarket</p>
+             <p>32 Oak Street</p>
+             <p>City, State 12345</p>
+        </div> 
     </footer>
     
 </body>
