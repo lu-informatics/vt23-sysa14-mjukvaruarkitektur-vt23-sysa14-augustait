@@ -16,4 +16,10 @@
       <context-root>RestServerISPProjectNew</context-root>
     </web>
   </module>
+  <module>
+    <web>
+      <web-uri>RestServerICA.war</web-uri>
+      <context-root>RestServerICA</context-root>
+    </web>
+  </module>
 </application>
