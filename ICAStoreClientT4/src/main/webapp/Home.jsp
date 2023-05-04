@@ -7,13 +7,16 @@
 <body>
 	<header>
 		<div class="header-container">
-			<img src="https://scontent-ams2-1.xx.fbcdn.net/v/t1.15752-9/255161930_578347089889978_5226102132254144149_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=XevF6FAHeGMAX-WoqJK&_nc_ht=scontent-ams2-1.xx&oh=03_AdSMY3-Xh9GXaPX0ZYjDn0X5XirLLQUVLSzcsUrU5Mg3LQ&oe=64748A8E" alt="ICA ERP logo" class="logo">
-		</div>
+    <a href="Home.jsp">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/v/t1.15752-9/255161930_578347089889978_5226102132254144149_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=XevF6FAHeGMAX-WoqJK&_nc_ht=scontent-ams2-1.xx&oh=03_AdSMY3-Xh9GXaPX0ZYjDn0X5XirLLQUVLSzcsUrU5Mg3LQ&oe=64748A8E" alt="ICA ERP logo" class="logo">
+    </a>
+</div>
+</header>
 		<div class="welcome-header">
 			<h1>Welcome to the ICA Order Management System</h1>
 			<p>Here, you can manage and track all your orders efficiently and effectively.</p>
 		</div>
-	</header>
+	
 
 	<main>
 		
@@ -42,8 +45,8 @@
 </form>
 			</div>
 			<div class="box box2">
-				<h3>Existing Order ID</h3>
-				<p>For customers who already have an existing Order ID.</p>
+				<h3>Products</h3>
+				<p>Do you wish to see the products? Click down below.</p>
 				<form action="Products.jsp">
 
 					<button type="submit">Go to Products</button>
@@ -59,9 +62,7 @@
 		</div>
 	</main>
 
-	<footer>
-		<p>&copy; 2023 ICA ERP Management System</p>
-	</footer>
+	
 
 </body>
 </html>
