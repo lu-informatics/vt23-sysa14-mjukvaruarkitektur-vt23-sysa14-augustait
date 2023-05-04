@@ -14,7 +14,8 @@ import jakarta.persistence.PersistenceContext;
  * Session Bean implementation class CustomerEAOImpl
  */
 @Stateful
-@Local
+@Local(CustomerEAOImplLocal.class)
+
 public class CustomerEAOImpl implements CustomerEAOImplLocal {
 	
 	@PersistenceContext(unitName="LabEJBSql")

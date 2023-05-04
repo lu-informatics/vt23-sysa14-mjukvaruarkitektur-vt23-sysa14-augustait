@@ -10,87 +10,94 @@
 <body>
 
     <header>
-		<div class="header-container">
-			<img src="https://scontent-ams2-1.xx.fbcdn.net/v/t1.15752-9/255161930_578347089889978_5226102132254144149_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=XevF6FAHeGMAX-WoqJK&_nc_ht=scontent-ams2-1.xx&oh=03_AdSMY3-Xh9GXaPX0ZYjDn0X5XirLLQUVLSzcsUrU5Mg3LQ&oe=64748A8E" alt="ICA ERP logo" class="logo">
-		</div>
-		
-		<div class="welcome-header">
-			<h1>Welcome to the Products Page</h1>
-			<p>Here you can browse and add products to your order.</p>
-		</div>
-	</header>
+       <div class="header-container">
+    <a href="Home.jsp">
+        <img src="https://scontent-ams2-1.xx.fbcdn.net/v/t1.15752-9/255161930_578347089889978_5226102132254144149_n.jpg?stp=dst-jpg_p206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=XevF6FAHeGMAX-WoqJK&_nc_ht=scontent-ams2-1.xx&oh=03_AdSMY3-Xh9GXaPX0ZYjDn0X5XirLLQUVLSzcsUrU5Mg3LQ&oe=64748A8E" alt="ICA ERP logo" class="logo">
+    </a>
+     </header>
 
-	<section class="product-section-popular">
-		<h2>Popular:</h2>
-		<div class="product-container-popular">
-			<div class="product-item-popular">
-				<img src="/ICAStore/Assets/product1.jpg" alt="Product 1">
-				<button class="add-to-order-button1-popular">Add to Order</button>
-			</div>
-			<div class="product-item">
-				<img src="/ICAStore/Assets/product2.jpg" alt="Product 2">
-				<button class="add-to-order-button2-popular">Add to Order</button>
-			</div>
-			<div class="product-item">
-				<img src="/ICAStore/Assets/product3.jpg" alt="Product 3">
-				<button class="add-to-order-button3-popular">Add to Order</button>
-			</div>
-			<div class="product-item">
-				<img src="/ICAStore/Assets/product4.jpg" alt="Product 4">
-				<button class="add-to-order-button4-popular">Add to Order</button>
-			</div>
-		</div>
-	</section>
+        <div class="welcome-header">
+            <h1>Welcome to the Products Page</h1>
+            <p>Here you can browse and add products to your order.</p>
+        </div>
+   
 
-	<section class="product-section-drinks">
-		<h2>Drinks:</h2>
-		<div class="product-container-drinks">
-			<div class="product-item-drinks">
-				<img src="/ICAStore/Assets/drink1.jpg" alt="Drink 1">
-				<button class="add-to-order-button1-drinks">Add to Order</button>
-			</div>
-			<div class="product-item-drinks">
-				<img src="/ICAStore/Assets/drink2.jpg" alt="Drink 2">
-				<button class="add-to-order-button2-drinks">Add to Order</button>
-			</div>
-			<div class="product-item-drinks">
-				<img src="/ICAStore/Assets/drink3.jpg" alt="Drink 3">
-				<button class="add-to-order-button3-drinks">Add to Order</button>
-			</div>
-			<div class="product-item-drinks">
-				<img src="/ICAStore/Assets/drink4.jpg" alt="Drink 4">
-				<button class="add-to-order-button4-drinks">Add to Order</button>
-			</div>
-		</div>
-	</section>
+
+    <!-- Popular products -->
+<section class="product-section-popular">
+    <h2>Popular:</h2>
+    <div class="product-container-popular">
+        <!-- Product 1 -->
+        <div class="product-item-popular">
+            <img src="https://images.deliveryhero.io/image/darsktores-se/9002490215408.png?height=480" alt="Product 1">
+            <label>ProductID: 1001 | Price: $1.29</label>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-item">
+            <img src="https://images.deliveryhero.io/image/darkstores/darkstores/se/ds/catalog/7310532106600.png?height=480" alt="Product 2">
+            <label>ProductID: 1002 | Price: $2.99</label>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-item">
+            <img src="https://images.deliveryhero.io/image/darsktores-se/Multisar/multibilder%20utan%20tagg/pring_sourcre.png?height=480" alt="Product 3">
+            <label>ProductID: 1003 | Price: $2.49</label>
+        </div>
+        <!-- Product 4 -->
+        <div class="product-item">
+            <img src="https://images.deliveryhero.io/image/darsktores-se/80310167.png?height=480" alt="Product 4">
+            <label>ProductID: 1004 | Price: $0.99</label>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <section class="product-section-drinks">
+        <h2>Drinks:</h2>
+        <div class="product-container-drinks">
+            <div class="product-item-drinks">
+                <img src="https://images.deliveryhero.io/image/product-information-management/63184e1f9a94462760da6595.png?height=480" alt="Drink 1">
+				 <label>ProductID: 2001 | Price: $1.49</label>            </div>
+            <div class="product-item-drinks">
+                <img src="https://images.deliveryhero.io/image/darsktores-cz/Products/5449000000439.jpg?height=480" alt="Drink 2">
+ 				<label>ProductID: 2002 | Price: $2.99</label>            </div>
+            <div class="product-item-drinks">
+                <img src="https://images.deliveryhero.io/image/darkstores/darkstores/se/ds/catalog/7394376615733.png?height=480" alt="Drink 3">
+ 				<label>ProductID: 2003 | Price: $1.99</label>                </div>
+            <div class="product-item-drinks">
+                <img src="https://cdn.shopify.com/s/files/1/0046/5407/1877/t/11/assets/pf-b99f39f2--Milkshakechocolate2020.png?v=1622553210" alt="Drink 4">
+ 				<label>ProductID: 2004 | Price: $1.49</label>            </div>
+        </div>
+    </section>
 
     <section class="product-section-fruits">
-		<h2>Fruits and Vegetables:</h2>
-		<div class="product-container-fruits">
-			<div class="product-item-fruits">
-				<img src="/ICAStore/Assets/fruit1.jpg" alt="Fruit 1">
-				<button class="add-to-order-button1-fruits">Add to Order</button>
-			</div>
-			<div class="product-item-fruits">
-				<img src="/ICAStore/Assets/fruit2.jpg" alt="Fruit 2">
-				<button class="add-to-order-button2-fruits">Add to Order</button>
-			</div>
-			<div class="product-item-fruits">
-				<img src="/ICAStore/Assets/fruit3.jpg" alt="Fruit 3">
-				<button class="add-to-order-button3-fruits">Add to Order</button>
-			</div>
-			<div class="product-item-fruits">
-				<img src="/ICAStore/Assets/fruit4.jpg" alt="Fruit 4">
-				<button class="add-to-order-button4-fruits">Add to Order</button>
-			</div>
-		</div>
-	</section>
+    <h2>Fruits and Vegetables:</h2>
+    <div class="product-container-fruits">
+        <div class="product-item-fruits">
+            <img src="https://images.deliveryhero.io/image/fd-op/NV/Shuttershock/banan.png?height=140&dpi=1" alt="Fruit 1">
+            <label>ProductID: 3001 | Price: $0.99</label>
+        </div>
+        <div class="product-item-fruits">
+            <img src="https://images.deliveryhero.io/image/fd-op/NV/Shuttershock/shutterstock_1663147360.jpg.png?height=140&dpi=1" alt="Fruit 2">
+            <label>ProductID: 3002 | Price: $1.49</label>
+        </div>
+        <div class="product-item-fruits">
+            <img src="https://images.deliveryhero.io/image/fd-op/NV/Shuttershock/roklok.png?height=140&dpi=1" alt="Fruit 3">
+            <label>ProductID: 3003 | Price: $2.99</label>
+        </div>
+        <div class="product-item-fruits">
+            <img src="https://images.deliveryhero.io/image/fd-op/NV/Shuttershock/lime.jpg.png?height=140&dpi=1" alt="Fruit 4">
+            <label>ProductID: 3004 | Price: $0.79</label>
+        </div>
+    </div>
+</section>
 
+    
 
+   
 
-  <footer>
-		<p>&copy; 2023 ICA ERP Management System</p>
-	</footer>
+    
 
 </body>
 </html>

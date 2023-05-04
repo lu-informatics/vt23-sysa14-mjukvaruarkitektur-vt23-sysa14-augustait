@@ -27,6 +27,17 @@ public class OrderEAOImpl implements OrderEAOImplLocal {
         // TODO Auto-generated constructor stub
     }
     
+    public boolean testConnection() {
+        try {
+            em.createQuery("SELECT 1").getSingleResult();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    
 
 public Order_ createOrder(Order_ order) {
 em.persist(order);
@@ -50,12 +61,20 @@ em.remove(o);
 }
 
 
+//public List<Order_> findAllOrders() throws MyICAException {
+//	try {
+//return em.createNamedQuery("Order_.findAll", Order_.class).getResultList();
+//} catch (Exception e) {
+//    throw new MyICAException("Failed to retrieve the list of orders: " + e.getMessage());
+//}
+//}
+
 public List<Order_> findAllOrders() throws MyICAException {
-	try {
-return em.createNamedQuery("Order_.findAll", Order_.class).getResultList();
-} catch (Exception e) {
-    throw new MyICAException("Failed to retrieve the list of orders: " + e.getMessage());
-}
+    try {
+        return em.createQuery("SELECT o FROM Order_ o", Order_.class).getResultList();
+    } catch (Exception e) {
+        throw new MyICAException("Failed to retrieve the list of orders: " + e.getMessage());
+    }
 }
 
 
